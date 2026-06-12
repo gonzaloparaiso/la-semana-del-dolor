@@ -21,11 +21,10 @@ const ALBA_IMG = `${ASSET}alba.jpg`;
 // ── Enlaces ─────────────────────────────────────────────────
 // TODO: sustituir por la URL real de inscripción a las clases gratuitas.
 const REGISTRATION_URL = "#REEMPLAZAR-inscripcion-clases";
-// Checkout de los 3 productos. El de 397€ es el producto actual (add-to-cart=6781).
-// TODO: sustituir los IDs REEMPLAZAR-197 y REEMPLAZAR-597 por los reales.
-const CHECKOUT_197 = "https://improvingmethods.com/finalizar-compra/?add-to-cart=REEMPLAZAR-197";
-const CHECKOUT_397 = "https://improvingmethods.com/finalizar-compra/?add-to-cart=6781";
-const CHECKOUT_597 = "https://improvingmethods.com/finalizar-compra/?add-to-cart=REEMPLAZAR-597";
+// Checkout de los 3 productos en trainingnorte.com.
+const CHECKOUT_197 = "https://trainingnorte.com/finalizar-compra/?add-to-cart=31914";
+const CHECKOUT_397 = "https://trainingnorte.com/finalizar-compra/?add-to-cart=31916";
+const CHECKOUT_597 = "https://trainingnorte.com/finalizar-compra/?add-to-cart=31917";
 
 // ── Clases gratuitas de la semana ───────────────────────────
 const CLASES = [

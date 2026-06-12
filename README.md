@@ -51,6 +51,6 @@ src/
 ## Pendiente / placeholders por rellenar
 
 - [ ] **`REGISTRATION_URL`** — URL real de inscripción a las clases gratuitas (ahora `#REEMPLAZAR-inscripcion-clases`).
-- [ ] **`CHECKOUT_197`** y **`CHECKOUT_597`** — `add-to-cart` reales de los productos de 197€ y 597€ (el de 397€ ya usa el real, `6781`).
+- [x] Checkouts de los 3 productos (`trainingnorte.com/finalizar-compra/?add-to-cart=31914 / 31916 / 31917`).
 - [ ] (Opcional) Hora de las clases — ahora solo se muestra "online en directo".
 - [ ] (Opcional) Logo apaisado para la navbar.

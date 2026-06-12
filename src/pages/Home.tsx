@@ -1301,7 +1301,7 @@ export default function Home() {
       <div className="section-divider" />
 
       {/* ── PRECIO / OFERTA DE LANZAMIENTO ───────────────── */}
-      <section id="precio" style={{ padding: "5rem 0", backgroundColor: "#121212" }}>
+      <section id="precio" style={{ padding: "5rem 0", backgroundColor: "#121212", scrollMarginTop: "90px" }}>
         <div className="container">
           <div style={{ marginBottom: "3.5rem", textAlign: "center", maxWidth: "640px", marginLeft: "auto", marginRight: "auto" }} className="fade-in-up">
             <p className="section-label" style={{ textAlign: "center" }}>La oferta de lanzamiento</p>

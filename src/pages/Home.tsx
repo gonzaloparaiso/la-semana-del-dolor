@@ -639,7 +639,7 @@ export default function Home() {
                 maxWidth: "600px",
               }}
             >
-              Compómetete con un mínimo de 3 sesiones por semana. El programa se divide en dos fases claras.
+              Comprométete con un mínimo de 3 sesiones por semana. El programa se divide en dos fases claras.
             </p>
           </div>
 
@@ -1280,10 +1280,16 @@ export default function Home() {
             © 2024 Training Norte · Todos los derechos reservados
           </p>
           <div style={{ display: "flex", gap: "2rem" }}>
-            {["Términos y condiciones", "Política de privacidad", "Aviso legal"].map((link) => (
+            {[
+              { label: "Términos y condiciones", href: "https://trainingnorte.com/condiciones-de-compra/" },
+              { label: "Política de privacidad", href: "https://trainingnorte.com/politica-de-proteccion-de-datos/" },
+              { label: "Aviso legal", href: "https://trainingnorte.com/aviso-legal/" },
+            ].map((link) => (
               <a
-                key={link}
-                href="#"
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   fontFamily: "'Montserrat', sans-serif",
                   fontSize: "0.75rem",
@@ -1295,7 +1301,7 @@ export default function Home() {
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#F3C148")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#444444")}
               >
-                {link}
+                {link.label}
               </a>
             ))}
           </div>

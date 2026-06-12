@@ -19,8 +19,7 @@ const LATERAL_IMG = `${ASSET}lateral.jpg`;
 const ALBA_IMG = `${ASSET}alba.jpg`;
 
 // ── Enlaces ─────────────────────────────────────────────────
-// TODO: sustituir por la URL real de inscripción a las clases gratuitas.
-const REGISTRATION_URL = "#REEMPLAZAR-inscripcion-clases";
+// Los CTA genéricos hacen scroll a la sección de productos (#precio).
 // Checkout de los 3 productos en trainingnorte.com.
 const CHECKOUT_197 = "https://trainingnorte.com/finalizar-compra/?add-to-cart=31914";
 const CHECKOUT_397 = "https://trainingnorte.com/finalizar-compra/?add-to-cart=31916";
@@ -399,7 +398,7 @@ export default function Home() {
 
       {/* ── URGENCY BAR ─────────────────────────────────── */}
       <div className="urgency-bar">
-        La semana del dolor · 3 clases gratis con Alba · 24, 27 y 28 de junio · Apúntate gratis
+        La semana del dolor · 3 clases gratis con Alba · 24, 27 y 28 de junio
       </div>
 
       {/* ── NAVBAR ──────────────────────────────────────── */}
@@ -427,11 +426,11 @@ export default function Home() {
              style={{ height: "52px", objectFit: "contain", maxWidth: "220px" }}
            />
           <a
-            href={REGISTRATION_URL}
+            href="#precio"
             className="btn-gold"
             style={{ fontSize: "0.75rem", padding: "0.625rem 1.5rem", textDecoration: "none", display: "inline-block" }}
           >
-            Apúntate gratis
+            Quiero eliminar mi dolor
           </a>
         </div>
       </nav>
@@ -510,11 +509,11 @@ export default function Home() {
             </p>
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
               <a
-                href={REGISTRATION_URL}
+                href="#precio"
                 className="btn-gold btn-gold-pulse"
                 style={{ textDecoration: "none", display: "inline-block" }}
               >
-                Apúntate gratis
+                Quiero eliminar mi dolor
               </a>
               <span
                 style={{
@@ -644,11 +643,11 @@ export default function Home() {
 
           <div style={{ textAlign: "center" }} className="fade-in-up">
             <a
-              href={REGISTRATION_URL}
+              href="#precio"
               className="btn-gold btn-gold-pulse"
               style={{ textDecoration: "none", display: "inline-block" }}
             >
-              Apúntate gratis a las 3 clases
+              Quiero eliminar mi dolor
             </a>
           </div>
         </div>
@@ -1242,11 +1241,11 @@ export default function Home() {
                 <strong style={{ color: "#FFFFFF" }}>ARMOUR</strong> es el conjunto de pasos que hacen que todo funcione. Durante 3 meses vamos a ir de la mano. Y puedo prometerte que lo vas a conseguir.
               </p>
               <a
-                href={REGISTRATION_URL}
+                href="#precio"
                 className="btn-outline-gold"
                 style={{ textDecoration: "none", display: "inline-block" }}
               >
-                Apúntate a la semana gratis
+                Quiero eliminar mi dolor
               </a>
             </div>
           </div>
@@ -1525,11 +1524,11 @@ export default function Home() {
               Sí. Y empezamos esta semana. 3 clases gratis con Alba los días 24, 27 y 28 de junio. Reserva tu sitio antes de que se llenen.
             </p>
             <a
-              href={REGISTRATION_URL}
+              href="#precio"
               className="btn-gold btn-gold-pulse"
               style={{ fontSize: "1rem", padding: "1.125rem 3.5rem", textDecoration: "none", display: "inline-block" }}
             >
-              Apúntate gratis a la semana
+              Quiero eliminar mi dolor
             </a>
           </div>
         </div>

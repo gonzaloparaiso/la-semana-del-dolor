@@ -15,6 +15,37 @@ const LATERAL_IMG = "/lateral.jpg";
 // Sección Alba: foto de Alba con brazos cruzados (Training Norte)
 const ALBA_IMG = "/alba.jpg";
 
+// ── Enlaces ─────────────────────────────────────────────────
+// TODO: sustituir por la URL real de inscripción a las clases gratuitas.
+const REGISTRATION_URL = "#REEMPLAZAR-inscripcion-clases";
+// Checkout de los 3 productos. El de 397€ es el producto actual (add-to-cart=6781).
+// TODO: sustituir los IDs REEMPLAZAR-197 y REEMPLAZAR-597 por los reales.
+const CHECKOUT_197 = "https://improvingmethods.com/finalizar-compra/?add-to-cart=REEMPLAZAR-197";
+const CHECKOUT_397 = "https://improvingmethods.com/finalizar-compra/?add-to-cart=6781";
+const CHECKOUT_597 = "https://improvingmethods.com/finalizar-compra/?add-to-cart=REEMPLAZAR-597";
+
+// ── Clases gratuitas de la semana ───────────────────────────
+const CLASES = [
+  {
+    dia: "Miércoles 24",
+    mes: "junio",
+    titulo: "Por qué te duele la espalda",
+    desc: "Entiende qué hay detrás del dolor lumbar y por qué casi nunca es lo que te han contado.",
+  },
+  {
+    dia: "Sábado 27",
+    mes: "junio",
+    titulo: "Mover sin miedo",
+    desc: "Los patrones que tu cuerpo necesita recuperar para volver a confiar en el movimiento.",
+  },
+  {
+    dia: "Domingo 28",
+    mes: "junio",
+    titulo: "Tu plan para dejar de convivir con el dolor",
+    desc: "Cómo integrar todo en un sistema que funcione a largo plazo. Y qué viene después.",
+  },
+];
+
 // ── Scroll animation hook ────────────────────────────────────
 function useScrollReveal() {
   useEffect(() => {
@@ -156,6 +187,121 @@ function PillarCard({
   );
 }
 
+// ── Pricing Tier ─────────────────────────────────────────────
+function PricingTier({
+  name,
+  tagline,
+  price,
+  features,
+  href,
+  featured = false,
+  badge,
+  ctaLabel,
+}: {
+  name: string;
+  tagline: string;
+  price: string;
+  features: string[];
+  href: string;
+  featured?: boolean;
+  badge?: string;
+  ctaLabel: string;
+}) {
+  return (
+    <div
+      className={"pricing-tier fade-in-up" + (featured ? " pricing-tier-featured" : "")}
+      style={{
+        backgroundColor: featured ? "#1C1C1C" : "#161616",
+        border: featured ? "2px solid #F3C148" : "1px solid rgba(243,193,72,0.18)",
+        padding: "2.5rem 2rem",
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+        boxShadow: featured ? "0 18px 50px rgba(0,0,0,0.45)" : "none",
+      }}
+    >
+      {badge && (
+        <div
+          style={{
+            position: "absolute",
+            top: "-0.85rem",
+            left: "50%",
+            transform: "translateX(-50%)",
+            backgroundColor: "#F3C148",
+            color: "#121212",
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 800,
+            fontSize: "0.7rem",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            padding: "0.35rem 1rem",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {badge}
+        </div>
+      )}
+      <h3
+        style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: "1.75rem",
+          color: featured ? "#F3C148" : "#FFFFFF",
+          letterSpacing: "0.04em",
+          marginBottom: "0.35rem",
+        }}
+      >
+        {name}
+      </h3>
+      <p
+        style={{
+          fontFamily: "'Montserrat', sans-serif",
+          fontSize: "0.8125rem",
+          color: "#888888",
+          lineHeight: "1.5",
+          marginBottom: "1.5rem",
+          minHeight: "2.4em",
+        }}
+      >
+        {tagline}
+      </p>
+      <div style={{ display: "flex", alignItems: "baseline", gap: "0.25rem", marginBottom: "1.75rem" }}>
+        <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "3.5rem", color: "#FFFFFF", lineHeight: 1 }}>
+          {price}
+        </span>
+        <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "1.25rem", fontWeight: 700, color: "#F3C148" }}>
+          €
+        </span>
+      </div>
+      <div style={{ flexGrow: 1, marginBottom: "1.75rem" }}>
+        {features.map((f) => (
+          <div
+            key={f}
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: "0.65rem",
+              padding: "0.55rem 0",
+              borderBottom: "1px solid rgba(255,255,255,0.06)",
+            }}
+          >
+            <Check size={15} style={{ color: "#F3C148", marginTop: "2px", flexShrink: 0 }} />
+            <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.8125rem", color: "#CCCCCC", lineHeight: "1.5" }}>
+              {f}
+            </span>
+          </div>
+        ))}
+      </div>
+      <a
+        href={href}
+        className={featured ? "btn-gold btn-gold-pulse" : "btn-outline-gold"}
+        style={{ textAlign: "center", textDecoration: "none", display: "block", width: "100%", boxSizing: "border-box" }}
+      >
+        {ctaLabel}
+      </a>
+    </div>
+  );
+}
+
 // ── Main Component ───────────────────────────────────────────
 export default function Home() {
   useScrollReveal();
@@ -200,14 +346,29 @@ export default function Home() {
 
   const faqs = [
     {
+      question: "¿Las clases online son gratuitas?",
+      answer:
+        "Sí, totalmente gratis. Son 3 clases en directo con Alba Estrada los días 24, 27 y 28 de junio. Solo tienes que apuntarte para reservar tu sitio y recibir el enlace de acceso.",
+    },
+    {
+      question: "¿Y si no puedo conectarme en directo a alguna clase?",
+      answer:
+        "No te preocupes. Apúntate igualmente: durante la semana del lanzamiento tendrás acceso a la grabación de cada clase para que puedas verla cuando te venga bien.",
+    },
+    {
+      question: "¿Qué diferencia hay entre los tres programas?",
+      answer:
+        "Low Back Armour (197€) es el programa completo de 3 meses en vídeo, para hacer a tu ritmo sin seguimiento. Low Back Armour + Seguimiento (397€) añade las sesiones en directo el primer mes, el grupo privado y las correcciones de movimiento cada 15 días. Y la opción Premium (597€) incluye todo lo anterior más WhatsApp directo con Alba Estrada para resolver tus dudas; solo hay 10 plazas.",
+    },
+    {
+      question: "¿Cuándo puedo comprar el programa?",
+      answer:
+        "Las plazas del programa se abren durante la semana de clases y se cierran al terminar. Apúntate a las clases gratuitas para enterarte el primero cuando se abra la inscripción (y no quedarte sin una de las 10 plazas Premium).",
+    },
+    {
       question: "¿Cómo funciona el programa?",
       answer:
         "A través de nuestra plataforma recibirás 5 sesiones semanales guiadas con vídeos explicativos detallados. Debes comprometerte con un mínimo de 3 sesiones por semana para obtener resultados. El programa está diseñado para reeducar tu sistema completo: respiración, postura, movimiento, fuerza y hábitos.",
-    },
-    {
-      question: "¿Tendré seguimiento personalizado?",
-      answer:
-        "Sí. Durante el primer mes tendrás sesiones en directo semanales con Alba Estrada. A partir del segundo mes, cada 15 días realizamos sesiones de corrección de movimiento. Además, tendrás acceso a un grupo privado para resolver dudas en cualquier momento.",
     },
     {
       question: "¿Es para mí si no hago CrossFit o entrenamiento funcional?",
@@ -229,11 +390,6 @@ export default function Home() {
       answer:
         "El 80% de los dolores de espalda se diagnostican como 'dolor lumbar inespecífico'. Esto ocurre porque el dolor puede ser detonado por el estrés, malas posturas, hábitos, exceso de carga, o incluso por cómo interpretas el dolor. Por eso trabajar solo un músculo aislado no funciona: hay que abordar todo el sistema.",
     },
-    {
-      question: "¿Cuándo empieza la próxima edición?",
-      answer:
-        "La próxima edición comienza el 6 de abril. Las plazas son limitadas para garantizar un acompañamiento de calidad. Reserva la tuya antes de que se agoten.",
-    },
   ];
 
   return (
@@ -241,7 +397,7 @@ export default function Home() {
 
       {/* ── URGENCY BAR ─────────────────────────────────── */}
       <div className="urgency-bar">
-        Plazas limitadas · Próxima edición: 6 de abril · Reserva la tuya ahora
+        La semana del dolor · 3 clases gratis con Alba · 24, 27 y 28 de junio · Apúntate gratis
       </div>
 
       {/* ── NAVBAR ──────────────────────────────────────── */}
@@ -262,18 +418,18 @@ export default function Home() {
         >
           <img
              src={LOGO_URL}
-             alt="Improving Methods"
+             alt="Training Norte"
              width="220"
              height="52"
              loading="eager"
              style={{ height: "52px", objectFit: "contain", maxWidth: "220px" }}
            />
           <a
-            href="https://improvingmethods.com/finalizar-compra/?add-to-cart=6781"
+            href={REGISTRATION_URL}
             className="btn-gold"
             style={{ fontSize: "0.75rem", padding: "0.625rem 1.5rem", textDecoration: "none", display: "inline-block" }}
           >
-            Quiero mi plaza
+            Apúntate gratis
           </a>
         </div>
       </nav>
@@ -312,7 +468,7 @@ export default function Home() {
         <div className="container" style={{ position: "relative", zIndex: 2, paddingTop: "5rem", paddingBottom: "5rem" }}>
           <div style={{ maxWidth: "620px" }}>
             <p className="section-label" style={{ marginBottom: "1rem" }}>
-              Sistema completo · 3 meses · Alba Estrada
+              Semana gratuita · 3 clases en directo · Alba Estrada
             </p>
             <h1
               style={{
@@ -337,7 +493,7 @@ export default function Home() {
                 fontWeight: 400,
               }}
             >
-              Reeduca tu movimiento y recupera la confianza en tu espalda.
+              Esta semana, 3 clases online gratuitas con Alba Estrada para entender tu dolor lumbar y empezar a moverte sin miedo.
             </p>
             <p
               style={{
@@ -348,15 +504,15 @@ export default function Home() {
                 marginBottom: "2.5rem",
               }}
             >
-              Sistema completo de 3 meses para personas con dolor lumbar que quieren volver a moverse con seguridad.
+              En directo los días 24, 27 y 28 de junio. Reserva tu sitio gratis (y se queda grabado por si no puedes asistir).
             </p>
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
               <a
-                href="https://improvingmethods.com/finalizar-compra/?add-to-cart=6781"
+                href={REGISTRATION_URL}
                 className="btn-gold btn-gold-pulse"
                 style={{ textDecoration: "none", display: "inline-block" }}
               >
-                Quiero empezar
+                Apúntate gratis
               </a>
               <span
                 style={{
@@ -369,6 +525,129 @@ export default function Home() {
                 ↓ Plazas limitadas
               </span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* ── LAS 3 CLASES GRATUITAS ──────────────────────── */}
+      <section id="clases" style={{ padding: "5rem 0", backgroundColor: "#0F0F0F" }}>
+        <div className="container">
+          <div style={{ marginBottom: "3.5rem", maxWidth: "640px" }} className="fade-in-up">
+            <p className="section-label">La semana del dolor · Gratis</p>
+            <span className="gold-line" />
+            <h2
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
+                lineHeight: 1.05,
+                color: "#FFFFFF",
+                marginBottom: "1rem",
+              }}
+            >
+              3 clases en directo con Alba Estrada
+            </h2>
+            <p
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: "0.9375rem",
+                lineHeight: "1.8",
+                color: "#AAAAAA",
+              }}
+            >
+              Una semana para cambiar tu relación con el dolor de espalda. Tres sesiones online, en directo y gratuitas. Apúntate y recibe el enlace de acceso.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "1.5rem",
+              marginBottom: "3rem",
+            }}
+            className="fade-in-up classes-grid-3"
+          >
+            {CLASES.map((clase, i) => (
+              <div
+                key={clase.dia}
+                style={{
+                  backgroundColor: "#1A1A1A",
+                  borderTop: "3px solid #F3C148",
+                  padding: "1.75rem 1.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: "1.1rem",
+                    color: "rgba(243,193,72,0.4)",
+                    letterSpacing: "0.1em",
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  CLASE {String(i + 1).padStart(2, "0")}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: "1.75rem",
+                    color: "#F3C148",
+                    lineHeight: 1,
+                    marginBottom: "0.25rem",
+                  }}
+                >
+                  {clase.dia}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontSize: "0.75rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    color: "#777777",
+                    marginBottom: "1.25rem",
+                  }}
+                >
+                  {clase.mes} · online en directo
+                </div>
+                <h3
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: "1.35rem",
+                    color: "#FFFFFF",
+                    letterSpacing: "0.03em",
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  {clase.titulo}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontSize: "0.8125rem",
+                    color: "#AAAAAA",
+                    lineHeight: "1.6",
+                    margin: 0,
+                  }}
+                >
+                  {clase.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: "center" }} className="fade-in-up">
+            <a
+              href={REGISTRATION_URL}
+              className="btn-gold btn-gold-pulse"
+              style={{ textDecoration: "none", display: "inline-block" }}
+            >
+              Apúntate gratis a las 3 clases
+            </a>
           </div>
         </div>
       </section>
@@ -961,11 +1240,11 @@ export default function Home() {
                 <strong style={{ color: "#FFFFFF" }}>ARMOUR</strong> es el conjunto de pasos que hacen que todo funcione. Durante 3 meses vamos a ir de la mano. Y puedo prometerte que lo vas a conseguir.
               </p>
               <a
-                href="https://improvingmethods.com/finalizar-compra/?add-to-cart=6781"
+                href={REGISTRATION_URL}
                 className="btn-outline-gold"
                 style={{ textDecoration: "none", display: "inline-block" }}
               >
-                Ver el programa completo
+                Apúntate a la semana gratis
               </a>
             </div>
           </div>
@@ -1020,112 +1299,123 @@ export default function Home() {
 
       <div className="section-divider" />
 
-      {/* ── PRECIO / CTA ─────────────────────────────────── */}
+      {/* ── PRECIO / OFERTA DE LANZAMIENTO ───────────────── */}
       <section id="precio" style={{ padding: "5rem 0", backgroundColor: "#121212" }}>
         <div className="container">
-          <div style={{ maxWidth: "640px", margin: "0 auto" }} className="fade-in-up">
-            <div className="price-box">
-              <p className="section-label" style={{ textAlign: "center" }}>Acceso completo</p>
-              <h2
-                style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
-                  fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
-                  lineHeight: 1.05,
-                  color: "#FFFFFF",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                Deja atrás tu dolor lumbar
-              </h2>
-              <p
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontSize: "0.9375rem",
-                  color: "#AAAAAA",
-                  marginBottom: "2rem",
-                  lineHeight: "1.7",
-                }}
-              >
-                Programa completo de 3 meses. Todo incluido.
-              </p>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "baseline",
-                  justifyContent: "center",
-                  gap: "0.5rem",
-                  marginBottom: "2rem",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "'Bebas Neue', sans-serif",
-                    fontSize: "5rem",
-                    color: "#F3C148",
-                    lineHeight: 1,
-                  }}
-                >
-                  397
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontSize: "1.5rem",
-                    fontWeight: 700,
-                    color: "#F3C148",
-                  }}
-                >
-                  €
-                </span>
-              </div>
-              <p
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontSize: "0.8125rem",
-                  color: "#888888",
-                  marginBottom: "2rem",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                Pago único · Acceso durante 3 meses
-              </p>
-              <a
-                href="https://improvingmethods.com/finalizar-compra/?add-to-cart=6781"
-                className="btn-gold btn-gold-pulse"
-                style={{ fontSize: "1rem", padding: "1.125rem 3rem", width: "100%", textDecoration: "none", display: "block", textAlign: "center", boxSizing: "border-box" }}
-              >
-                Quiero mi plaza
-              </a>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "0.5rem",
-                  marginTop: "1.25rem",
-                }}
-              >
-                <div
-                  style={{
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    backgroundColor: "#F3C148",
-                    animation: "pulse-gold 1.5s infinite",
-                  }}
-                />
-                <p
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontSize: "0.8125rem",
-                    color: "#888888",
-                    letterSpacing: "0.08em",
-                  }}
-                >
-                  Plazas limitadas · Empieza el 6 de abril
-                </p>
-              </div>
-            </div>
+          <div style={{ marginBottom: "3.5rem", textAlign: "center", maxWidth: "640px", marginLeft: "auto", marginRight: "auto" }} className="fade-in-up">
+            <p className="section-label" style={{ textAlign: "center" }}>La oferta de lanzamiento</p>
+            <span className="gold-line" style={{ margin: "0 auto 1.5rem" }} />
+            <h2
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
+                lineHeight: 1.05,
+                color: "#FFFFFF",
+                marginBottom: "1rem",
+              }}
+            >
+              Elige cómo quieres dejar atrás tu dolor
+            </h2>
+            <p
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: "0.9375rem",
+                color: "#AAAAAA",
+                lineHeight: "1.7",
+              }}
+            >
+              Tres formas de entrar a Low Back Armour. Las plazas se abren durante la semana de clases y se cierran al terminar.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "1.5rem",
+              alignItems: "stretch",
+              maxWidth: "1080px",
+              margin: "0 auto",
+            }}
+            className="pricing-grid-3"
+          >
+            <PricingTier
+              name="Low Back Armour"
+              tagline="El programa completo, a tu ritmo y sin seguimiento."
+              price="197"
+              href={CHECKOUT_197}
+              ctaLabel="Lo quiero"
+              features={[
+                "Programa completo de 3 meses en vídeo",
+                "Los 5 pilares: respiración, postura, movimiento, fuerza y hábitos",
+                "Adaptado a todo tipo de personas con dolor lumbar",
+                "Guía de hábitos y respiraciones guiadas",
+                "Acceso durante 3 meses",
+              ]}
+            />
+            <PricingTier
+              name="LBA + Seguimiento"
+              tagline="El programa con acompañamiento de Alba para no ir solo."
+              price="397"
+              href={CHECKOUT_397}
+              featured
+              badge="El más elegido"
+              ctaLabel="Quiero seguimiento"
+              features={[
+                "Todo lo del programa Low Back Armour",
+                "Sesiones en directo con Alba el primer mes",
+                "Grabaciones de todas las sesiones",
+                "Grupo privado de seguimiento con Alba",
+                "Correcciones de movimiento cada 15 días (meses 2-3)",
+              ]}
+            />
+            <PricingTier
+              name="LBA Premium"
+              tagline="Todo lo anterior + WhatsApp directo con Alba. Solo 10 plazas."
+              price="597"
+              href={CHECKOUT_597}
+              badge="Solo 10 plazas"
+              ctaLabel="Quiero una plaza"
+              features={[
+                "Todo lo del programa + seguimiento",
+                "WhatsApp directo con Alba Estrada",
+                "Resolución de dudas personalizada y prioritaria",
+                "Acompañamiento al máximo nivel",
+                "Plazas estrictamente limitadas a 10 personas",
+              ]}
+            />
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem",
+              marginTop: "2.5rem",
+            }}
+            className="fade-in-up"
+          >
+            <div
+              style={{
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                backgroundColor: "#F3C148",
+                animation: "pulse-gold 1.5s infinite",
+              }}
+            />
+            <p
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: "0.8125rem",
+                color: "#888888",
+                letterSpacing: "0.08em",
+                textAlign: "center",
+              }}
+            >
+              Pago único · Acceso durante 3 meses · Plazas limitadas
+            </p>
           </div>
         </div>
       </section>
@@ -1230,14 +1520,14 @@ export default function Home() {
                 margin: "0 auto 2.5rem",
               }}
             >
-              Sí. Y vamos a conseguirlo juntos. ARMOUR empieza el 6 de abril. Las plazas son limitadas.
+              Sí. Y empezamos esta semana. 3 clases gratis con Alba los días 24, 27 y 28 de junio. Reserva tu sitio antes de que se llenen.
             </p>
             <a
-              href="https://improvingmethods.com/finalizar-compra/?add-to-cart=6781"
+              href={REGISTRATION_URL}
               className="btn-gold btn-gold-pulse"
               style={{ fontSize: "1rem", padding: "1.125rem 3.5rem", textDecoration: "none", display: "inline-block" }}
             >
-              Quiero mi plaza — 397€
+              Apúntate gratis a la semana
             </a>
           </div>
         </div>
@@ -1358,6 +1648,15 @@ export default function Home() {
           max-width: 100%;
         }
 
+        /* Featured pricing tier: slightly larger, desktop only.
+           Scoped to min-width so it simply doesn't exist on mobile (no scale there).
+           !important beats .fade-in-up.visible, which has higher selector specificity. */
+        @media (min-width: 769px) {
+          .pricing-tier-featured {
+            transform: scale(1.03) !important;
+          }
+        }
+
         @media (max-width: 768px) {
           /* All 2-column grids collapse to 1 column */
           .responsive-grid-2 {
@@ -1367,6 +1666,13 @@ export default function Home() {
 
           /* 3-column structure grid collapses to 1 column */
           .structure-grid-3 {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+
+          /* Classes + pricing grids collapse to 1 column */
+          .classes-grid-3,
+          .pricing-grid-3 {
             grid-template-columns: 1fr !important;
             gap: 1.5rem !important;
           }

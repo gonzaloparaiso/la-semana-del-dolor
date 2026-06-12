@@ -7,13 +7,16 @@ import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp, Check, ArrowRight } from "lucide-react";
 
 // ── Assets ──────────────────────────────────────────────────
-const LOGO_URL = "/logo-tn.png";
+// BASE_URL incluye la barra final (p. ej. "/la-semana-del-dolor/"), así los
+// assets de public/ resuelven bien tanto en local como en GitHub Pages.
+const ASSET = import.meta.env.BASE_URL;
+const LOGO_URL = `${ASSET}logo-tn.png`;
 // Hero: foto del peso muerto (alumno con barra, Alba corrigiendo)
-const HERO_BG = "/hero.jpg";
+const HERO_BG = `${ASSET}hero.jpg`;
 // Sección problema: foto de corrección lateral con barra (TN BOX)
-const LATERAL_IMG = "/lateral.jpg";
+const LATERAL_IMG = `${ASSET}lateral.jpg`;
 // Sección Alba: foto de Alba con brazos cruzados (Training Norte)
-const ALBA_IMG = "/alba.jpg";
+const ALBA_IMG = `${ASSET}alba.jpg`;
 
 // ── Enlaces ─────────────────────────────────────────────────
 // TODO: sustituir por la URL real de inscripción a las clases gratuitas.

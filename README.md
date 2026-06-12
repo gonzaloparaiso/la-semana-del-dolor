@@ -32,14 +32,13 @@ src/
 
 ## Notas
 
-- Las imágenes (`HERO_BG`, `LATERAL_IMG`, `ALBA_IMG`, `LOGO_URL`) apuntan a URLs de `manuscdn.com` con firma temporal (`Expires`). **Caducarán** y habrá que migrarlas a un hosting propio (p. ej. `public/`).
+- Las imágenes están alojadas en `public/` (`hero.jpg`, `lateral.jpg`, `alba.jpg`, `logo-tn.png`). Ya no dependen de URLs externas.
 - El CTA apunta a `https://improvingmethods.com/finalizar-compra/?add-to-cart=6781` y propaga los parámetros UTM de la URL.
 - Incluye el **Meta Pixel** (`578854531744241`) en `index.html`.
 - Botón flotante de WhatsApp a `+34 628 436 530`.
 
 ## Pendiente / ideas
 
-- [ ] Alojar las imágenes en local (`public/`) en vez de manuscdn.
 - [ ] Añadir `favicon.png` en `public/`.
 - [ ] Páginas legales (términos, privacidad, aviso legal) — ahora apuntan a `#`.
 - [ ] Revisar copy ("Compómetete" -> "Comprométete").

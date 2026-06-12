@@ -7,13 +7,13 @@ import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp, Check, ArrowRight } from "lucide-react";
 
 // ── Assets ──────────────────────────────────────────────────
-const LOGO_URL = "https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663406835472/FEEUQhDpFvbiOiWl.png?Expires=1806596530&Signature=DoU1lyUeVMvW-vOy~xXGrRInm-KReT7babL-i14A-Sx2a1at-tHonF8Nuhqa2tQn-wX7wS-AA9jlOiYeofPkXm25-6J7s1UKoKFfcTv3zX-W1YEnYHzCpXDqpYNgfRyU-X-IyFFETJaO-s4m03DsBnQUAT1aAppq6xAe4jeJuCrBf2JLLgiCjxmSONsPzlJi8UCcNyOTt59WJxDpednODi7YLqNr7zJDUyES6oOV4SPShNH4UEEmuqkARL2xvtBV3X5GIhLet3XFhilPQVcW0fcHJsW8FON7OyPT9zQPuM6goK5aOVZM9AF5hofadVZf0udidywv1UsRja6kSb6SiA__&Key-Pair-Id=K2HSFNDJXOU9YS";
+const LOGO_URL = "/logo-tn.png";
 // Hero: foto del peso muerto (alumno con barra, Alba corrigiendo)
-const HERO_BG = "https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663406835472/uESTGUOXbhdXGfCw.jpg?Expires=1806584888&Signature=SDgj7WlYyJzZO1YS19K4MbmUo8i47fKmzVGVFhqH2gCiDMK7KPaspGSkG8xYrDws2x9efLu9cW780qz5TlHuFH4ZFp0qlAGxOyMsUUuWMTwfWyMks8D4ZyODjucdGW0yjKFFeoIlbwHr0zb694MOef2JB8klXMpyirHo792nXcaV1JoONxT1~eLev1OLSNVzWS4BOgY0AtM68sGw72sCZOHYKww1e0c9mcuskeRtxVT-QhzChCDJR0-xtsjGO08s8WT1roz0EXfrkW9Rz3UEI7Ueuab7LGJotp0yyTT8~IiD9zvryvQw0sYZuyt-VEBEqlKA2uKpFuKAtogfBFgb~A__&Key-Pair-Id=K2HSFNDJXOU9YS";
+const HERO_BG = "/hero.jpg";
 // Sección problema: foto de corrección lateral con barra (TN BOX)
-const LATERAL_IMG = "https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663406835472/PXNmMkhtDbVFLLot.jpg?Expires=1806584888&Signature=nTUZYkMA-1KFtRJFALhycVZl7a1Jus2Do1NI6bo2rBzfFak9ix6oqYLIum87BExIFCL7i3QEfSRSNEGmjz8ckqQA34kKFvJOTLSKU4aLn-vZIIod07F~TCiNQ7DetGHqFcQMWHNguPvhYcb2ZfN57amv6FiaJQFCp2gNN~SZQHwyrqRMCNM5Seni9cFroI8ngPTtOjM~MG~hhj8srC7RRQOlMl8V~kk3pnYQKpGZLSW~UyHrjgRhDYJPKLXQrKiaRxPPZXqw93K5MhCC2gbUfWjtUlQg4xUcck1zkgzXMXmUrgNXHQfbKZ-SRC8TiqcAPRrxl95dNJonx6lYpUVdig__&Key-Pair-Id=K2HSFNDJXOU9YS";
+const LATERAL_IMG = "/lateral.jpg";
 // Sección Alba: foto de Alba con brazos cruzados (Training Norte)
-const ALBA_IMG = "https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663406835472/QDxUNSQWSRSQAdMs.jpg?Expires=1806584888&Signature=Rc2eiyFqbNetHlSqo~yzp5cOAFdteDJVoMtNpQEN5YiIGrN0EzcxKZmUjTFm2wngdgnyb0Vq6XApXTYxKPqi7hx~-HwO1DCLLqWe~QxpwP238Rl3lgie9g2lEOz2WVUGE7YEp7MyxoAWvkhaFfsI4rQEmfArz-w5fpnZclEPb~pvNMFXONxg5GeGn3E~GTQyl8704GqAvIjSFWoZZruX6A3l6yooXP29zPWH8JphUMGPWkrH519hIzl4lw-S0wd9D47JPStr7la2tpPFlXBHTaa9Ra0mnRP3urMoE1vjBERYIrub9IbSDzHprV4wZkqrMtJiPQ7pokmZovWjdiolMQ__&Key-Pair-Id=K2HSFNDJXOU9YS";
+const ALBA_IMG = "/alba.jpg";
 
 // ── Scroll animation hook ────────────────────────────────────
 function useScrollReveal() {

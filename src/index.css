@@ -1,0 +1,334 @@
+/* ============================================================
+   ARMOUR — Design System: "Tactical Dark"
+   - Background: #121212 (near-black)
+   - Accent: #F3C148 (golden amber — energy, transformation)
+   - Text: #FFFFFF / #CCCCCC / #888888
+   - Typography: Bebas Neue (headings) + Montserrat (body)
+   ============================================================ */
+
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.1 0 0);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.13 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.13 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+  --primary: oklch(0.82 0.15 85);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.18 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.82 0.15 85);
+  --accent-foreground: oklch(0.1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.82 0.15 85);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.04em;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  a[href] {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    max-width: 1200px;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  /* Golden accent line */
+  .gold-line {
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #F3C148;
+    margin-bottom: 1.5rem;
+  }
+
+  /* CTA Button */
+  .btn-gold {
+    display: inline-block;
+    background-color: #F3C148;
+    color: #121212;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    transition: all 0.2s ease;
+    border: 2px solid #F3C148;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-gold:hover {
+    background-color: transparent;
+    color: #F3C148;
+  }
+
+  .btn-outline-gold {
+    display: inline-block;
+    background-color: transparent;
+    color: #F3C148;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.875rem 2.25rem;
+    transition: all 0.2s ease;
+    border: 2px solid #F3C148;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-outline-gold:hover {
+    background-color: #F3C148;
+    color: #121212;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #F3C148;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Fade-in animation */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Testimonial card */
+  .testimonial-card {
+    background-color: #1A1A1A;
+    border-left: 3px solid #F3C148;
+    padding: 2rem;
+    position: relative;
+  }
+
+  /* Pillar card */
+  .pillar-card {
+    background-color: #1A1A1A;
+    border: 1px solid rgba(243, 193, 72, 0.15);
+    padding: 2rem;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .pillar-card:hover {
+    border-color: rgba(243, 193, 72, 0.5);
+    transform: translateY(-4px);
+  }
+
+  /* FAQ accordion */
+  .faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .faq-question {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s ease;
+  }
+
+  .faq-question:hover {
+    color: #F3C148;
+  }
+
+  .faq-answer {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9375rem;
+    color: #AAAAAA;
+    line-height: 1.75;
+    padding-bottom: 1.5rem;
+  }
+
+  /* Week timeline */
+  .week-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .week-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.25rem;
+    color: #F3C148;
+    min-width: 80px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Sticky nav */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(243, 193, 72, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  /* Price highlight */
+  .price-box {
+    background: linear-gradient(135deg, #1A1A1A 0%, #222222 100%);
+    border: 2px solid #F3C148;
+    padding: 3rem;
+    text-align: center;
+  }
+
+  /* Includes list */
+  .includes-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 0.75rem 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9375rem;
+    color: #CCCCCC;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .includes-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Gold check icon */
+  .gold-check {
+    color: #F3C148;
+    font-size: 1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Section divider */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(243,193,72,0.3), transparent);
+    margin: 0;
+  }
+
+  /* Pulse animation for CTA */
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(243, 193, 72, 0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(243, 193, 72, 0); }
+  }
+
+  .btn-gold-pulse {
+    animation: pulse-gold 2.5s infinite;
+  }
+
+  /* Countdown urgency bar */
+  .urgency-bar {
+    background-color: #F3C148;
+    color: #121212;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.625rem 1rem;
+  }
+}

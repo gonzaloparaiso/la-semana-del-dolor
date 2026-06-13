@@ -1333,7 +1333,7 @@ export default function Home() {
 
       {/* ── WHATSAPP FLOATING BUTTON ──────────────────── */}
       <a
-        href="https://wa.me/34628436530?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20programa%20LOW%20BACK%20ARMOUR"
+        href="https://wa.me/34628436530?text=quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20semana%20del%20dolor"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"

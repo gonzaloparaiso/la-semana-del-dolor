@@ -1456,7 +1456,7 @@ export default function Ventas() {
 
       {/* ── WHATSAPP FLOATING BUTTON ──────────────────── */}
       <a
-        href="https://wa.me/34628436530?text=quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Low%20Back%20Armour"
+        href="https://wa.me/34611227185?text=quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Low%20Back%20Armour"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"

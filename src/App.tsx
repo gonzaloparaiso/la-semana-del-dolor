@@ -1,5 +1,6 @@
 import { Route, Router, Switch } from "wouter";
 import Home from "./pages/Home";
+import Ventas from "./pages/Ventas";
 import NotFound from "./pages/NotFound";
 
 // Base path del despliegue (p. ej. "/la-semana-del-dolor" en GitHub Pages).
@@ -11,6 +12,7 @@ function App() {
     <Router base={BASE}>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/ventas" component={Ventas} />
         <Route component={NotFound} />
       </Switch>
     </Router>

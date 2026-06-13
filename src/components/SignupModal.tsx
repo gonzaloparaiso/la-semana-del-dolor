@@ -15,7 +15,7 @@ type Errors = {
   acepta?: string;
 };
 
-// Recoge los parámetros utm_* de la URL actual.
+// Recoge los parámetros utm_* de la URL actual (p. ej. utm_origen, utm_anuncio).
 function getUtmParams(): Record<string, string> {
   const utm: Record<string, string> = {};
   try {

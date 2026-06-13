@@ -319,6 +319,37 @@
     animation: pulse-gold 2.5s infinite;
   }
 
+  /* Phone input (react-phone-number-input) — tema oscuro */
+  .sm-phone {
+    display: flex;
+    align-items: center;
+    background-color: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+  }
+  .sm-phone.sm-phone-error {
+    border-color: #ff6b6b;
+  }
+  .sm-phone .PhoneInputInput {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9375rem;
+    padding: 0.4rem 0;
+  }
+  .sm-phone .PhoneInputInput::placeholder {
+    color: #666666;
+  }
+  .sm-phone .PhoneInputCountrySelectArrow {
+    color: #888888;
+    opacity: 0.8;
+  }
+  .sm-phone .PhoneInputCountry {
+    margin-right: 0.6rem;
+  }
+
   /* Countdown urgency bar */
   .urgency-bar {
     background-color: #F3C148;

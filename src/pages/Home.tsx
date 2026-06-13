@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp, Check, ArrowRight } from "lucide-react";
+import SignupModal from "../components/SignupModal";
 
 // ── Assets ──────────────────────────────────────────────────
 // BASE_URL incluye la barra final (p. ej. "/la-semana-del-dolor/"), así los
@@ -17,13 +18,6 @@ const HERO_BG = `${ASSET}hero.jpg`;
 const LATERAL_IMG = `${ASSET}lateral.jpg`;
 // Sección Alba: foto de Alba con brazos cruzados (Training Norte)
 const ALBA_IMG = `${ASSET}alba.jpg`;
-
-// ── Enlaces ─────────────────────────────────────────────────
-// Los CTA genéricos hacen scroll a la sección de productos (#precio).
-// Checkout de los 3 productos en trainingnorte.com.
-const CHECKOUT_197 = "https://trainingnorte.com/finalizar-compra/?add-to-cart=31914";
-const CHECKOUT_397 = "https://trainingnorte.com/finalizar-compra/?add-to-cart=31916";
-const CHECKOUT_597 = "https://trainingnorte.com/finalizar-compra/?add-to-cart=31917";
 
 // ── Clases gratuitas de la semana ───────────────────────────
 const CLASES = [
@@ -188,156 +182,12 @@ function PillarCard({
   );
 }
 
-// ── Pricing Tier ─────────────────────────────────────────────
-function PricingTier({
-  name,
-  tagline,
-  price,
-  features,
-  href,
-  featured = false,
-  badge,
-  ctaLabel,
-}: {
-  name: string;
-  tagline: string;
-  price: string;
-  features: string[];
-  href: string;
-  featured?: boolean;
-  badge?: string;
-  ctaLabel: string;
-}) {
-  return (
-    <div
-      className={"pricing-tier fade-in-up" + (featured ? " pricing-tier-featured" : "")}
-      style={{
-        backgroundColor: featured ? "#1C1C1C" : "#161616",
-        border: featured ? "2px solid #F3C148" : "1px solid rgba(243,193,72,0.18)",
-        padding: "2.5rem 2rem",
-        display: "flex",
-        flexDirection: "column",
-        position: "relative",
-        boxShadow: featured ? "0 18px 50px rgba(0,0,0,0.45)" : "none",
-      }}
-    >
-      {badge && (
-        <div
-          style={{
-            position: "absolute",
-            top: "-0.85rem",
-            left: "50%",
-            transform: "translateX(-50%)",
-            backgroundColor: "#F3C148",
-            color: "#121212",
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 800,
-            fontSize: "0.7rem",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            padding: "0.35rem 1rem",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {badge}
-        </div>
-      )}
-      <h3
-        style={{
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: "1.75rem",
-          color: featured ? "#F3C148" : "#FFFFFF",
-          letterSpacing: "0.04em",
-          marginBottom: "0.35rem",
-        }}
-      >
-        {name}
-      </h3>
-      <p
-        style={{
-          fontFamily: "'Montserrat', sans-serif",
-          fontSize: "0.8125rem",
-          color: "#888888",
-          lineHeight: "1.5",
-          marginBottom: "1.5rem",
-          minHeight: "2.4em",
-        }}
-      >
-        {tagline}
-      </p>
-      <div style={{ display: "flex", alignItems: "baseline", gap: "0.25rem", marginBottom: "1.75rem" }}>
-        <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "3.5rem", color: "#FFFFFF", lineHeight: 1 }}>
-          {price}
-        </span>
-        <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "1.25rem", fontWeight: 700, color: "#F3C148" }}>
-          €
-        </span>
-      </div>
-      <div style={{ flexGrow: 1, marginBottom: "1.75rem" }}>
-        {features.map((f) => (
-          <div
-            key={f}
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              gap: "0.65rem",
-              padding: "0.55rem 0",
-              borderBottom: "1px solid rgba(255,255,255,0.06)",
-            }}
-          >
-            <Check size={15} style={{ color: "#F3C148", marginTop: "2px", flexShrink: 0 }} />
-            <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.8125rem", color: "#CCCCCC", lineHeight: "1.5" }}>
-              {f}
-            </span>
-          </div>
-        ))}
-      </div>
-      <a
-        href={href}
-        className={featured ? "btn-gold btn-gold-pulse" : "btn-outline-gold"}
-        style={{ textAlign: "center", textDecoration: "none", display: "block", width: "100%", boxSizing: "border-box" }}
-      >
-        {ctaLabel}
-      </a>
-    </div>
-  );
-}
-
 // ── Main Component ───────────────────────────────────────────
 export default function Home() {
   useScrollReveal();
   const [navScrolled, setNavScrolled] = useState(false);
-
-  // ── UTM propagation ─────────────────────────────────────────
-  // Se ejecuta DESPUÉS del renderizado de React, cuando los <a> ya existen en el DOM
-  useEffect(() => {
-    const currentUrl = new URL(window.location.href);
-    const utmParams: Record<string, string> = {};
-
-    // Extraer todos los parámetros UTM de la URL actual
-    currentUrl.searchParams.forEach((value, key) => {
-      if (key.startsWith("utm_")) {
-        utmParams[key] = value;
-      }
-    });
-
-    // Si no hay parámetros UTM, no hacemos nada
-    if (Object.keys(utmParams).length === 0) return;
-
-    // Seleccionar todos los enlaces que apuntan a finalizar-compra
-    const ctaLinks = document.querySelectorAll<HTMLAnchorElement>('a[href*="finalizar-compra"]');
-    ctaLinks.forEach((link) => {
-      try {
-        const targetUrl = new URL(link.href);
-        for (const key in utmParams) {
-          targetUrl.searchParams.set(key, utmParams[key]);
-        }
-        link.href = targetUrl.toString();
-      } catch (e) {
-        console.error("Error procesando URL UTM:", e);
-      }
-    });
-  }, []);
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => setModalOpen(true);
 
   useEffect(() => {
     const handleScroll = () => setNavScrolled(window.scrollY > 60);
@@ -357,14 +207,14 @@ export default function Home() {
         "No te preocupes. Apúntate igualmente: durante la semana del lanzamiento tendrás acceso a la grabación de cada clase para que puedas verla cuando te venga bien.",
     },
     {
-      question: "¿Qué diferencia hay entre los tres programas?",
+      question: "¿Tengo que comprar algo para asistir?",
       answer:
-        "Low Back Armour (197€) es el programa completo de 3 meses en vídeo, para hacer a tu ritmo sin seguimiento. Low Back Armour + Seguimiento (397€) añade las sesiones en directo el primer mes, el grupo privado y las correcciones de movimiento cada 15 días. Y la opción Premium (597€) incluye todo lo anterior más WhatsApp directo con Alba Estrada para resolver tus dudas; solo hay 10 plazas.",
+        "No. Las 3 clases son completamente gratuitas. Solo necesitas apuntarte con tu nombre, correo y teléfono para que podamos enviarte el acceso. Al final de la semana te contaremos cómo seguir trabajando con Alba si quieres, pero sin ningún compromiso.",
     },
     {
-      question: "¿Cuándo puedo comprar el programa?",
+      question: "¿Qué necesito para seguir las clases?",
       answer:
-        "Las plazas del programa se abren durante la semana de clases y se cierran al terminar. Apúntate a las clases gratuitas para enterarte el primero cuando se abra la inscripción (y no quedarte sin una de las 10 plazas Premium).",
+        "Únicamente un dispositivo con conexión a internet. Las clases son online y en directo, y recibirás el enlace de acceso en el correo con el que te apuntes.",
     },
     {
       question: "¿Cómo funciona el programa?",
@@ -425,13 +275,14 @@ export default function Home() {
              loading="eager"
              style={{ height: "52px", objectFit: "contain", maxWidth: "220px" }}
            />
-          <a
-            href="#precio"
+          <button
+            type="button"
+            onClick={openModal}
             className="btn-gold"
-            style={{ fontSize: "0.75rem", padding: "0.625rem 1.5rem", textDecoration: "none", display: "inline-block" }}
+            style={{ fontSize: "0.75rem", padding: "0.625rem 1.5rem", display: "inline-block" }}
           >
             Quiero eliminar mi dolor
-          </a>
+          </button>
         </div>
       </nav>
 
@@ -508,13 +359,14 @@ export default function Home() {
               En directo los días 24, 27 y 28 de junio. Reserva tu sitio gratis (y se queda grabado por si no puedes asistir).
             </p>
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
-              <a
-                href="#precio"
+              <button
+                type="button"
+                onClick={openModal}
                 className="btn-gold btn-gold-pulse"
-                style={{ textDecoration: "none", display: "inline-block" }}
+                style={{ display: "inline-block" }}
               >
                 Quiero eliminar mi dolor
-              </a>
+              </button>
               <span
                 style={{
                   fontFamily: "'Montserrat', sans-serif",
@@ -642,13 +494,14 @@ export default function Home() {
           </div>
 
           <div style={{ textAlign: "center" }} className="fade-in-up">
-            <a
-              href="#precio"
+            <button
+              type="button"
+              onClick={openModal}
               className="btn-gold btn-gold-pulse"
-              style={{ textDecoration: "none", display: "inline-block" }}
+              style={{ display: "inline-block" }}
             >
               Quiero eliminar mi dolor
-            </a>
+            </button>
           </div>
         </div>
       </section>
@@ -1240,13 +1093,14 @@ export default function Home() {
               >
                 <strong style={{ color: "#FFFFFF" }}>ARMOUR</strong> es el conjunto de pasos que hacen que todo funcione. Durante 3 meses vamos a ir de la mano. Y puedo prometerte que lo vas a conseguir.
               </p>
-              <a
-                href="#precio"
+              <button
+                type="button"
+                onClick={openModal}
                 className="btn-outline-gold"
-                style={{ textDecoration: "none", display: "inline-block" }}
+                style={{ display: "inline-block" }}
               >
                 Quiero eliminar mi dolor
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -1294,129 +1148,6 @@ export default function Home() {
               name="Ana R."
               program="Armour"
             />
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
-      {/* ── PRECIO / OFERTA DE LANZAMIENTO ───────────────── */}
-      <section id="precio" style={{ padding: "5rem 0", backgroundColor: "#121212", scrollMarginTop: "90px" }}>
-        <div className="container">
-          <div style={{ marginBottom: "3.5rem", textAlign: "center", maxWidth: "640px", marginLeft: "auto", marginRight: "auto" }} className="fade-in-up">
-            <p className="section-label" style={{ textAlign: "center" }}>La oferta de lanzamiento</p>
-            <span className="gold-line" style={{ margin: "0 auto 1.5rem" }} />
-            <h2
-              style={{
-                fontFamily: "'Bebas Neue', sans-serif",
-                fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
-                lineHeight: 1.05,
-                color: "#FFFFFF",
-                marginBottom: "1rem",
-              }}
-            >
-              Elige cómo quieres dejar atrás tu dolor
-            </h2>
-            <p
-              style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: "0.9375rem",
-                color: "#AAAAAA",
-                lineHeight: "1.7",
-              }}
-            >
-              Tres formas de entrar a Low Back Armour. Las plazas se abren durante la semana de clases y se cierran al terminar.
-            </p>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "1.5rem",
-              alignItems: "stretch",
-              maxWidth: "1080px",
-              margin: "0 auto",
-            }}
-            className="pricing-grid-3"
-          >
-            <PricingTier
-              name="Low Back Armour"
-              tagline="El programa completo, a tu ritmo y sin seguimiento."
-              price="197"
-              href={CHECKOUT_197}
-              ctaLabel="Lo quiero"
-              features={[
-                "Programa completo de 3 meses en vídeo",
-                "Los 5 pilares: respiración, postura, movimiento, fuerza y hábitos",
-                "Adaptado a todo tipo de personas con dolor lumbar",
-                "Guía de hábitos y respiraciones guiadas",
-                "Acceso durante 3 meses",
-              ]}
-            />
-            <PricingTier
-              name="LBA + Seguimiento"
-              tagline="El programa con acompañamiento de Alba para no ir solo."
-              price="397"
-              href={CHECKOUT_397}
-              featured
-              badge="El más elegido"
-              ctaLabel="Quiero seguimiento"
-              features={[
-                "Todo lo del programa Low Back Armour",
-                "Sesiones en directo con Alba el primer mes",
-                "Grabaciones de todas las sesiones",
-                "Grupo privado de seguimiento con Alba",
-                "Correcciones de movimiento cada 15 días (meses 2-3)",
-              ]}
-            />
-            <PricingTier
-              name="LBA Premium"
-              tagline="Todo lo anterior + WhatsApp directo con Alba. Solo 10 plazas."
-              price="597"
-              href={CHECKOUT_597}
-              badge="Solo 10 plazas"
-              ctaLabel="Quiero una plaza"
-              features={[
-                "Todo lo del programa + seguimiento",
-                "WhatsApp directo con Alba Estrada",
-                "Resolución de dudas personalizada y prioritaria",
-                "Acompañamiento al máximo nivel",
-                "Plazas estrictamente limitadas a 10 personas",
-              ]}
-            />
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "0.5rem",
-              marginTop: "2.5rem",
-            }}
-            className="fade-in-up"
-          >
-            <div
-              style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                backgroundColor: "#F3C148",
-                animation: "pulse-gold 1.5s infinite",
-              }}
-            />
-            <p
-              style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: "0.8125rem",
-                color: "#888888",
-                letterSpacing: "0.08em",
-                textAlign: "center",
-              }}
-            >
-              Pago único · Acceso durante 3 meses · Plazas limitadas
-            </p>
           </div>
         </div>
       </section>
@@ -1523,13 +1254,14 @@ export default function Home() {
             >
               Sí. Y empezamos esta semana. 3 clases gratis con Alba los días 24, 27 y 28 de junio. Reserva tu sitio antes de que se llenen.
             </p>
-            <a
-              href="#precio"
+            <button
+              type="button"
+              onClick={openModal}
               className="btn-gold btn-gold-pulse"
-              style={{ fontSize: "1rem", padding: "1.125rem 3.5rem", textDecoration: "none", display: "inline-block" }}
+              style={{ fontSize: "1rem", padding: "1.125rem 3.5rem", display: "inline-block" }}
             >
               Quiero eliminar mi dolor
-            </a>
+            </button>
           </div>
         </div>
       </section>
@@ -1649,15 +1381,6 @@ export default function Home() {
           max-width: 100%;
         }
 
-        /* Featured pricing tier: slightly larger, desktop only.
-           Scoped to min-width so it simply doesn't exist on mobile (no scale there).
-           !important beats .fade-in-up.visible, which has higher selector specificity. */
-        @media (min-width: 769px) {
-          .pricing-tier-featured {
-            transform: scale(1.03) !important;
-          }
-        }
-
         @media (max-width: 768px) {
           /* All 2-column grids collapse to 1 column */
           .responsive-grid-2 {
@@ -1671,9 +1394,8 @@ export default function Home() {
             gap: 1.5rem !important;
           }
 
-          /* Classes + pricing grids collapse to 1 column */
-          .classes-grid-3,
-          .pricing-grid-3 {
+          /* Classes grid collapses to 1 column */
+          .classes-grid-3 {
             grid-template-columns: 1fr !important;
             gap: 1.5rem !important;
           }
@@ -1775,6 +1497,9 @@ export default function Home() {
           }
         }
       `}</style>
+
+      {/* ── MODAL DE INSCRIPCIÓN ────────────────────────── */}
+      <SignupModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

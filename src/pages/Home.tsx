@@ -927,53 +927,6 @@ export default function Home() {
       </section>
 
       <div className="section-divider" />
-
-      {/* ── TESTIMONIOS 2 ───────────────────────────────── */}
-      <section style={{ padding: "5rem 0", backgroundColor: "#0F0F0F" }}>
-        <div className="container">
-          <div style={{ marginBottom: "3rem" }} className="fade-in-up">
-            <p className="section-label">Más historias reales</p>
-            <span className="gold-line" />
-            <h2
-              style={{
-                fontFamily: "'Bebas Neue', sans-serif",
-                fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
-                lineHeight: 1.05,
-                color: "#FFFFFF",
-              }}
-            >
-              Ellos ya dieron el paso
-            </h2>
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "1.5rem",
-            }}
-            className="testimonials-grid"
-          >
-            <Testimonial
-              text="Pasé de no poder levantarme del suelo sin ayuda a hacer sentadilla con barra. No lo habría creído si no lo hubiera vivido. El trabajo de respiración fue lo que más me sorprendió: nunca pensé que tuviera tanto impacto en el dolor."
-              name="Carlos M."
-              program="Armour"
-            />
-            <Testimonial
-              text="Llevaba 3 años con dolor crónico. Médicos, fisios, ostéopatas... nada funcionaba a largo plazo. Armour fue diferente porque atacó el problema desde todos los ángulos. A los 6 semanas ya notaba la diferencia."
-              name="Laura G."
-              program="Armour"
-            />
-            <Testimonial
-              text="Lo que más valoro es el grupo de seguimiento. Saber que Alba está ahí para responder cualquier duda hace que el proceso sea mucho más seguro y motivador. Nunca me sentí sola en el proceso."
-              name="Ana R."
-              program="Armour"
-            />
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
       {/* ── CTA FINAL ───────────────────────────────────── */}
       <section
         style={{

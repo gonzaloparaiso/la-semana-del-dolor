@@ -5,7 +5,8 @@
 
 import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import SignupModal from "../components/SignupModal";
+import SignupForm from "../components/SignupForm";
+import SuccessModal from "../components/SuccessModal";
 
 // ── Assets ──────────────────────────────────────────────────
 // BASE_URL incluye la barra final (p. ej. "/la-semana-del-dolor/"), así los
@@ -186,8 +187,9 @@ function PillarCard({
 export default function Home() {
   useScrollReveal();
   const [navScrolled, setNavScrolled] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const openModal = () => setModalOpen(true);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const scrollToForm = () =>
+    document.getElementById("registro")?.scrollIntoView({ behavior: "smooth" });
 
   useEffect(() => {
     const handleScroll = () => setNavScrolled(window.scrollY > 60);
@@ -277,7 +279,7 @@ export default function Home() {
            />
           <button
             type="button"
-            onClick={openModal}
+            onClick={scrollToForm}
             className="btn-gold"
             style={{ fontSize: "0.75rem", padding: "0.625rem 1.5rem", display: "inline-block" }}
           >
@@ -358,25 +360,8 @@ export default function Home() {
             >
               En directo los días 24, 27 y 28 de junio. Reserva tu sitio gratis (y se queda grabado por si no puedes asistir).
             </p>
-            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
-              <button
-                type="button"
-                onClick={openModal}
-                className="btn-gold btn-gold-pulse"
-                style={{ display: "inline-block" }}
-              >
-                Quiero eliminar mi dolor
-              </button>
-              <span
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontSize: "0.8125rem",
-                  color: "#666666",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                ↓ Plazas limitadas
-              </span>
+            <div id="registro" style={{ scrollMarginTop: "90px" }}>
+              <SignupForm onSuccess={() => setSuccessOpen(true)} />
             </div>
           </div>
         </div>
@@ -496,7 +481,7 @@ export default function Home() {
           <div style={{ textAlign: "center" }} className="fade-in-up">
             <button
               type="button"
-              onClick={openModal}
+              onClick={scrollToForm}
               className="btn-gold btn-gold-pulse"
               style={{ display: "inline-block" }}
             >
@@ -868,7 +853,7 @@ export default function Home() {
               </p>
               <button
                 type="button"
-                onClick={openModal}
+                onClick={scrollToForm}
                 className="btn-outline-gold"
                 style={{ display: "inline-block" }}
               >
@@ -981,7 +966,7 @@ export default function Home() {
             </p>
             <button
               type="button"
-              onClick={openModal}
+              onClick={scrollToForm}
               className="btn-gold btn-gold-pulse"
               style={{ fontSize: "1rem", padding: "1.125rem 3.5rem", display: "inline-block" }}
             >
@@ -1223,8 +1208,8 @@ export default function Home() {
         }
       `}</style>
 
-      {/* ── MODAL DE INSCRIPCIÓN ────────────────────────── */}
-      <SignupModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      {/* ── MODAL DE ÉXITO (paso a la comunidad) ────────── */}
+      <SuccessModal open={successOpen} onClose={() => setSuccessOpen(false)} />
     </div>
   );
 }

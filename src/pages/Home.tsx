@@ -4,7 +4,7 @@
    ============================================================ */
 
 import { useEffect, useState } from "react";
-import { ChevronDown, ChevronUp, Check, ArrowRight } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import SignupModal from "../components/SignupModal";
 
 // ── Assets ──────────────────────────────────────────────────
@@ -744,233 +744,6 @@ export default function Home() {
       </section>
 
       <div className="section-divider" />
-
-           {/* ── ESTRUCTURA DEL PROGRAMA ───────────────── */}
-      <section style={{ padding: "5rem 0", backgroundColor: "#121212" }}>
-        <div className="container">
-          {/* Header */}
-          <div style={{ marginBottom: "3.5rem" }} className="fade-in-up">
-            <p className="section-label">Estructura del sistema</p>
-            <span className="gold-line" />
-            <h2
-              style={{
-                fontFamily: "'Bebas Neue', sans-serif",
-                fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
-                lineHeight: 1.05,
-                color: "#FFFFFF",
-                marginBottom: "0.75rem",
-              }}
-            >
-              3 meses. 5 sesiones semanales.
-            </h2>
-            <p
-              style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: "0.9375rem",
-                lineHeight: "1.8",
-                color: "#AAAAAA",
-                maxWidth: "600px",
-              }}
-            >
-              Comprométete con un mínimo de 3 sesiones por semana. El programa se divide en dos fases claras.
-            </p>
-          </div>
-
-          {/* Timeline de 3 columnas */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "1.5rem",
-              marginBottom: "3rem",
-            }}
-            className="fade-in-up structure-grid-3"
-          >
-            {/* Mes 1 */}
-            <div>
-              <div style={{ backgroundColor: "#F3C148", padding: "0.5rem 1.25rem", display: "inline-block", marginBottom: "1.5rem" }}>
-                <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "0.9rem", color: "#121212", letterSpacing: "0.1em" }}>MES 1</span>
-              </div>
-              <div style={{ backgroundColor: "#1A1A1A", borderTop: "3px solid #F3C148", padding: "1.75rem 1.5rem", minHeight: "320px" }}>
-                <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.25rem", color: "#F3C148", letterSpacing: "0.05em", marginBottom: "0.5rem" }}>Fase intensiva</h3>
-                <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.8125rem", color: "#777777", marginBottom: "1.25rem", lineHeight: "1.6" }}>Sesiones en directo cada semana</p>
-                {[
-                  { n: "01", desc: "Respiración y sistema nervioso" },
-                  { n: "02", desc: "Postura y organización corporal" },
-                  { n: "03", desc: "Bisagra de cadera y estabilidad" },
-                  { n: "04", desc: "Integración de todo lo aprendido" },
-                ].map((s) => (
-                  <div key={s.n} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", padding: "0.6rem 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-                    <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1rem", color: "#F3C148", opacity: 0.5, flexShrink: 0, lineHeight: 1.4 }}>{s.n}</span>
-                    <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.8125rem", color: "#CCCCCC", lineHeight: "1.5", margin: 0 }}>{s.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Meses 2 y 3 */}
-            <div>
-              <div style={{ backgroundColor: "rgba(243,193,72,0.12)", border: "1px solid rgba(243,193,72,0.3)", padding: "0.5rem 1.25rem", display: "inline-block", marginBottom: "1.5rem" }}>
-                <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "0.9rem", color: "#F3C148", letterSpacing: "0.1em" }}>MESES 2 Y 3</span>
-              </div>
-              <div style={{ backgroundColor: "#1A1A1A", borderTop: "3px solid rgba(243,193,72,0.4)", padding: "1.75rem 1.5rem", minHeight: "320px" }}>
-                <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.25rem", color: "#CCCCCC", letterSpacing: "0.05em", marginBottom: "0.5rem" }}>Consolidación</h3>
-                <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.8125rem", color: "#777777", marginBottom: "1.25rem", lineHeight: "1.6" }}>Correcciones cada 15 días</p>
-                {[
-                  "Sesión de corrección de movimiento",
-                  "Profundización en tu caso concreto",
-                  "Ajuste de carga y progresión",
-                  "Grupo privado de seguimiento activo",
-                ].map((item) => (
-                  <div key={item} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", padding: "0.6rem 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-                    <Check size={14} style={{ color: "#F3C148", opacity: 0.6, marginTop: "2px", flexShrink: 0 }} />
-                    <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.8125rem", color: "#CCCCCC", lineHeight: "1.5", margin: 0 }}>{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Compromiso */}
-            <div>
-              <div style={{ backgroundColor: "rgba(243,193,72,0.12)", border: "1px solid rgba(243,193,72,0.3)", padding: "0.5rem 1.25rem", display: "inline-block", marginBottom: "1.5rem" }}>
-                <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "0.9rem", color: "#F3C148", letterSpacing: "0.1em" }}>COMPROMISO</span>
-              </div>
-              <div style={{ backgroundColor: "#1A1A1A", borderTop: "3px solid rgba(243,193,72,0.4)", padding: "1.75rem 1.5rem", minHeight: "320px" }}>
-                <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.25rem", color: "#CCCCCC", letterSpacing: "0.05em", marginBottom: "0.5rem" }}>Tu parte del trato</h3>
-                <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.8125rem", color: "#777777", marginBottom: "1.25rem", lineHeight: "1.6" }}>Mínimo 3 sesiones por semana</p>
-                {[
-                  "3 meses de duración total",
-                  "5 sesiones semanales disponibles",
-                  "Sesiones en directo el primer mes",
-                  "Correcciones cada 15 días (meses 2-3)",
-                ].map((item) => (
-                  <div key={item} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", padding: "0.6rem 0", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-                    <Check size={14} style={{ color: "#F3C148", opacity: 0.6, marginTop: "2px", flexShrink: 0 }} />
-                    <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.8125rem", color: "#CCCCCC", lineHeight: "1.5", margin: 0 }}>{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
-      {/* ── QUÉ INCLUYE ─────────────────────────────────── */}
-      <section style={{ padding: "5rem 0", backgroundColor: "#0F0F0F" }}>
-        <div className="container">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "4rem",
-              alignItems: "center",
-            }}
-            className="responsive-grid-2"
-          >
-            <div className="fade-in-up">
-              <p className="section-label">Todo incluido</p>
-              <span className="gold-line" />
-              <h2
-                style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
-                  fontSize: "clamp(2.25rem, 4vw, 3.25rem)",
-                  lineHeight: 1.05,
-                  color: "#FFFFFF",
-                  marginBottom: "2rem",
-                }}
-              >
-                Acceso completo durante 3 meses
-              </h2>
-              {[
-                "Programa de entrenamiento guiado con vídeos y explicaciones detalladas",
-                "Adaptado a todo tipo de personas con dolor lumbar",
-                "Sesiones en directo con Alba Estrada (mes 1, semanales)",
-                "Grabaciones de todas las sesiones en directo",
-                "Guía de hábitos para el día a día",
-                "Respiraciones guiadas para equilibrar el sistema nervioso",
-                "Grupo privado de seguimiento con Alba Estrada",
-                "Correcciones de movimiento cada 15 días (meses 2-3)",
-              ].map((item) => (
-                <div key={item} className="includes-item">
-                  <Check size={16} className="gold-check" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-            <div className="fade-in-up">
-              <div
-                style={{
-                  backgroundColor: "#1A1A1A",
-                  border: "1px solid rgba(243,193,72,0.2)",
-                  padding: "2.5rem",
-                  textAlign: "center",
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontSize: "0.8125rem",
-                    fontWeight: 600,
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "#888888",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  ¿Para quién es?
-                </p>
-                <h3
-                  style={{
-                    fontFamily: "'Bebas Neue', sans-serif",
-                    fontSize: "2rem",
-                    color: "#F3C148",
-                    letterSpacing: "0.05em",
-                    marginBottom: "1.5rem",
-                  }}
-                >
-                  Este programa es para ti si...
-                </h3>
-                {[
-                  "Tienes dolor lumbar recurrente",
-                  "Quieres volver a moverte con seguridad",
-                  "Sientes rigidez o molestias al entrenar o al despertar",
-                  "Has decidido dejar de normalizar vivir con dolor",
-                  "Eres población general o ya entrenas",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: "0.75rem",
-                      padding: "0.75rem 0",
-                      borderBottom: "1px solid rgba(255,255,255,0.06)",
-                      textAlign: "left",
-                    }}
-                  >
-                    <ArrowRight size={16} style={{ color: "#F3C148", marginTop: "2px", flexShrink: 0 }} />
-                    <p
-                      style={{
-                        fontFamily: "'Montserrat', sans-serif",
-                        fontSize: "0.875rem",
-                        color: "#CCCCCC",
-                        lineHeight: "1.6",
-                      }}
-                    >
-                      {item}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
       {/* ── SOBRE ALBA ───────────────────────────────────── */}
       <section style={{ padding: "5rem 0", backgroundColor: "#121212" }}>
         <div className="container">
@@ -1107,53 +880,6 @@ export default function Home() {
       </section>
 
       <div className="section-divider" />
-
-      {/* ── TESTIMONIOS 2 ───────────────────────────────── */}
-      <section style={{ padding: "5rem 0", backgroundColor: "#0F0F0F" }}>
-        <div className="container">
-          <div style={{ marginBottom: "3rem" }} className="fade-in-up">
-            <p className="section-label">Más historias reales</p>
-            <span className="gold-line" />
-            <h2
-              style={{
-                fontFamily: "'Bebas Neue', sans-serif",
-                fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
-                lineHeight: 1.05,
-                color: "#FFFFFF",
-              }}
-            >
-              Ellos ya dieron el paso
-            </h2>
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "1.5rem",
-            }}
-            className="testimonials-grid"
-          >
-            <Testimonial
-              text="Pasé de no poder levantarme del suelo sin ayuda a hacer sentadilla con barra. No lo habría creído si no lo hubiera vivido. El trabajo de respiración fue lo que más me sorprendió: nunca pensé que tuviera tanto impacto en el dolor."
-              name="Carlos M."
-              program="Armour"
-            />
-            <Testimonial
-              text="Llevaba 3 años con dolor crónico. Médicos, fisios, ostéopatas... nada funcionaba a largo plazo. Armour fue diferente porque atacó el problema desde todos los ángulos. A los 6 semanas ya notaba la diferencia."
-              name="Laura G."
-              program="Armour"
-            />
-            <Testimonial
-              text="Lo que más valoro es el grupo de seguimiento. Saber que Alba está ahí para responder cualquier duda hace que el proceso sea mucho más seguro y motivador. Nunca me sentí sola en el proceso."
-              name="Ana R."
-              program="Armour"
-            />
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
       {/* ── FAQ ─────────────────────────────────────────── */}
       <section style={{ padding: "5rem 0", backgroundColor: "#0F0F0F" }}>
         <div className="container">
@@ -1196,6 +922,52 @@ export default function Home() {
                 <FaqItem key={faq.question} question={faq.question} answer={faq.answer} />
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* ── TESTIMONIOS 2 ───────────────────────────────── */}
+      <section style={{ padding: "5rem 0", backgroundColor: "#0F0F0F" }}>
+        <div className="container">
+          <div style={{ marginBottom: "3rem" }} className="fade-in-up">
+            <p className="section-label">Más historias reales</p>
+            <span className="gold-line" />
+            <h2
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
+                lineHeight: 1.05,
+                color: "#FFFFFF",
+              }}
+            >
+              Ellos ya dieron el paso
+            </h2>
+          </div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "1.5rem",
+            }}
+            className="testimonials-grid"
+          >
+            <Testimonial
+              text="Pasé de no poder levantarme del suelo sin ayuda a hacer sentadilla con barra. No lo habría creído si no lo hubiera vivido. El trabajo de respiración fue lo que más me sorprendió: nunca pensé que tuviera tanto impacto en el dolor."
+              name="Carlos M."
+              program="Armour"
+            />
+            <Testimonial
+              text="Llevaba 3 años con dolor crónico. Médicos, fisios, ostéopatas... nada funcionaba a largo plazo. Armour fue diferente porque atacó el problema desde todos los ángulos. A los 6 semanas ya notaba la diferencia."
+              name="Laura G."
+              program="Armour"
+            />
+            <Testimonial
+              text="Lo que más valoro es el grupo de seguimiento. Saber que Alba está ahí para responder cualquier duda hace que el proceso sea mucho más seguro y motivador. Nunca me sentí sola en el proceso."
+              name="Ana R."
+              program="Armour"
+            />
           </div>
         </div>
       </section>

@@ -201,130 +201,6 @@ export default function Home() {
 
       <div className="section-divider" />
 
-      {/* ── LAS 3 CLASES GRATUITAS ──────────────────────── */}
-      <section id="clases" style={{ padding: "5rem 0", backgroundColor: "#0F0F0F" }}>
-        <div className="container">
-          <div style={{ marginBottom: "3.5rem", maxWidth: "640px" }} className="fade-in-up">
-            <p className="section-label">La semana del dolor · Gratis</p>
-            <span className="gold-line" />
-            <h2
-              style={{
-                fontFamily: "'Bebas Neue', sans-serif",
-                fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
-                lineHeight: 1.05,
-                color: "#FFFFFF",
-                marginBottom: "1rem",
-              }}
-            >
-              3 clases en directo con Alba Estrada
-            </h2>
-            <p
-              style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: "0.9375rem",
-                lineHeight: "1.8",
-                color: "#AAAAAA",
-              }}
-            >
-              Una semana para dejar de pensar que siempre vivirás con dolor y ver los primeros resultados en directo. Tres sesiones online, en directo y gratuitas. Plazas muy limitadas.
-            </p>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "1.5rem",
-              marginBottom: "3rem",
-            }}
-            className="fade-in-up classes-grid-3"
-          >
-            {CLASES.map((clase, i) => (
-              <div
-                key={clase.dia}
-                style={{
-                  backgroundColor: "#1A1A1A",
-                  borderTop: "3px solid #F3C148",
-                  padding: "1.75rem 1.5rem",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "'Bebas Neue', sans-serif",
-                    fontSize: "1.1rem",
-                    color: "rgba(243,193,72,0.4)",
-                    letterSpacing: "0.1em",
-                    marginBottom: "0.75rem",
-                  }}
-                >
-                  CLASE {String(i + 1).padStart(2, "0")}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'Bebas Neue', sans-serif",
-                    fontSize: "1.75rem",
-                    color: "#F3C148",
-                    lineHeight: 1,
-                    marginBottom: "0.25rem",
-                  }}
-                >
-                  {clase.dia}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontSize: "0.75rem",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    color: "#777777",
-                    marginBottom: "1.25rem",
-                  }}
-                >
-                  {clase.mes} · {clase.hora}h · online en directo
-                </div>
-                <h3
-                  style={{
-                    fontFamily: "'Bebas Neue', sans-serif",
-                    fontSize: "1.35rem",
-                    color: "#FFFFFF",
-                    letterSpacing: "0.03em",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  {clase.titulo}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontSize: "0.8125rem",
-                    color: "#AAAAAA",
-                    lineHeight: "1.6",
-                    margin: 0,
-                  }}
-                >
-                  {clase.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ textAlign: "center" }} className="fade-in-up">
-            <button
-              type="button"
-              onClick={scrollToForm}
-              className="btn-gold btn-gold-pulse"
-              style={{ display: "inline-block" }}
-            >
-              Quiero eliminar mi dolor
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
       {/* ── PROBLEMA / IDENTIFICACIÓN ───────────────────── */}
       <section style={{ padding: "5rem 0", backgroundColor: "#121212" }}>
         <div className="container">
@@ -449,6 +325,130 @@ export default function Home() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* ── LAS 3 CLASES GRATUITAS ──────────────────────── */}
+      <section id="clases" style={{ padding: "5rem 0", backgroundColor: "#0F0F0F" }}>
+        <div className="container">
+          <div style={{ marginBottom: "3.5rem", maxWidth: "640px" }} className="fade-in-up">
+            <p className="section-label">La semana del dolor · Gratis</p>
+            <span className="gold-line" />
+            <h2
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
+                lineHeight: 1.05,
+                color: "#FFFFFF",
+                marginBottom: "1rem",
+              }}
+            >
+              3 clases en directo con Alba Estrada
+            </h2>
+            <p
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: "0.9375rem",
+                lineHeight: "1.8",
+                color: "#AAAAAA",
+              }}
+            >
+              Una semana para dejar de pensar que siempre vivirás con dolor y ver los primeros resultados en directo. Tres sesiones online, en directo y gratuitas. Plazas muy limitadas.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "1.5rem",
+              marginBottom: "3rem",
+            }}
+            className="fade-in-up classes-grid-3"
+          >
+            {CLASES.map((clase, i) => (
+              <div
+                key={clase.dia}
+                style={{
+                  backgroundColor: "#1A1A1A",
+                  borderTop: "3px solid #F3C148",
+                  padding: "1.75rem 1.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: "1.1rem",
+                    color: "rgba(243,193,72,0.4)",
+                    letterSpacing: "0.1em",
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  CLASE {String(i + 1).padStart(2, "0")}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: "1.75rem",
+                    color: "#F3C148",
+                    lineHeight: 1,
+                    marginBottom: "0.25rem",
+                  }}
+                >
+                  {clase.dia}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontSize: "0.75rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    color: "#777777",
+                    marginBottom: "1.25rem",
+                  }}
+                >
+                  {clase.mes} · {clase.hora}h · online en directo
+                </div>
+                <h3
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: "1.35rem",
+                    color: "#FFFFFF",
+                    letterSpacing: "0.03em",
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  {clase.titulo}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontSize: "0.8125rem",
+                    color: "#AAAAAA",
+                    lineHeight: "1.6",
+                    margin: 0,
+                  }}
+                >
+                  {clase.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: "center" }} className="fade-in-up">
+            <button
+              type="button"
+              onClick={scrollToForm}
+              className="btn-gold btn-gold-pulse"
+              style={{ display: "inline-block" }}
+            >
+              Quiero eliminar mi dolor
+            </button>
           </div>
         </div>
       </section>

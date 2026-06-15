@@ -77,7 +77,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#121212", color: "#ffffff", minHeight: "100vh" }}>
+    <div className="page-root" style={{ backgroundColor: "#121212", color: "#ffffff", minHeight: "100vh" }}>
 
       {/* ── URGENCY BAR ─────────────────────────────────── */}
       <div className="urgency-bar">
@@ -121,6 +121,7 @@ export default function Home() {
 
       {/* ── HERO ────────────────────────────────────────── */}
       <section
+        className="hero-section"
         style={{
           position: "relative",
           minHeight: "92vh",
@@ -889,6 +890,15 @@ export default function Home() {
           .price-amount {
             font-size: 4rem !important;
           }
+        }
+
+        /* Embebido en iframe: medir por contenido, no por viewport (vh),
+           para que el hero no se descontrole. Va al final para ganar el !important. */
+        html.embedded .page-root {
+          min-height: 0 !important;
+        }
+        html.embedded .hero-section {
+          min-height: auto !important;
         }
       `}</style>
 

@@ -55,6 +55,7 @@
     <script>
       (function () {
         if (window.parent === window) return; // no estamos dentro de un iframe
+        document.documentElement.classList.add("embedded");
         var last = 0;
         function postHeight() {
           var h = document.documentElement.scrollHeight;

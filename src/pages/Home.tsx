@@ -721,6 +721,7 @@ export default function Home() {
 
       {/* ── WHATSAPP FLOATING BUTTON ──────────────────── */}
       <a
+        className="wa-float"
         href="https://wa.me/34611227185?text=quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20semana%20del%20dolor"
         target="_blank"
         rel="noopener noreferrer"
@@ -902,6 +903,11 @@ export default function Home() {
         }
         /* En el embed (WordPress ya tiene su propio menú) ocultamos el navbar */
         html.embedded .sticky-nav {
+          display: none !important;
+        }
+        /* El botón flotante no puede flotar dentro de un iframe de altura completa;
+           se pone en la página padre (WordPress). Aquí lo ocultamos. */
+        html.embedded .wa-float {
           display: none !important;
         }
       `}</style>

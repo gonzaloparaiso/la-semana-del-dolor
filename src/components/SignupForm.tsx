@@ -15,15 +15,19 @@ type Errors = {
 };
 
 // Recoge los parámetros utm_* de la URL actual (p. ej. utm_origen, utm_anuncio).
+// Si no vienen utm_origen / utm_anuncio, se rellenan con valores por defecto
+// para distinguir el tráfico orgánico del de campañas.
 function getUtmParams(): Record<string, string> {
   const utm: Record<string, string> = {};
   try {
     new URL(window.location.href).searchParams.forEach((value, key) => {
-      if (key.startsWith("utm_")) utm[key] = value;
+      if (key.startsWith("utm_") && value) utm[key] = value;
     });
   } catch {
     /* noop */
   }
+  if (!utm.utm_origen) utm.utm_origen = "organico";
+  if (!utm.utm_anuncio) utm.utm_anuncio = "no_aplica";
   return utm;
 }
 

@@ -900,6 +900,10 @@ export default function Home() {
         html.embedded .hero-section {
           min-height: auto !important;
         }
+        /* En el embed (WordPress ya tiene su propio menú) ocultamos el navbar */
+        html.embedded .sticky-nav {
+          display: none !important;
+        }
       `}</style>
 
       {/* ── MODAL DE ÉXITO (paso a la comunidad) ────────── */}

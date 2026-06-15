@@ -482,6 +482,7 @@ export default function Home() {
                 }}
               />
               <div
+                className="alba-badge"
                 style={{
                   position: "absolute",
                   top: "2rem",
@@ -837,6 +838,13 @@ export default function Home() {
           /* Alba section image height */
           .alba-image {
             height: 380px !important;
+          }
+
+          /* Badge a la parte inferior en móvil para no tapar la cara */
+          .alba-badge {
+            top: auto !important;
+            bottom: 0 !important;
+            right: 0 !important;
           }
 
           /* Nav padding on mobile */

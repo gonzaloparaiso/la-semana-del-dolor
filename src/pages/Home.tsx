@@ -5,7 +5,6 @@
 
 import { useEffect, useState } from "react";
 import SignupForm from "../components/SignupForm";
-import SuccessModal from "../components/SuccessModal";
 
 // ── Assets ──────────────────────────────────────────────────
 // BASE_URL incluye la barra final (p. ej. "/la-semana-del-dolor/"), así los
@@ -66,7 +65,6 @@ function useScrollReveal() {
 export default function Home() {
   useScrollReveal();
   const [navScrolled, setNavScrolled] = useState(false);
-  const [successOpen, setSuccessOpen] = useState(false);
   const scrollToForm = () =>
     document.getElementById("registro")?.scrollIntoView({ behavior: "smooth" });
 
@@ -193,7 +191,7 @@ export default function Home() {
               En directo los días 25, 27 y 28 de junio. Reserva tu sitio gratis.
             </p>
             <div id="registro" style={{ scrollMarginTop: "90px" }}>
-              <SignupForm onSuccess={() => setSuccessOpen(true)} />
+              <SignupForm />
             </div>
           </div>
         </div>
@@ -911,9 +909,6 @@ export default function Home() {
           display: none !important;
         }
       `}</style>
-
-      {/* ── MODAL DE ÉXITO (paso a la comunidad) ────────── */}
-      <SuccessModal open={successOpen} onClose={() => setSuccessOpen(false)} />
     </div>
   );
 }

@@ -139,7 +139,7 @@ export default function SignupForm({ onSuccess }: { onSuccess: () => void }) {
           marginBottom: "1.5rem",
         }}
       >
-        Déjanos tus datos y recibirás el acceso a las clases en directo del 24,
+        Déjanos tus datos y recibirás el acceso a las clases en directo del 25,
         27 y 28 de junio.
       </p>
 

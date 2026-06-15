@@ -327,7 +327,7 @@ export default function Ventas() {
     {
       question: "¿Las clases online son gratuitas?",
       answer:
-        "Sí, totalmente gratis. Son 3 clases en directo con Alba Estrada los días 24, 27 y 28 de junio. Solo tienes que apuntarte para reservar tu sitio y recibir el enlace de acceso.",
+        "Sí, totalmente gratis. Son 3 clases en directo con Alba Estrada los días 25, 27 y 28 de junio. Solo tienes que apuntarte para reservar tu sitio y recibir el enlace de acceso.",
     },
     {
       question: "¿Y si no puedo conectarme en directo a alguna clase?",

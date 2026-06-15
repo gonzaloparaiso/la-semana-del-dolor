@@ -4,7 +4,6 @@
    ============================================================ */
 
 import { useEffect, useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
 import SignupForm from "../components/SignupForm";
 import SuccessModal from "../components/SuccessModal";
 
@@ -23,22 +22,25 @@ const ALBA_IMG = `${ASSET}alba.jpg`;
 // ── Clases gratuitas de la semana ───────────────────────────
 const CLASES = [
   {
-    dia: "Miércoles 24",
+    dia: "Jueves 25",
     mes: "junio",
+    hora: "19:30",
     titulo: "Por qué te duele la espalda",
-    desc: "Entiende qué hay detrás del dolor lumbar y por qué casi nunca es lo que te han contado.",
+    desc: "Aprenderás qué es el dolor: cómo tu sistema nervioso regula lo que sucede y de qué modo puedes eliminarlo.",
   },
   {
     dia: "Sábado 27",
     mes: "junio",
-    titulo: "Mover sin miedo",
+    hora: "18:30",
+    titulo: "Cómo moverte sin miedo",
     desc: "Los patrones que tu cuerpo necesita recuperar para volver a confiar en el movimiento.",
   },
   {
     dia: "Domingo 28",
     mes: "junio",
+    hora: "18:30",
     titulo: "Tu plan para dejar de convivir con el dolor",
-    desc: "Cómo integrar todo en un sistema que funcione a largo plazo. Y qué viene después.",
+    desc: "Cómo integrar todo en un sistema que funcione a largo plazo, construyendo una nueva relación con tu cuerpo.",
   },
 ];
 
@@ -60,129 +62,6 @@ function useScrollReveal() {
   }, []);
 }
 
-// ── FAQ Item ─────────────────────────────────────────────────
-function FaqItem({ question, answer }: { question: string; answer: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="faq-item">
-      <button
-        className="faq-question w-full text-left"
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-      >
-        <span>{question}</span>
-        {open ? (
-          <ChevronUp size={18} className="text-[#F3C148] flex-shrink-0 ml-4" />
-        ) : (
-          <ChevronDown size={18} className="text-[#F3C148] flex-shrink-0 ml-4" />
-        )}
-      </button>
-      {open && <p className="faq-answer">{answer}</p>}
-    </div>
-  );
-}
-
-// ── Testimonial ──────────────────────────────────────────────
-function Testimonial({
-  text,
-  name,
-  program,
-}: {
-  text: string;
-  name: string;
-  program?: string;
-}) {
-  return (
-    <div className="testimonial-card fade-in-up">
-      <p
-        style={{
-          fontFamily: "'Montserrat', sans-serif",
-          fontSize: "0.9375rem",
-          lineHeight: "1.8",
-          color: "#CCCCCC",
-          fontStyle: "italic",
-          marginBottom: "1.25rem",
-        }}
-      >
-        "{text}"
-      </p>
-      <div>
-        <p
-          style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 700,
-            fontSize: "0.875rem",
-            color: "#F3C148",
-            letterSpacing: "0.05em",
-          }}
-        >
-          {name}
-        </p>
-        {program && (
-          <p
-            style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontSize: "0.75rem",
-              color: "#666666",
-              marginTop: "0.25rem",
-            }}
-          >
-            {program}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// ── Pillar Card ──────────────────────────────────────────────
-function PillarCard({
-  number,
-  title,
-  description,
-}: {
-  number: string;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="pillar-card fade-in-up">
-      <div
-        style={{
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: "3rem",
-          color: "rgba(243,193,72,0.15)",
-          lineHeight: 1,
-          marginBottom: "0.5rem",
-        }}
-      >
-        {number}
-      </div>
-      <h3
-        style={{
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: "1.5rem",
-          color: "#F3C148",
-          letterSpacing: "0.05em",
-          marginBottom: "0.75rem",
-        }}
-      >
-        {title}
-      </h3>
-      <p
-        style={{
-          fontFamily: "'Montserrat', sans-serif",
-          fontSize: "0.875rem",
-          color: "#AAAAAA",
-          lineHeight: "1.7",
-        }}
-      >
-        {description}
-      </p>
-    </div>
-  );
-}
-
 // ── Main Component ───────────────────────────────────────────
 export default function Home() {
   useScrollReveal();
@@ -197,60 +76,12 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const faqs = [
-    {
-      question: "¿Las clases online son gratuitas?",
-      answer:
-        "Sí, totalmente gratis. Son 3 clases en directo con Alba Estrada los días 24, 27 y 28 de junio. Solo tienes que apuntarte para reservar tu sitio y recibir el enlace de acceso.",
-    },
-    {
-      question: "¿Y si no puedo conectarme en directo a alguna clase?",
-      answer:
-        "No te preocupes. Apúntate igualmente: durante la semana del lanzamiento tendrás acceso a la grabación de cada clase para que puedas verla cuando te venga bien.",
-    },
-    {
-      question: "¿Tengo que comprar algo para asistir?",
-      answer:
-        "No. Las 3 clases son completamente gratuitas. Solo necesitas apuntarte con tu nombre, correo y teléfono para que podamos enviarte el acceso. Al final de la semana te contaremos cómo seguir trabajando con Alba si quieres, pero sin ningún compromiso.",
-    },
-    {
-      question: "¿Qué necesito para seguir las clases?",
-      answer:
-        "Únicamente un dispositivo con conexión a internet. Las clases son online y en directo, y recibirás el enlace de acceso en el correo con el que te apuntes.",
-    },
-    {
-      question: "¿Cómo funciona el programa?",
-      answer:
-        "A través de nuestra plataforma recibirás 5 sesiones semanales guiadas con vídeos explicativos detallados. Debes comprometerte con un mínimo de 3 sesiones por semana para obtener resultados. El programa está diseñado para reeducar tu sistema completo: respiración, postura, movimiento, fuerza y hábitos.",
-    },
-    {
-      question: "¿Es para mí si no hago CrossFit o entrenamiento funcional?",
-      answer:
-        "Por supuesto. El programa está diseñado para población general y para personas que ya entrenan. No necesitas experiencia previa ni material específico. Recibirás todas las adaptaciones que necesites.",
-    },
-    {
-      question: "¿Perderé forma física durante el programa?",
-      answer:
-        "No. Al contrario: te sentirás más fuerte que nunca. Mejorarás movilidad, resistencia y fuerza. El programa no te pide que dejes de moverte, sino que te muevas mejor.",
-    },
-    {
-      question: "¿Puedo hacerlo si tengo una lesión diagnosticada?",
-      answer:
-        "Si tienes un informe médico, puedes escribirnos contando tu caso y evaluaremos si el programa es adecuado para ti. En cualquier caso, siempre habrá una opción para ayudarte.",
-    },
-    {
-      question: "¿Por qué el dolor lumbar es multifactorial?",
-      answer:
-        "El 80% de los dolores de espalda se diagnostican como 'dolor lumbar inespecífico'. Esto ocurre porque el dolor puede ser detonado por el estrés, malas posturas, hábitos, exceso de carga, o incluso por cómo interpretas el dolor. Por eso trabajar solo un músculo aislado no funciona: hay que abordar todo el sistema.",
-    },
-  ];
-
   return (
     <div style={{ backgroundColor: "#121212", color: "#ffffff", minHeight: "100vh" }}>
 
       {/* ── URGENCY BAR ─────────────────────────────────── */}
       <div className="urgency-bar">
-        La semana del dolor · 3 clases gratis con Alba · 24, 27 y 28 de junio
+        La semana del dolor · 3 clases gratis con Alba · 25, 27 y 28 de junio
       </div>
 
       {/* ── NAVBAR ──────────────────────────────────────── */}
@@ -334,8 +165,8 @@ export default function Home() {
                 marginBottom: "1.5rem",
               }}
             >
-              No tienes por qué{" "}
-              <span style={{ color: "#F3C148" }}>vivir con dolor</span>
+              La semana del{" "}
+              <span style={{ color: "#F3C148" }}>dolor de espalda</span>
             </h1>
             <p
               style={{
@@ -347,7 +178,7 @@ export default function Home() {
                 fontWeight: 400,
               }}
             >
-              Esta semana, 3 clases online gratuitas con Alba Estrada para entender tu dolor lumbar y empezar a moverte sin miedo.
+              3 clases online gratuitas con Alba Estrada para entender tu dolor lumbar y empezar a moverte sin miedo.
             </p>
             <p
               style={{
@@ -358,7 +189,7 @@ export default function Home() {
                 marginBottom: "2.5rem",
               }}
             >
-              En directo los días 24, 27 y 28 de junio. Reserva tu sitio gratis (y se queda grabado por si no puedes asistir).
+              En directo los días 25, 27 y 28 de junio. Reserva tu sitio gratis.
             </p>
             <div id="registro" style={{ scrollMarginTop: "90px" }}>
               <SignupForm onSuccess={() => setSuccessOpen(true)} />
@@ -394,7 +225,7 @@ export default function Home() {
                 color: "#AAAAAA",
               }}
             >
-              Una semana para cambiar tu relación con el dolor de espalda. Tres sesiones online, en directo y gratuitas. Apúntate y recibe el enlace de acceso.
+              Una semana para dejar de pensar que siempre vivirás con dolor y ver los primeros resultados en directo. Tres sesiones online, en directo y gratuitas. Plazas muy limitadas.
             </p>
           </div>
 
@@ -450,7 +281,7 @@ export default function Home() {
                     marginBottom: "1.25rem",
                   }}
                 >
-                  {clase.mes} · online en directo
+                  {clase.mes} · {clase.hora}h · online en directo
                 </div>
                 <h3
                   style={{
@@ -622,113 +453,6 @@ export default function Home() {
       </section>
 
       <div className="section-divider" />
-
-      {/* ── LOS 5 PILARES ───────────────────────────────── */}
-      <section style={{ padding: "5rem 0", backgroundColor: "#121212" }}>
-        <div className="container">
-          <div style={{ marginBottom: "3.5rem" }} className="fade-in-up">
-            <p className="section-label">El sistema</p>
-            <span className="gold-line" />
-            <h2
-              style={{
-                fontFamily: "'Bebas Neue', sans-serif",
-                fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
-                lineHeight: 1.05,
-                color: "#FFFFFF",
-                maxWidth: "560px",
-              }}
-            >
-              Trabajamos cinco pilares
-            </h2>
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: "1.5rem",
-            }}
-            className="pillars-grid"
-          >
-            <PillarCard
-              number="01"
-              title="Respiración"
-              description="Aprender a activar y relajar el sistema nervioso. La base de todo proceso de recuperación."
-            />
-            <PillarCard
-              number="02"
-              title="Postura"
-              description="Cómo te organizas frente al entorno durante el día. Cambios pequeños con impacto enorme."
-            />
-            <PillarCard
-              number="03"
-              title="Movimiento"
-              description="Recuperar los patrones naturales del cuerpo. Bisagra de cadera, estabilidad de tronco y más."
-            />
-            <PillarCard
-              number="04"
-              title="Fuerza"
-              description="Desarrollar capacidad para que el cuerpo vuelva a confiar en el movimiento sin miedo."
-            />
-            <PillarCard
-              number="05"
-              title="Hábitos"
-              description="Eres aquello que haces repetidamente. Integraremos herramientas para usar fuera del entrenamiento."
-            />
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
-      {/* ── TESTIMONIOS 1 ───────────────────────────────── */}
-      <section style={{ padding: "5rem 0", backgroundColor: "#0F0F0F" }}>
-        <div className="container">
-          <div style={{ marginBottom: "3rem" }} className="fade-in-up">
-            <p className="section-label">Lo que dicen</p>
-            <span className="gold-line" />
-            <h2
-              style={{
-                fontFamily: "'Bebas Neue', sans-serif",
-                fontSize: "clamp(2.25rem, 4vw, 3rem)",
-                color: "#FFFFFF",
-              }}
-            >
-              Resultados reales de personas reales
-            </h2>
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "1.5rem",
-            }}
-            className="testimonials-grid"
-          >
-            <Testimonial
-              text="Mi experiencia con Armour ha sido beneficiosa en muchos sentidos. Evidentemente y por lo que todos acudimos a este programa, mitigar dolores de espalda. Pero también aprender a conectar con tu cuerpo. Desde que empecé Armour me tomo todo de otra forma y lo más importante soy yo, no los kilos. Gracias a Alba porque nunca me ha dejado sola en el proceso."
-              name="Erika Hernández Gómez"
-              program="Armour"
-            />
-            <Testimonial
-              text="Plan Armour ha sido mi salvación. Cuando el dolor crónico apareció en mi vida pensé que el CrossFit había terminado para mí. Al dolor físico se unieron la frustración y la falta de motivación. Ahora, gracias a Alba y Armour soy mucho más fuerte no sólo físicamente, también mentalmente."
-              name="María Peralta"
-              program="Armour"
-            />
-            <Testimonial
-              text="El feedback de Armour es brutal: pasé de no poder hacer nada a tener una sentadilla frontal de 3x80 y un peso muerto de 3x90. Estoy más fuerte que nunca. El traumatólogo me recomendaba infiltración y no coger pesos. Armour cambió mi vida."
-              name="Aixa A.J."
-              program="Armour"
-            />
-            <Testimonial
-              text="La programación me está ayudando y gustando mucho. Estoy recuperando una lesión de psoas y con la programación me mantengo activa mientras rehabilito. La técnica de respiración me ha abierto un nuevo mundo."
-              name="María A. Martínez Díaz"
-              program="Armour + Knee Armour + Carrera"
-            />
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
       {/* ── SOBRE ALBA ───────────────────────────────────── */}
       <section style={{ padding: "5rem 0", backgroundColor: "#121212" }}>
         <div className="container">
@@ -777,7 +501,7 @@ export default function Home() {
                     marginBottom: "0.25rem",
                   }}
                 >
-                  +10 años
+                  +17 años
                 </p>
                 <p
                   style={{
@@ -788,7 +512,7 @@ export default function Home() {
                     letterSpacing: "0.05em",
                   }}
                 >
-                  estudiando el dolor y la espalda
+                  dedicada al entrenamiento y la salud
                 </p>
               </div>
             </div>
@@ -815,8 +539,7 @@ export default function Home() {
                   marginBottom: "1.25rem",
                 }}
               >
-                He creado este programa desde las ganas absolutas de ayudarte, porque yo misma pasé por un dolor que me inhabilitó durante{" "}
-                <strong style={{ color: "#FFFFFF" }}>5 años</strong>. Miedo. Incertidumbre. Pero sobre todo: aprendizaje.
+                Llevo <strong style={{ color: "#FFFFFF" }}>+17 años</strong> dedicándome al entrenamiento y la salud. Pero no fue hasta 2018, después de competir en los CrossFit Games, que empecé un proceso de <strong style={{ color: "#FFFFFF" }}>5 años de dolor</strong> del que creía que no saldría.
               </p>
               <p
                 style={{
@@ -827,7 +550,7 @@ export default function Home() {
                   marginBottom: "1.25rem",
                 }}
               >
-                Llevo más de 10 años estudiando el dolor y la espalda: cómo funcionan las estructuras, qué factores influyen en el dolor y cómo el sistema nervioso regula todo lo que sucede.
+                En ese tiempo, donde el dolor me modificó por completo la vida, estudié, aprendí y ayudé a cientos de personas a vivir sin dolor.
               </p>
               <p
                 style={{
@@ -838,7 +561,7 @@ export default function Home() {
                   marginBottom: "1.25rem",
                 }}
               >
-                Durante estos años he ayudado a cientos de personas a volver a correr, sentarse sin miedo, jugar con sus hijos… partes necesarias de la vida que el dolor lumbar arrebata.
+                Nadie está hablando de cómo diferentes técnicas, posturas y factores influyen en el dolor y cómo, a través de equilibrar tu sistema nervioso, puedes recuperar tu salud.
               </p>
               <p
                 style={{
@@ -849,7 +572,7 @@ export default function Home() {
                   marginBottom: "2rem",
                 }}
               >
-                <strong style={{ color: "#FFFFFF" }}>ARMOUR</strong> es el conjunto de pasos que hacen que todo funcione. Durante 3 meses vamos a ir de la mano. Y puedo prometerte que lo vas a conseguir.
+                En <strong style={{ color: "#FFFFFF" }}>la semana del dolor de espalda</strong> te compartiré el paso a paso para que tú también puedas recuperar la confianza en tu cuerpo y eliminar el dolor de espalda.
               </p>
               <button
                 type="button"
@@ -859,53 +582,6 @@ export default function Home() {
               >
                 Quiero eliminar mi dolor
               </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-      {/* ── FAQ ─────────────────────────────────────────── */}
-      <section style={{ padding: "5rem 0", backgroundColor: "#0F0F0F" }}>
-        <div className="container">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 2fr",
-              gap: "4rem",
-              alignItems: "start",
-            }}
-            className="responsive-grid-2"
-          >
-            <div className="fade-in-up">
-              <p className="section-label">FAQ</p>
-              <span className="gold-line" />
-              <h2
-                style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
-                  fontSize: "clamp(2.25rem, 4vw, 3rem)",
-                  lineHeight: 1.05,
-                  color: "#FFFFFF",
-                  marginBottom: "1rem",
-                }}
-              >
-                Preguntas frecuentes
-              </h2>
-              <p
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontSize: "0.875rem",
-                  color: "#666666",
-                  lineHeight: "1.7",
-                }}
-              >
-                Todo lo que necesitas saber sobre el programa antes de dar el paso.
-              </p>
-            </div>
-            <div className="fade-in-up">
-              {faqs.map((faq) => (
-                <FaqItem key={faq.question} question={faq.question} answer={faq.answer} />
-              ))}
             </div>
           </div>
         </div>
@@ -962,7 +638,7 @@ export default function Home() {
                 margin: "0 auto 2.5rem",
               }}
             >
-              Sí. Y empezamos esta semana. 3 clases gratis con Alba los días 24, 27 y 28 de junio. Reserva tu sitio antes de que se llenen.
+              Sí. Y empiezas ahora. En estos 3 días gratis con Alba los días 25, 27 y 28 de junio. Reserva tu sitio y recupera tu vitalidad.
             </p>
             <button
               type="button"

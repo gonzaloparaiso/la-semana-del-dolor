@@ -716,31 +716,39 @@ export default function Ventas() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
               gap: "1.5rem",
             }}
             className="testimonials-grid"
           >
-            <Testimonial
-              text="Mi experiencia con Armour ha sido beneficiosa en muchos sentidos. Evidentemente y por lo que todos acudimos a este programa, mitigar dolores de espalda. Pero también aprender a conectar con tu cuerpo. Desde que empecé Armour me tomo todo de otra forma y lo más importante soy yo, no los kilos. Gracias a Alba porque nunca me ha dejado sola en el proceso."
-              name="Erika Hernández Gómez"
-              program="Armour"
-            />
-            <Testimonial
-              text="Plan Armour ha sido mi salvación. Cuando el dolor crónico apareció en mi vida pensé que el CrossFit había terminado para mí. Al dolor físico se unieron la frustración y la falta de motivación. Ahora, gracias a Alba y Armour soy mucho más fuerte no sólo físicamente, también mentalmente."
-              name="María Peralta"
-              program="Armour"
-            />
-            <Testimonial
-              text="El feedback de Armour es brutal: pasé de no poder hacer nada a tener una sentadilla frontal de 3x80 y un peso muerto de 3x90. Estoy más fuerte que nunca. El traumatólogo me recomendaba infiltración y no coger pesos. Armour cambió mi vida."
-              name="Aixa A.J."
-              program="Armour"
-            />
-            <Testimonial
-              text="La programación me está ayudando y gustando mucho. Estoy recuperando una lesión de psoas y con la programación me mantengo activa mientras rehabilito. La técnica de respiración me ha abierto un nuevo mundo."
-              name="María A. Martínez Díaz"
-              program="Armour + Knee Armour + Carrera"
-            />
+            {["TVbHu-GVLBs", "mYn0_vQ-Ia0"].map((id) => (
+              <div
+                key={id}
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  paddingBottom: "56.25%",
+                  height: 0,
+                  border: "1px solid rgba(243,193,72,0.2)",
+                }}
+              >
+                <iframe
+                  src={`https://www.youtube.com/embed/${id}`}
+                  title="Testimonio en vídeo"
+                  loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: 0,
+                  }}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1148,6 +1156,26 @@ export default function Ventas() {
               text="Lo que más valoro es el grupo de seguimiento. Saber que Alba está ahí para responder cualquier duda hace que el proceso sea mucho más seguro y motivador. Nunca me sentí sola en el proceso."
               name="Ana R."
               program="Armour"
+            />
+            <Testimonial
+              text="Mi experiencia con Armour ha sido beneficiosa en muchos sentidos. Evidentemente y por lo que todos acudimos a este programa, mitigar dolores de espalda. Pero también aprender a conectar con tu cuerpo. Desde que empecé Armour me tomo todo de otra forma y lo más importante soy yo, no los kilos. Gracias a Alba porque nunca me ha dejado sola en el proceso."
+              name="Erika Hernández Gómez"
+              program="Armour"
+            />
+            <Testimonial
+              text="Plan Armour ha sido mi salvación. Cuando el dolor crónico apareció en mi vida pensé que el CrossFit había terminado para mí. Al dolor físico se unieron la frustración y la falta de motivación. Ahora, gracias a Alba y Armour soy mucho más fuerte no sólo físicamente, también mentalmente."
+              name="María Peralta"
+              program="Armour"
+            />
+            <Testimonial
+              text="El feedback de Armour es brutal: pasé de no poder hacer nada a tener una sentadilla frontal de 3x80 y un peso muerto de 3x90. Estoy más fuerte que nunca. El traumatólogo me recomendaba infiltración y no coger pesos. Armour cambió mi vida."
+              name="Aixa A.J."
+              program="Armour"
+            />
+            <Testimonial
+              text="La programación me está ayudando y gustando mucho. Estoy recuperando una lesión de psoas y con la programación me mantengo activa mientras rehabilito. La técnica de respiración me ha abierto un nuevo mundo."
+              name="María A. Martínez Díaz"
+              program="Armour + Knee Armour + Carrera"
             />
           </div>
         </div>

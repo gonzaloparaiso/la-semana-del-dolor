@@ -1079,7 +1079,7 @@ export default function Ventas() {
                     marginBottom: "0.25rem",
                   }}
                 >
-                  +10 años
+                  +17 años
                 </p>
                 <p
                   style={{
@@ -1090,7 +1090,7 @@ export default function Ventas() {
                     letterSpacing: "0.05em",
                   }}
                 >
-                  estudiando el dolor y la espalda
+                  dedicada al entrenamiento y la salud
                 </p>
               </div>
             </div>
@@ -1117,8 +1117,7 @@ export default function Ventas() {
                   marginBottom: "1.25rem",
                 }}
               >
-                He creado este programa desde las ganas absolutas de ayudarte, porque yo misma pasé por un dolor que me inhabilitó durante{" "}
-                <strong style={{ color: "#FFFFFF" }}>5 años</strong>. Miedo. Incertidumbre. Pero sobre todo: aprendizaje.
+                Llevo <strong style={{ color: "#FFFFFF" }}>+17 años</strong> dedicándome al entrenamiento y la salud. Pero no fue hasta 2018, después de competir en los CrossFit Games, que empecé un proceso de <strong style={{ color: "#FFFFFF" }}>5 años de dolor</strong> del que creía que no saldría.
               </p>
               <p
                 style={{
@@ -1129,7 +1128,7 @@ export default function Ventas() {
                   marginBottom: "1.25rem",
                 }}
               >
-                Llevo más de 10 años estudiando el dolor y la espalda: cómo funcionan las estructuras, qué factores influyen en el dolor y cómo el sistema nervioso regula todo lo que sucede.
+                En ese tiempo, donde el dolor me modificó por completo la vida, estudié, aprendí y ayudé a cientos de personas a vivir sin dolor.
               </p>
               <p
                 style={{
@@ -1140,7 +1139,7 @@ export default function Ventas() {
                   marginBottom: "1.25rem",
                 }}
               >
-                Durante estos años he ayudado a cientos de personas a volver a correr, sentarse sin miedo, jugar con sus hijos… partes necesarias de la vida que el dolor lumbar arrebata.
+                Nadie está hablando de cómo diferentes técnicas, posturas y factores influyen en el dolor y cómo, a través de equilibrar tu sistema nervioso, puedes recuperar tu salud.
               </p>
               <p
                 style={{
@@ -1151,7 +1150,7 @@ export default function Ventas() {
                   marginBottom: "2rem",
                 }}
               >
-                <strong style={{ color: "#FFFFFF" }}>ARMOUR</strong> es el conjunto de pasos que hacen que todo funcione. Durante 3 meses vamos a ir de la mano. Y puedo prometerte que lo vas a conseguir.
+                En <strong style={{ color: "#FFFFFF" }}>la semana del dolor de espalda</strong> te compartiré el paso a paso para que tú también puedas recuperar la confianza en tu cuerpo y eliminar el dolor de espalda.
               </p>
               <a
                 href="#precio"

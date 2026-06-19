@@ -137,11 +137,14 @@ function TestimonialSlider({
   };
 
   return (
-    <div className="fade-in-up" style={{ position: "relative" }}>
+    <div
+      className="fade-in-up"
+      style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}
+    >
       <button
         type="button"
         aria-label="Anterior"
-        className="testi-arrow testi-arrow-left"
+        className="testi-arrow"
         onClick={() => scrollByCard(-1)}
       >
         <ChevronLeft size={24} />
@@ -156,7 +159,7 @@ function TestimonialSlider({
       <button
         type="button"
         aria-label="Siguiente"
-        className="testi-arrow testi-arrow-right"
+        className="testi-arrow"
         onClick={() => scrollByCard(1)}
       >
         <ChevronRight size={24} />
@@ -1576,6 +1579,8 @@ export default function Ventas() {
 
         /* Slider de testimonios */
         .testi-track {
+          flex: 1 1 auto;
+          min-width: 0;
           display: flex;
           gap: 1.5rem;
           overflow-x: auto;
@@ -1590,28 +1595,22 @@ export default function Ventas() {
           scroll-snap-align: start;
         }
         .testi-arrow {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 5;
+          flex: 0 0 auto;
           width: 46px;
           height: 46px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          background: #121212;
+          background: #1A1A1A;
           color: #F3C148;
           border: 1px solid rgba(243, 193, 72, 0.6);
           cursor: pointer;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
           transition: background-color 0.2s ease, color 0.2s ease;
         }
         .testi-arrow:hover {
           background: #F3C148;
           color: #121212;
         }
-        .testi-arrow-left { left: -10px; }
-        .testi-arrow-right { right: -10px; }
 
         /* Featured pricing tier: slightly larger, desktop only.
            Scoped to min-width so it simply doesn't exist on mobile (no scale there).

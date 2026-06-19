@@ -3,8 +3,8 @@
    Fondo: #121212 | Acento: #F3C148 | Tipografía: Bebas Neue + Montserrat
    ============================================================ */
 
-import { useEffect, useState } from "react";
-import { ChevronDown, ChevronUp, Check, ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Check, ArrowRight } from "lucide-react";
 
 // ── Assets ──────────────────────────────────────────────────
 // BASE_URL incluye la barra final (p. ej. "/la-semana-del-dolor/"), así los
@@ -113,6 +113,52 @@ function Testimonial({
             {program}
           </p>
         )}
+      </div>
+    </div>
+  );
+}
+
+// ── Testimonial Slider ───────────────────────────────────────
+// Muestra 3 testimonios a la vez (1 en móvil) con navegación por flechas.
+function TestimonialSlider({
+  items,
+}: {
+  items: { text: string; name: string; program?: string }[];
+}) {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (dir: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-testi-card]");
+    const gap = 24; // 1.5rem
+    const amount = card ? card.offsetWidth + gap : el.clientWidth;
+    el.scrollBy({ left: dir * amount, behavior: "smooth" });
+  };
+
+  return (
+    <div className="fade-in-up" style={{ position: "relative" }}>
+      <div ref={trackRef} className="testi-track">
+        {items.map((t, i) => (
+          <div key={i} data-testi-card className="testi-card">
+            <Testimonial text={t.text} name={t.name} program={t.program} />
+          </div>
+        ))}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          gap: "0.75rem",
+          justifyContent: "flex-end",
+          marginTop: "1.25rem",
+        }}
+      >
+        <button type="button" aria-label="Anterior" className="testi-arrow" onClick={() => scrollByCard(-1)}>
+          <ChevronLeft size={22} />
+        </button>
+        <button type="button" aria-label="Siguiente" className="testi-arrow" onClick={() => scrollByCard(1)}>
+          <ChevronRight size={22} />
+        </button>
       </div>
     </div>
   );
@@ -1134,50 +1180,45 @@ export default function Ventas() {
               Ellos ya dieron el paso
             </h2>
           </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "1.5rem",
-            }}
-            className="testimonials-grid"
-          >
-            <Testimonial
-              text="Pasé de no poder levantarme del suelo sin ayuda a hacer sentadilla con barra. No lo habría creído si no lo hubiera vivido. El trabajo de respiración fue lo que más me sorprendió: nunca pensé que tuviera tanto impacto en el dolor."
-              name="Carlos M."
-              program="Armour"
-            />
-            <Testimonial
-              text="Llevaba 3 años con dolor crónico. Médicos, fisios, ostéopatas... nada funcionaba a largo plazo. Armour fue diferente porque atacó el problema desde todos los ángulos. A los 6 semanas ya notaba la diferencia."
-              name="Laura G."
-              program="Armour"
-            />
-            <Testimonial
-              text="Lo que más valoro es el grupo de seguimiento. Saber que Alba está ahí para responder cualquier duda hace que el proceso sea mucho más seguro y motivador. Nunca me sentí sola en el proceso."
-              name="Ana R."
-              program="Armour"
-            />
-            <Testimonial
-              text="Mi experiencia con Armour ha sido beneficiosa en muchos sentidos. Evidentemente y por lo que todos acudimos a este programa, mitigar dolores de espalda. Pero también aprender a conectar con tu cuerpo. Desde que empecé Armour me tomo todo de otra forma y lo más importante soy yo, no los kilos. Gracias a Alba porque nunca me ha dejado sola en el proceso."
-              name="Erika Hernández Gómez"
-              program="Armour"
-            />
-            <Testimonial
-              text="Plan Armour ha sido mi salvación. Cuando el dolor crónico apareció en mi vida pensé que el CrossFit había terminado para mí. Al dolor físico se unieron la frustración y la falta de motivación. Ahora, gracias a Alba y Armour soy mucho más fuerte no sólo físicamente, también mentalmente."
-              name="María Peralta"
-              program="Armour"
-            />
-            <Testimonial
-              text="El feedback de Armour es brutal: pasé de no poder hacer nada a tener una sentadilla frontal de 3x80 y un peso muerto de 3x90. Estoy más fuerte que nunca. El traumatólogo me recomendaba infiltración y no coger pesos. Armour cambió mi vida."
-              name="Aixa A.J."
-              program="Armour"
-            />
-            <Testimonial
-              text="La programación me está ayudando y gustando mucho. Estoy recuperando una lesión de psoas y con la programación me mantengo activa mientras rehabilito. La técnica de respiración me ha abierto un nuevo mundo."
-              name="María A. Martínez Díaz"
-              program="Armour + Knee Armour + Carrera"
-            />
-          </div>
+          <TestimonialSlider
+            items={[
+              {
+                text: "Pasé de no poder levantarme del suelo sin ayuda a hacer sentadilla con barra. No lo habría creído si no lo hubiera vivido. El trabajo de respiración fue lo que más me sorprendió: nunca pensé que tuviera tanto impacto en el dolor.",
+                name: "Carlos M.",
+                program: "Armour",
+              },
+              {
+                text: "Llevaba 3 años con dolor crónico. Médicos, fisios, ostéopatas... nada funcionaba a largo plazo. Armour fue diferente porque atacó el problema desde todos los ángulos. A los 6 semanas ya notaba la diferencia.",
+                name: "Laura G.",
+                program: "Armour",
+              },
+              {
+                text: "Lo que más valoro es el grupo de seguimiento. Saber que Alba está ahí para responder cualquier duda hace que el proceso sea mucho más seguro y motivador. Nunca me sentí sola en el proceso.",
+                name: "Ana R.",
+                program: "Armour",
+              },
+              {
+                text: "Mi experiencia con Armour ha sido beneficiosa en muchos sentidos. Evidentemente y por lo que todos acudimos a este programa, mitigar dolores de espalda. Pero también aprender a conectar con tu cuerpo. Desde que empecé Armour me tomo todo de otra forma y lo más importante soy yo, no los kilos. Gracias a Alba porque nunca me ha dejado sola en el proceso.",
+                name: "Erika Hernández Gómez",
+                program: "Armour",
+              },
+              {
+                text: "Plan Armour ha sido mi salvación. Cuando el dolor crónico apareció en mi vida pensé que el CrossFit había terminado para mí. Al dolor físico se unieron la frustración y la falta de motivación. Ahora, gracias a Alba y Armour soy mucho más fuerte no sólo físicamente, también mentalmente.",
+                name: "María Peralta",
+                program: "Armour",
+              },
+              {
+                text: "El feedback de Armour es brutal: pasé de no poder hacer nada a tener una sentadilla frontal de 3x80 y un peso muerto de 3x90. Estoy más fuerte que nunca. El traumatólogo me recomendaba infiltración y no coger pesos. Armour cambió mi vida.",
+                name: "Aixa A.J.",
+                program: "Armour",
+              },
+              {
+                text: "La programación me está ayudando y gustando mucho. Estoy recuperando una lesión de psoas y con la programación me mantengo activa mientras rehabilito. La técnica de respiración me ha abierto un nuevo mundo.",
+                name: "María A. Martínez Díaz",
+                program: "Armour + Knee Armour + Carrera",
+              },
+            ]}
+          />
         </div>
       </section>
 
@@ -1532,6 +1573,38 @@ export default function Ventas() {
           max-width: 100%;
         }
 
+        /* Slider de testimonios */
+        .testi-track {
+          display: flex;
+          gap: 1.5rem;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          padding-bottom: 0.5rem;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .testi-track::-webkit-scrollbar { display: none; }
+        .testi-card {
+          flex: 0 0 calc((100% - 3rem) / 3);
+          scroll-snap-align: start;
+        }
+        .testi-arrow {
+          width: 44px;
+          height: 44px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: transparent;
+          color: #F3C148;
+          border: 1px solid rgba(243, 193, 72, 0.5);
+          cursor: pointer;
+          transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .testi-arrow:hover {
+          background: #F3C148;
+          color: #121212;
+        }
+
         /* Featured pricing tier: slightly larger, desktop only.
            Scoped to min-width so it simply doesn't exist on mobile (no scale there).
            !important beats .fade-in-up.visible, which has higher selector specificity. */
@@ -1564,6 +1637,11 @@ export default function Ventas() {
           /* Testimonial grids: 1 column on mobile */
           .testimonials-grid {
             grid-template-columns: 1fr !important;
+          }
+
+          /* Slider de testimonios: 1 visible (con un pequeño peek) en móvil */
+          .testi-card {
+            flex-basis: 85% !important;
           }
 
           /* Pillar cards: 1 column on mobile */

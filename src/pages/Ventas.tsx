@@ -138,6 +138,14 @@ function TestimonialSlider({
 
   return (
     <div className="fade-in-up" style={{ position: "relative" }}>
+      <button
+        type="button"
+        aria-label="Anterior"
+        className="testi-arrow testi-arrow-left"
+        onClick={() => scrollByCard(-1)}
+      >
+        <ChevronLeft size={24} />
+      </button>
       <div ref={trackRef} className="testi-track">
         {items.map((t, i) => (
           <div key={i} data-testi-card className="testi-card">
@@ -145,21 +153,14 @@ function TestimonialSlider({
           </div>
         ))}
       </div>
-      <div
-        style={{
-          display: "flex",
-          gap: "0.75rem",
-          justifyContent: "flex-end",
-          marginTop: "1.25rem",
-        }}
+      <button
+        type="button"
+        aria-label="Siguiente"
+        className="testi-arrow testi-arrow-right"
+        onClick={() => scrollByCard(1)}
       >
-        <button type="button" aria-label="Anterior" className="testi-arrow" onClick={() => scrollByCard(-1)}>
-          <ChevronLeft size={22} />
-        </button>
-        <button type="button" aria-label="Siguiente" className="testi-arrow" onClick={() => scrollByCard(1)}>
-          <ChevronRight size={22} />
-        </button>
-      </div>
+        <ChevronRight size={24} />
+      </button>
     </div>
   );
 }
@@ -1589,21 +1590,28 @@ export default function Ventas() {
           scroll-snap-align: start;
         }
         .testi-arrow {
-          width: 44px;
-          height: 44px;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 5;
+          width: 46px;
+          height: 46px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          background: transparent;
+          background: #121212;
           color: #F3C148;
-          border: 1px solid rgba(243, 193, 72, 0.5);
+          border: 1px solid rgba(243, 193, 72, 0.6);
           cursor: pointer;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
           transition: background-color 0.2s ease, color 0.2s ease;
         }
         .testi-arrow:hover {
           background: #F3C148;
           color: #121212;
         }
+        .testi-arrow-left { left: -10px; }
+        .testi-arrow-right { right: -10px; }
 
         /* Featured pricing tier: slightly larger, desktop only.
            Scoped to min-width so it simply doesn't exist on mobile (no scale there).

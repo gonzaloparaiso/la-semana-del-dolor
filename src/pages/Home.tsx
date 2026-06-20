@@ -65,8 +65,18 @@ function useScrollReveal() {
 export default function Home() {
   useScrollReveal();
   const [navScrolled, setNavScrolled] = useState(false);
-  const scrollToForm = () =>
-    document.getElementById("registro")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToForm = () => {
+    const el = document.getElementById("registro");
+    if (!el) return;
+    if (window.parent !== window) {
+      // Embebido en iframe: el iframe no scrollea (lo hace la página padre),
+      // así que le pedimos a WordPress que desplace hasta el formulario.
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      window.parent.postMessage({ type: "lsd-scrollTo", top }, "*");
+    } else {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setNavScrolled(window.scrollY > 60);

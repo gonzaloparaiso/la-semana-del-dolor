@@ -137,7 +137,7 @@ footer { border-top:1px solid rgba(255,255,255,0.05); padding:24px; text-align:c
 </div>
 
 <div class="wrap">
-  <span class="eyebrow">Seguimiento semanal</span>
+  <span class="eyebrow">Seguimiento semanal<span id="semLabel"></span></span>
   <h1>¿CÓMO HA IDO<br>TU <span class="accent">SEMANA?</span></h1>
   <p class="intro">
     Cada semana nos cuentas cómo vas y así <strong>medimos tu progreso</strong> y ajustamos lo que haga falta.
@@ -162,14 +162,6 @@ footer { border-top:1px solid rgba(255,255,255,0.05); padding:24px; text-align:c
         <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" autocomplete="email">
         <div class="err" data-for="email">Introduce un correo válido</div>
       </div>
-    </div>
-
-    <div class="field">
-      <label class="label" for="semana">¿En qué semana del programa estás? <span class="req">*</span></label>
-      <select id="semana" name="semana">
-        <option value="" selected disabled>Selecciona…</option>
-      </select>
-      <div class="err" data-for="semana">Selecciona la semana</div>
     </div>
 
     <div class="field">
@@ -241,11 +233,20 @@ for (let i = 0; i <= 10; i++) {
   dolorScale.insertAdjacentHTML('beforeend',
     `<label class="scale-opt"><input type="radio" name="dolor" value="${i}"><span>${i}</span></label>`);
 }
-// Generar opciones de semana 1-12
-const semanaSel = document.getElementById('semana');
-for (let i = 1; i <= 12; i++) {
-  semanaSel.insertAdjacentHTML('beforeend', `<option value="${i}">Semana ${i}</option>`);
+
+// Semana del programa: se calcula sola desde la fecha de inicio (todos empiezan a la vez).
+// El programa arranca el lunes 6 de julio de 2026. Se puede forzar con ?semana=N en la URL.
+const PROGRAM_START = new Date('2026-07-06T00:00:00');
+const MAX_WEEK = 13;
+function currentWeek() {
+  const override = parseInt(new URL(window.location.href).searchParams.get('semana'), 10);
+  if (override >= 1) return Math.min(MAX_WEEK, override);
+  const w = Math.floor((Date.now() - PROGRAM_START.getTime()) / (7 * 86400000)) + 1;
+  return Math.min(MAX_WEEK, Math.max(1, w));
 }
+const SEMANA = currentWeek();
+const semLabel = document.getElementById('semLabel');
+if (semLabel) semLabel.textContent = ' · Semana ' + SEMANA;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const form = document.getElementById('trackForm');
@@ -272,7 +273,6 @@ form.addEventListener('submit', async (e) => {
 
   const nombre = document.getElementById('nombre').value.trim();
   const email = document.getElementById('email').value.trim();
-  const semana = semanaSel.value;
   const dolor = radioVal('dolor');
   const sesiones = radioVal('sesiones');
   const evolucion = radioVal('evolucion');
@@ -282,15 +282,13 @@ form.addEventListener('submit', async (e) => {
   const errs = {
     nombre: !nombre,
     email: !email || !EMAIL_RE.test(email),
-    semana: !semana,
     dolor: dolor === '',
     sesiones: !sesiones,
     evolucion: !evolucion,
   };
-  ['nombre','email','semana','dolor','sesiones','evolucion'].forEach(n => showErr(n, errs[n]));
+  ['nombre','email','dolor','sesiones','evolucion'].forEach(n => showErr(n, errs[n]));
   document.getElementById('nombre').classList.toggle('invalid', errs.nombre);
   document.getElementById('email').classList.toggle('invalid', errs.email);
-  document.getElementById('semana').classList.toggle('invalid', errs.semana);
   if (Object.values(errs).some(Boolean)) {
     const first = document.querySelector('.err.show');
     if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -299,7 +297,7 @@ form.addEventListener('submit', async (e) => {
 
   const payload = {
     nombre, email,
-    semana_programa: Number(semana),
+    semana_programa: SEMANA,
     dolor: Number(dolor),
     sesiones_completadas: sesiones,
     evolucion,

@@ -1018,8 +1018,8 @@ footer {
   </p>
 
   <!-- Countdown -->
-  <div class="countdown-strip">
-    <span class="cd-label">⚠ Precio sube en:</span>
+  <div class="countdown-strip" id="cdStrip">
+    <span class="cd-label" id="cdLabel">⚠ Precio sube en:</span>
     <div class="cd-timer">
       <div class="cd-unit"><span class="cd-num" id="cdH">00</span><span class="cd-lbl">horas</span></div>
       <span class="cd-sep">:</span>
@@ -1243,49 +1243,70 @@ function toggleFaq(btn) {
   if (!isOpen) item.classList.add('open');
 }
 
-// Countdown hasta medianoche
-function updateCountdown() {
-  const now = new Date();
-  const tomorrow = new Date(now);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(0, 0, 0, 0);
-  const diff = tomorrow - now;
-  const h = Math.floor(diff / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('cdH').textContent = String(h).padStart(2,'0');
-  document.getElementById('cdM').textContent = String(m).padStart(2,'0');
-  document.getElementById('cdS').textContent = String(s).padStart(2,'0');
+// ── Contador + precio dinámico ──────────────────────────────
+// Antes del 29 jun: cuenta atrás hasta el 29 jun 00:00 (precio base).
+// Del 29 jun al 5 jul: cada medianoche el precio sube 5€ (contador de 24h).
+// Tras el cierre (6 jul 00:00): precio congelado y contador oculto.
+const PRICE_START = new Date('2026-06-29T00:00:00'); // empieza a subir
+const CLOSE_AT    = new Date('2026-07-06T00:00:00'); // oferta cerrada
+const MAX_DAYS    = 6;   // 29 jun → 5 jul (último día con subida)
+const STEP        = 5;   // €/día
+const BASE        = { p1: 197, p2: 397, p3: 597 };
+const DAY_MS      = 86400000;
+
+function setPrice(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = `${val}<span class="price-currency">€</span>`;
 }
-updateCountdown();
-setInterval(updateCountdown, 1000);
+function fmt(n) { return String(n).padStart(2, '0'); }
 
-// Precio dinámico: sube 5€/día desde el 29/06
-function updatePrices() {
-  const priceStart = new Date('2026-06-29T00:00:00');
-  const closeDate  = new Date('2026-07-05T23:59:59');
+function tick() {
   const now = new Date();
-  if (now > closeDate) return;
-  const daysPassed = Math.max(0, Math.floor((now - priceStart) / 86400000));
-  const inc = daysPassed * 5;
-  const b1=197, b2=397, b3=597;
-  const cur1=b1+inc, cur2=b2+inc, cur3=b3+inc;
 
-  const setPrice = (id, val) => {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = `${val}<span class="price-currency">€</span>`;
-  };
+  // Días transcurridos desde el inicio de la subida, limitados a la ventana.
+  const rawDays = Math.floor((now - PRICE_START) / DAY_MS);
+  const days = Math.min(MAX_DAYS, Math.max(0, rawDays));
+  const inc = days * STEP;
+
+  const cur1 = BASE.p1 + inc, cur2 = BASE.p2 + inc, cur3 = BASE.p3 + inc;
   setPrice('p1', cur1); setPrice('p2', cur2); setPrice('p3', cur3);
-
   const sbP = document.getElementById('sbPrice');
   if (sbP) sbP.textContent = `${cur1}€`;
 
-  const pnow = document.getElementById('priceNow');
-  const pnext = document.getElementById('priceNext');
-  if (pnow) pnow.textContent = `Precio actual: ${cur1}€`;
-  if (pnext && inc < 40) pnext.textContent = `Mañana: ${cur1+5}€ · Se cierra el 5 de julio`;
+  const pnow   = document.getElementById('priceNow');
+  const pnext  = document.getElementById('priceNext');
+  const label  = document.getElementById('cdLabel');
+  const strip  = document.getElementById('cdStrip');
+
+  // Objetivo del contador según la fase.
+  let target;
+  if (now < PRICE_START) {
+    target = PRICE_START;                 // fase 1: hasta el 29 jun
+    if (label) label.textContent = '⚠ El precio empieza a subir en:';
+    if (pnow)  pnow.textContent  = `Precio actual: ${cur1}€`;
+    if (pnext) pnext.textContent = `El 29 de junio empieza la subida (+${STEP}€/día)`;
+  } else if (now < CLOSE_AT) {
+    target = new Date(now); target.setHours(24, 0, 0, 0); // próxima medianoche
+    if (label) label.textContent = '⚠ El precio sube en:';
+    if (pnow)  pnow.textContent  = `Precio actual: ${cur1}€`;
+    if (pnext) pnext.textContent = days < MAX_DAYS
+      ? `Mañana: ${cur1 + STEP}€ · Cierra el 5 de julio`
+      : `Último día · Cierra esta noche`;
+  } else {
+    // Oferta cerrada: precio congelado, contador oculto.
+    if (strip) strip.style.display = 'none';
+    if (pnow)  pnow.textContent  = `Precio final: ${cur1}€`;
+    if (pnext) pnext.textContent = 'Oferta cerrada';
+    return;
+  }
+
+  const diff = Math.max(0, target - now);
+  document.getElementById('cdH').textContent = fmt(Math.floor(diff / 3600000));
+  document.getElementById('cdM').textContent = fmt(Math.floor((diff % 3600000) / 60000));
+  document.getElementById('cdS').textContent = fmt(Math.floor((diff % 60000) / 1000));
 }
-updatePrices();
+tick();
+setInterval(tick, 1000);
 </script>
 </body>
 </html>

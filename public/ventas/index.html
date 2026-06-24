@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Low Back Armour — Entiende y elimina tu dolor de espalda</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --gold: #F5C842;
+  --black: #0D0D0D;
+  --dark: #141414;
+  --dark2: #1C1C1C;
+  --dark3: #252525;
+  --white: #FFFFFF;
+  --grey: #888888;
+  --grey-light: #C8C8C8;
+  --urgent: #E05A2B;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,.display {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.03em;
+  line-height: 1.0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 100;
+  background: rgba(13,13,13,0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(245,200,66,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  height: 60px;
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 19px;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+.nav-logo span { color: var(--gold); }
+.btn-gold {
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 11px 22px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background .18s, transform .12s;
+}
+.btn-gold:hover { background:#ffd84d; transform:translateY(-1px); }
+.btn-outline-gold {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  padding: 11px 22px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all .18s;
+}
+.btn-outline-gold:hover { background:var(--gold); color:var(--black); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 10% 100px;
+}
+.hero-bg {
+  position: absolute; inset:0;
+  background: linear-gradient(110deg, rgba(13,13,13,0.98) 55%, rgba(13,13,13,0.55) 100%);
+  z-index:1;
+}
+.hero-bg-img {
+  position: absolute; inset:0;
+  background: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1600&q=80') center/cover no-repeat;
+  z-index:0;
+  filter: brightness(0.35);
+}
+.hero-content {
+  position: relative; z-index:2;
+  max-width: 780px;
+}
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  border-left: 3px solid var(--gold);
+  padding-left: 12px;
+}
+.hero h1 {
+  font-size: clamp(56px, 7.5vw, 108px);
+  line-height: 0.93;
+  margin-bottom: 32px;
+}
+.hero h1 .accent { color: var(--gold); }
+.hero-body {
+  font-size: 19px;
+  color: var(--grey-light);
+  line-height: 1.7;
+  max-width: 580px;
+  margin-bottom: 44px;
+}
+.hero-body strong { color: var(--white); }
+.hero-cta { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.hero-cta .btn-gold { font-size:17px; padding:15px 36px; }
+.hero-micro {
+  font-size: 13px;
+  color: var(--grey);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-micro::before { content:'↓'; color:var(--gold); }
+
+/* ── SECTIONS ── */
+section { padding: 96px 10%; }
+.s-dark { background: var(--dark); }
+.s-darker { background: var(--dark2); }
+.s-black { background: var(--black); }
+.s-gold { background: var(--gold); color: var(--black); }
+
+/* ── MIRROR ── */
+.mirror-intro {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  margin-bottom: 56px;
+  max-width: 720px;
+}
+.mirror-intro .accent { color: var(--gold); }
+
+.thoughts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: rgba(245,200,66,0.07);
+  margin-bottom: 64px;
+}
+.thought {
+  background: var(--dark2);
+  padding: 28px 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.thought-mark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: rgba(245,200,66,0.2);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 20px;
+  margin-top: -2px;
+}
+.thought-text {
+  font-size: 16px;
+  color: var(--grey-light);
+  line-height: 1.6;
+  font-style: italic;
+}
+.thought-text strong { color:var(--white); font-style:normal; }
+
+.mirror-bridge {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.mirror-bridge p {
+  font-size: 20px;
+  color: var(--grey-light);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.mirror-bridge p strong { color: var(--white); }
+.mirror-bridge .quote-big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 3.8vw, 48px);
+  color: var(--gold);
+  line-height: 1.1;
+  margin: 32px 0;
+}
+
+/* ── AUTHORITY ── */
+.auth-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.auth-image { position:relative; }
+.auth-image img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: top;
+  filter: grayscale(15%);
+  display: block;
+}
+.auth-badge {
+  position: absolute;
+  bottom: 0; right: 0;
+  background: var(--gold);
+  color: var(--black);
+  padding: 18px 22px;
+}
+.auth-badge .bn { font-family:'Bebas Neue',sans-serif; font-size:34px; line-height:1; }
+.auth-badge .bl { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-top:4px; line-height:1.3; }
+
+.auth-content { padding-top:4px; }
+.auth-content h2 {
+  font-size: clamp(40px,4.5vw,64px);
+  margin-bottom: 28px;
+}
+.auth-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 16px;
+  color: var(--grey-light);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+.auth-body strong { color: var(--white); }
+.auth-quote {
+  padding: 22px 28px;
+  background: rgba(245,200,66,0.06);
+  border-left: 3px solid var(--gold);
+  font-size: 18px;
+  color: var(--white);
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.stats-row {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.stat-item { display:flex; flex-direction:column; }
+.stat-item .sn {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:44px;
+  color:var(--gold);
+  line-height:1;
+}
+.stat-item .sl {
+  font-size:12px;
+  color:var(--grey);
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  max-width:120px;
+  line-height:1.4;
+}
+
+/* ── TESTIMONIALS ── */
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(245,200,66,0.06);
+  margin-top: 52px;
+}
+.testi-card {
+  background: var(--dark);
+  padding: 30px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.testi-duration {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing:.12em;
+  color: var(--urgent);
+  text-transform: uppercase;
+  background: rgba(224,90,43,0.1);
+  padding: 4px 10px;
+}
+.testi-quote {
+  font-size: 15px;
+  color: var(--grey-light);
+  line-height: 1.7;
+  font-style: italic;
+  flex:1;
+}
+.testi-result {
+  font-size: 13px;
+  color: var(--white);
+  font-weight: 600;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.testi-author {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:18px;
+  color:var(--gold);
+  letter-spacing:.04em;
+}
+.testi-meta { font-size:12px; color:var(--grey); margin-top:2px; }
+
+.video-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 52px;
+}
+.video-card { background:var(--dark2); overflow:hidden; }
+.video-thumb {
+  width:100%;
+  aspect-ratio:16/9;
+  background:var(--dark3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+}
+.video-thumb img { width:100%;height:100%;object-fit:cover;transition:transform .3s; }
+.video-thumb:hover img { transform:scale(1.04); }
+.vplay {
+  position:absolute;
+  width:54px;height:54px;
+  background:var(--gold);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .2s;
+}
+.video-thumb:hover .vplay { transform:scale(1.1); }
+.vplay svg { width:18px;fill:var(--black);margin-left:3px; }
+.video-info { padding:18px 22px; }
+.video-result { font-size:13px;color:var(--gold);font-weight:700;margin-bottom:6px; }
+.video-name { font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:.04em;margin-bottom:6px; }
+.video-desc { font-size:13px;color:var(--grey);line-height:1.5; }
+
+/* ── PROGRAM ── */
+.program-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-bottom: 60px;
+}
+.prog-left h2 { font-size:clamp(38px,5vw,68px); margin-bottom:20px; }
+.prog-left h2 .accent { color:var(--gold); }
+.prog-left p { font-size:16px;color:var(--grey-light);line-height:1.8; }
+.prog-left p strong { color:var(--white); }
+
+.prog-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+.prog-tag {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.prog-tag:last-child { border-bottom:none; }
+.prog-tag-icon { font-size:22px; flex-shrink:0; margin-top:1px; }
+.prog-tag-text { font-size:15px;color:var(--grey-light);line-height:1.5; }
+.prog-tag-text strong { color:var(--white);display:block;margin-bottom:3px;font-size:16px; }
+
+.plan-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(245,200,66,0.07);
+}
+.plan-tab {
+  background: var(--dark2);
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.plan-tab.featured {
+  background: var(--dark3);
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+.tab-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding: 4px 10px;
+  margin-bottom: 18px;
+  align-self: flex-start;
+}
+.tab-label.gold { background:var(--gold); color:var(--black); }
+.tab-label.urgent { background:var(--urgent); color:var(--white); }
+.tab-label.dim { background:rgba(255,255,255,0.08); color:var(--grey-light); }
+.plan-tab h3 {
+  font-size:26px;
+  color:var(--white);
+  letter-spacing:.04em;
+  margin-bottom:8px;
+}
+.plan-tab.featured h3 { color:var(--gold); }
+.plan-tagline {
+  font-size:14px;
+  color:var(--grey);
+  line-height:1.5;
+  margin-bottom:24px;
+  min-height:42px;
+}
+.plan-sessions {
+  list-style:none;
+  display:flex;flex-direction:column;gap:0;
+  margin-bottom:28px;
+  flex:1;
+}
+.plan-sessions li {
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  font-size:14px;
+  color:var(--grey-light);
+  display:flex;align-items:flex-start;gap:10px;
+  line-height:1.4;
+}
+.plan-sessions li:last-child { border-bottom:none; }
+.plan-sessions li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; font-size:12px; margin-top:2px; }
+.plan-sessions li.hl { color:var(--white); font-weight:600; }
+.plan-sessions li.hl::before { content:'★'; color:var(--gold); }
+
+.plan-cta { width:100%; text-align:center; padding:15px; font-size:17px; margin-top:auto; }
+
+/* ── PRICING ── */
+.price-section { background:var(--dark); }
+
+.price-table {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(245,200,66,0.07);
+  margin-top: 20px;
+}
+.price-card {
+  background: var(--dark2);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.price-card.featured {
+  background: var(--dark3);
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+.price-badge {
+  position:absolute;
+  top:-14px; left:50%;
+  transform:translateX(-50%);
+  background:var(--gold);
+  color:var(--black);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:13px;
+  letter-spacing:.14em;
+  padding:5px 16px;
+  white-space:nowrap;
+}
+.price-badge.urgent { background:var(--urgent); color:var(--white); }
+.price-name { font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);letter-spacing:.04em;margin-bottom:6px; }
+.price-card.featured .price-name { color:var(--gold); }
+.price-desc { font-size:14px;color:var(--grey);line-height:1.4;margin-bottom:22px;min-height:40px; }
+.price-amount {
+  margin-bottom: 6px;
+}
+.price-original { font-size:17px;color:var(--grey);text-decoration:line-through;display:block;margin-bottom:2px; }
+.price-current {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:58px;
+  color:var(--white);
+  line-height:1;
+}
+.price-currency { font-size:28px;color:var(--grey);margin-left:2px; }
+.price-note { font-size:12px;color:var(--urgent);font-weight:700;margin-bottom:24px; }
+.price-features {
+  list-style:none;
+  display:flex;flex-direction:column;gap:0;
+  margin-bottom:28px;
+  flex:1;
+}
+.price-features li {
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  font-size:14px;
+  color:var(--grey-light);
+  display:flex;align-items:flex-start;gap:10px;
+  line-height:1.4;
+}
+.price-features li:last-child { border-bottom:none; }
+.price-features li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; font-size:12px; margin-top:2px; }
+.price-features li.hl { color:var(--white); font-weight:600; }
+.price-btn { width:100%;text-align:center;padding:15px;font-size:17px;margin-top:auto; }
+
+/* Urgency box */
+.urgency-box {
+  margin-top: 48px;
+  background: rgba(224,90,43,0.07);
+  border: 1px solid rgba(224,90,43,0.25);
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.urgency-icon { font-size:40px; line-height:1; }
+.urgency-content h3 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:24px;
+  color:var(--urgent);
+  letter-spacing:.04em;
+  margin-bottom:12px;
+}
+.urgency-content p { font-size:15px;color:var(--grey-light);line-height:1.8; }
+.urgency-content strong { color:var(--white); }
+
+/* Countdown */
+.countdown-strip {
+  background: rgba(224,90,43,0.08);
+  border: 1px solid rgba(224,90,43,0.2);
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.cd-label { font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--urgent);text-transform:uppercase;flex-shrink:0; }
+.cd-timer { display:flex;gap:12px;align-items:center; }
+.cd-unit { text-align:center; }
+.cd-num { font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--white);line-height:1;display:block;min-width:50px; }
+.cd-lbl { font-size:10px;color:var(--grey);text-transform:uppercase;letter-spacing:.1em; }
+.cd-sep { font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--gold);line-height:1;padding-bottom:4px; }
+.cd-note { font-size:13px;color:var(--grey-light);line-height:1.6; }
+.cd-note strong { color:var(--white); }
+
+/* Guarantee */
+.guarantee-block {
+  margin-top: 48px;
+  padding: 36px 40px;
+  background: rgba(245,200,66,0.04);
+  border: 1px solid rgba(245,200,66,0.12);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.guarantee-block .gi { font-size:44px;line-height:1; }
+.guarantee-block h3 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:24px;
+  color:var(--gold);
+  letter-spacing:.04em;
+  margin-bottom:12px;
+}
+.guarantee-block p { font-size:15px;color:var(--grey-light);line-height:1.8; }
+.guarantee-block strong { color:var(--white); }
+
+/* FAQ */
+.faq-wrap {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 52px;
+}
+.faq-intro p { font-size:16px;color:var(--grey-light);line-height:1.7;margin-top:16px; }
+.faq-list { display:flex;flex-direction:column;gap:0; }
+.faq-item { border-bottom:1px solid rgba(255,255,255,0.07); }
+.faq-q {
+  width:100%;background:none;border:none;
+  color:var(--white);text-align:left;
+  padding:18px 0;
+  font-size:15px;font-weight:600;
+  cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  font-family:'Inter',sans-serif;
+  transition:color .18s;
+}
+.faq-q:hover { color:var(--gold); }
+.faq-icon { font-size:20px;color:var(--gold);flex-shrink:0;transition:transform .25s;font-family:monospace; }
+.faq-item.open .faq-icon { transform:rotate(45deg); }
+.faq-a {
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease, padding .25s ease;
+  font-size:14px;color:var(--grey-light);line-height:1.7;
+}
+.faq-item.open .faq-a { max-height:400px;padding-bottom:18px; }
+.faq-a strong { color:var(--white); }
+
+/* CLOSE */
+.close-sec {
+  text-align:center;
+  padding:120px 10%;
+  position:relative;
+  overflow:hidden;
+}
+.close-sec::before {
+  content:'';
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:1px;height:72px;
+  background:linear-gradient(to bottom,transparent,var(--gold));
+}
+.close-sec h2 { font-size:clamp(42px,6vw,84px);margin-bottom:20px; }
+.close-sec h2 .accent { color:var(--gold); }
+.close-sub { font-size:18px;color:var(--grey-light);max-width:540px;margin:0 auto 48px;line-height:1.7; }
+.close-cta-btn { font-size:19px;padding:18px 48px; }
+.close-note { margin-top:18px;font-size:13px;color:var(--grey); }
+
+/* FOOTER */
+footer {
+  background:var(--black);
+  border-top:1px solid rgba(255,255,255,0.05);
+  padding:28px 10%;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+.foot-brand { font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.12em;color:var(--grey); }
+.foot-brand span { color:var(--gold); }
+.foot-links { display:flex;gap:24px; }
+.foot-links a { font-size:12px;color:var(--grey);text-decoration:none;transition:color .18s; }
+.foot-links a:hover { color:var(--white); }
+.foot-copy { font-size:11px;color:rgba(255,255,255,0.2);width:100%;text-align:center; }
+
+/* Sticky mobile */
+.sticky-bar {
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--dark2);
+  border-top:2px solid var(--gold);
+  padding:12px 20px;
+  z-index:99;
+  align-items:center;justify-content:space-between;gap:12px;
+}
+.sb-price { font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white); }
+.sb-note { font-size:11px;color:var(--urgent);font-weight:700; }
+.sticky-bar .btn-gold { font-size:14px;padding:10px 18px;white-space:nowrap; }
+
+/* Divider */
+.divider {
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,200,66,0.2),transparent);
+  margin:0;
+}
+
+@media(max-width:900px){
+  nav { padding:0 20px; }
+  section { padding:64px 20px; }
+  .hero { padding:100px 20px 72px; }
+  .thoughts-grid,
+  .auth-grid,.program-intro,.plan-tabs,
+  .price-table,.faq-wrap,.video-row,
+  .testi-grid,.urgency-box,.guarantee-block { grid-template-columns:1fr; }
+  .plan-tabs,.price-table { gap:16px;background:none; }
+  .price-badge { display:none; }
+  .price-card.featured { outline:2px solid var(--gold); }
+  .stats-row { gap:24px; }
+  .countdown-strip { flex-direction:column;align-items:flex-start;gap:16px; }
+  .close-sec { padding:80px 20px 120px; }
+  footer { padding:24px 20px; }
+  .sticky-bar { display:flex; }
+  .faq-wrap { gap:32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">LOW BACK <span>ARMOUR</span></div>
+  <a href="#pricing" class="btn-gold">QUIERO ELIMINAR MI DOLOR</a>
+</nav>
+
+<!-- ───────────────────────────────────────────
+     HERO
+──────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Low Back Armour · Tu cuerpo, tu sistema, tu armadura</span>
+    <h1>
+      TU DOLOR<br>
+      NO TIENE POR QUÉ<br>
+      SER <span class="accent">PERMANENTE.</span>
+    </h1>
+    <p class="hero-body">
+      Tu decisión de eliminarlo sí tiene que serlo.<br><br>
+      Llevas tiempo buscando una solución que de verdad funcione. <strong>Este es ese sistema.</strong>
+    </p>
+    <div class="hero-cta">
+      <a href="#mirror" class="btn-gold" style="font-size:17px;padding:15px 36px;">DESCUBRE POR QUÉ</a>
+      <span class="hero-micro">El sistema completo que trabaja el origen, no solo la señal</span>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────────
+     ESPEJO — TE DAMOS VOZ
+──────────────────────────────────────────── -->
+<section class="s-dark" id="mirror">
+  <span class="eyebrow">¿Te suena esto?</span>
+  <div class="mirror-intro">
+    Llevas meses — quizás años —<br>
+    viviendo <span class="accent">así.</span>
+  </div>
+
+  <div class="thoughts-grid">
+    <div class="thought">
+      <div class="thought-mark">"</div>
+      <p class="thought-text">Me despierto cada mañana calibrando cuánto me va a doler hoy antes de poner los pies en el suelo.</p>
+    </div>
+    <div class="thought">
+      <div class="thought-mark">"</div>
+      <p class="thought-text">He ido al fisio, al osteo, he hecho reposo. <strong>Mejora temporal. El dolor siempre vuelve.</strong></p>
+    </div>
+    <div class="thought">
+      <div class="thought-mark">"</div>
+      <p class="thought-text">He tenido que dejar de entrenar, de correr, de jugar con mis hijos. El dolor <strong>me ha quitado partes de mi vida.</strong></p>
+    </div>
+    <div class="thought">
+      <div class="thought-mark">"</div>
+      <p class="thought-text">Me comparo con mi antiguo yo y ya no me reconozco. No sé si algún día voy a volver a estar bien.</p>
+    </div>
+    <div class="thought">
+      <div class="thought-mark">"</div>
+      <p class="thought-text">No puedo decir que me duele porque la gente piensa que exagero o que me quejo demasiado.</p>
+    </div>
+    <div class="thought">
+      <div class="thought-mark">"</div>
+      <p class="thought-text">Mi estado de ánimo, mis relaciones, mi trabajo. <strong>Todo está condicionado por cómo está mi espalda ese día.</strong></p>
+    </div>
+  </div>
+
+  <div class="mirror-bridge">
+    <p>
+      No estás exagerando. No estás siendo débil.<br>
+      Y no, <strong>no tienes que vivir así para siempre.</strong>
+    </p>
+    <div class="quote-big">
+      "EL DIAGNÓSTICO ES EL QUE ES.<br>
+      EL PRONÓSTICO DEPENDE DE TI."
+    </div>
+    <p>
+      Lo que te han tratado hasta ahora ataca la señal, no el origen.<br>
+      <strong>Por eso el dolor siempre vuelve.</strong>
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────────────────
+     AUTORIDAD — ALBA
+──────────────────────────────────────────── -->
+<section class="s-black" id="bio">
+  <span class="eyebrow">Quién hay detrás</span>
+  <div class="auth-grid">
+    <div class="auth-image">
+      <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80" alt="Alba Estrada">
+      <div class="auth-badge">
+        <div class="bn">+17</div>
+        <div class="bl">años estudiando<br>dolor y espalda</div>
+      </div>
+    </div>
+    <div class="auth-content">
+      <h2>HOLA,<br>SOY ALBA ESTRADA</h2>
+      <div class="auth-body">
+        <p>He creado este programa desde las ganas absolutas de ayudarte, porque <strong>yo misma pasé por un dolor que me inhabilitó durante 5 años</strong> después de competir en los CrossFit Games en 2018. Sé exactamente lo que es levantarte sin saber cómo vas a estar hoy.</p>
+        <p>En ese tiempo estudié, aprendí y ayudé a cientos de personas: a volver a correr, a sentarse a tomar algo sin calcular si les va a doler, a jugar al fútbol con sus hijos. <strong>Partes de la vida que el dolor lumbar arrebata y que nadie debería perder.</strong></p>
+        <p>Llevo más de 10 años estudiando cómo funcionan las estructuras, qué factores influyen en el dolor y cómo el sistema nervioso regula absolutamente todo lo que sucede — incluido cómo interpretamos ese dolor.</p>
+      </div>
+      <div class="auth-quote">
+        "Después de trabajar uno a uno con cientos de personas — y habiendo pasado yo misma por el proceso — identifiqué los patrones, los hábitos y las características que se repetían en casi todos los casos. Saber lo que implica vivir con dolor, todo lo que te quita en el día a día, me hizo volcarme en crear un sistema que reuniera todo ese conocimiento. No una receta. El entendimiento real de por qué duele y cómo eliminarlo. Eso es Armour."
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;margin-top:8px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="color:var(--gold);flex-shrink:0;">✓</span>
+          <span style="font-size:15px;color:var(--grey-light);line-height:1.5;">Llevo más de 10 años estudiando el dolor lumbar, las estructuras del cuerpo y cómo el sistema nervioso regula el dolor.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="color:var(--gold);flex-shrink:0;">✓</span>
+          <span style="font-size:15px;color:var(--grey-light);line-height:1.5;">Pasé 5 años con dolor crónico — superados con el mismo sistema que enseño en Armour.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="color:var(--gold);flex-shrink:0;">✓</span>
+          <span style="font-size:15px;color:var(--grey-light);line-height:1.5;">He acompañado a cientos de personas a volver a correr, a entrenar, a sentarse a tomar algo, a jugar con sus hijos — sin calcular si les va a doler.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 0;">
+          <span style="color:var(--gold);flex-shrink:0;">✓</span>
+          <span style="font-size:15px;color:var(--grey-light);line-height:1.5;">Competí en los CrossFit Games en 2018. Sé lo que es tener un cuerpo que un día funciona al máximo y al siguiente no te deja moverte.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────────────────
+     TESTIMONIOS
+──────────────────────────────────────────── -->
+<section class="s-dark" id="testimonios">
+  <span class="eyebrow">Así se siente</span>
+  <h2 style="font-size:clamp(36px,5vw,64px);margin-bottom:8px;">ASÍ SE SIENTE DEJAR<br>ATRÁS EL DOLOR DE ESPALDA.</h2>
+  <p style="font-size:17px;color:var(--grey-light);max-width:620px;line-height:1.7;">Años de médicos, fisios, reposo y soluciones temporales. Hasta que decidieron entender el origen y tomar el control.</p>
+
+  <div class="video-row">
+    <div class="video-card">
+      <div class="video-thumb">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80" alt="Testimonio Maribel">
+        <div class="vplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <div class="video-result">Espondilolistesis, años de dolor crónico y muchos médicos → entrena sin dolor y disfruta del deporte que le apasiona</div>
+        <div class="video-name">MARIBEL</div>
+        <p class="video-desc">De convivir con el diagnóstico y la resignación a recuperar su vitalidad y reencontrarse con quien siempre ha sido.</p>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-thumb">
+        <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80" alt="Testimonio Débora">
+        <div class="vplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <div class="video-result">Años de dolor recurrente y la certeza de que nunca se iría → por fin entiende su cuerpo y sabe gestionarlo</div>
+        <div class="video-name">DÉBORA</div>
+        <p class="video-desc">La sensación de que el dolor era parte de ella para siempre. Hasta que dejó de tapar la señal y fue al origen.</p>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────────────────
+     PROGRAMA — QUÉ ES Y POR QUÉ FUNCIONA
+──────────────────────────────────────────── -->
+<section class="s-black" id="programa">
+  <div class="program-intro">
+    <div class="prog-left">
+      <span class="eyebrow">El sistema</span>
+      <h2>NO ES SÓLO<br>UN PROGRAMA<br>DE ENTRENAMIENTO.<br>ES EL <span class="accent">MANUAL DE<br>INSTRUCCIONES</span><br>DE TU CUERPO.</h2>
+    </div>
+    <div class="prog-right">
+      <p style="font-size:16px;color:var(--grey-light);line-height:1.8;margin-bottom:28px;">
+        Tu cuerpo es un sistema complejo y completo. Solo abordando cada parte logramos reeducar el sistema nervioso para eliminar el dolor.<br><br>Si trabajas solo terapias pasivas no te mueves bien en carga. Si dejas de entrenar pierdes masa muscular, confianza y todos los beneficios del movimiento. Si tapas el dolor con pastillas solo estás alargando la situación.<br><br><strong style="color:var(--white);">Si entiendes cómo funciona tu cuerpo, cómo equilibrar tu sistema nervioso y qué es lo que realmente te sienta bien, tienes la llave que te quita el dolor.</strong>
+      </p>
+      <div class="prog-tag">
+        <div class="prog-tag-icon">🧠</div>
+        <div class="prog-tag-text"><strong>Sistema nervioso y respiración</strong>Tu sistema nervioso lleva años interpretando el movimiento como amenaza. La respiración es la herramienta más directa para reequilibrarlo. Sin esto, nada más funciona.</div>
+      </div>
+      <div class="prog-tag">
+        <div class="prog-tag-icon">🏗️</div>
+        <div class="prog-tag-text"><strong>Postura y organización corporal</strong>Cambios pequeños en cómo te organizas durante el día. Es el pilar con mayor impacto por el menor esfuerzo.</div>
+      </div>
+      <div class="prog-tag">
+        <div class="prog-tag-icon">🔄</div>
+        <div class="prog-tag-text"><strong>Movimiento y estabilidad</strong>Recuperas los patrones naturales del cuerpo. Bisagra de cadera, estabilidad de tronco, confianza real en el movimiento.</div>
+      </div>
+      <div class="prog-tag">
+        <div class="prog-tag-icon">💪</div>
+        <div class="prog-tag-text"><strong>Fuerza funcional</strong>Desarrollas la capacidad para que el cuerpo vuelva a moverse sin miedo. No compensaciones, no rigidez protectora.</div>
+      </div>
+      <div class="prog-tag">
+        <div class="prog-tag-icon">🌱</div>
+        <div class="prog-tag-text"><strong>Hábitos, estrés y mentalidad</strong>El estrés y la ansiedad son factores reales de dolor lumbar. Los trabajamos directamente — no como bonus, como parte del sistema.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opciones de equipamiento -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(245,200,66,0.07);margin-bottom:60px;">
+    <div style="background:var(--dark2);padding:28px 32px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--gold);letter-spacing:.05em;margin-bottom:10px;">🏋️ CON EQUIPAMIENTO</div>
+      <p style="font-size:14px;color:var(--grey);line-height:1.6;">Para personas que entrenan en box o gimnasio. CrossTraining o entrenamiento funcional. Aprovechas el equipamiento disponible para progresar más rápido.</p>
+    </div>
+    <div style="background:var(--dark2);padding:28px 32px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--gold);letter-spacing:.05em;margin-bottom:10px;">🏠 SIN EQUIPAMIENTO</div>
+      <p style="font-size:14px;color:var(--grey);line-height:1.6;">Versión adaptada para hacer desde casa con material mínimo. La fase final de fuerza necesitará acceso a un gimnasio — se avisa con tiempo suficiente.</p>
+    </div>
+  </div>
+
+  <!-- Tres planes de entrada -->
+  <span class="eyebrow" style="margin-bottom:24px;display:block;">Tres formas de entrar</span>
+  <div class="plan-tabs">
+    <div class="plan-tab">
+      <div class="tab-label dim">A TU RITMO</div>
+      <h3>ARMOUR CORE</h3>
+      <p class="plan-tagline">El programa completo, estructurado día a día, a tu ritmo.</p>
+      <ul class="plan-sessions">
+        <li>Programa completo de 3 meses: pauta de mañana, pauta de noche y entrenamiento del día</li>
+        <li>Los 5 pilares: respiración, postura, movimiento, fuerza y hábitos</li>
+        <li>Versión con equipamiento + versión sin equipamiento</li>
+        <li>Guía de hábitos y respiraciones guiadas</li>
+        <li>Acceso durante 1 año para repetir si lo necesitas</li>
+      </ul>
+    </div>
+
+    <div class="plan-tab featured">
+      <div class="tab-label gold">MÁS ELEGIDO · 30 PLAZAS</div>
+      <h3>ARMOUR PRO</h3>
+      <p class="plan-tagline">Todo el programa + sesiones en directo con Alba + equipo TN como soporte los 3 meses.</p>
+      <ul class="plan-sessions">
+        <li class="hl">Todo lo del plan anterior</li>
+        <li class="hl">7 sesiones en directo con Alba</li>
+        <li class="hl">Corrección en tiempo real durante los directos en Zoom</li>
+        <li>Equipo de Training Norte como soporte los 3 meses</li>
+        <li>Correcciones de movimiento cada 15 días (meses 2-3)</li>
+        <li>Grupo privado de seguimiento activo</li>
+      </ul>
+    </div>
+
+    <div class="plan-tab">
+      <div class="tab-label urgent">SOLO 10 PLAZAS</div>
+      <h3>ARMOUR DIAMOND</h3>
+      <p class="plan-tagline">El acompañamiento máximo. Alba directamente contigo los 3 meses completos.</p>
+      <ul class="plan-sessions">
+        <li class="hl">Todo lo del plan anterior</li>
+        <li class="hl">Grupo WhatsApp Diamond directo con Alba</li>
+        <li class="hl">Correcciones 1 a 1 de tu movimiento en vídeo por parte de Alba</li>
+        <li>Resolución de dudas prioritaria</li>
+        <li>Acompañamiento personal los 3 meses completos</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;padding:22px 28px;background:rgba(245,200,66,0.05);border-left:3px solid var(--gold);">
+    <p style="font-size:15px;color:var(--grey-light);line-height:1.7;">
+      <strong style="color:var(--white);">El programa empieza el lunes 6 de julio</strong> para todos los inscritos. Los que entren antes del inicio tienen una sesión de bienvenida con Alba el propio lunes — queda grabada para quien no pueda conectarse en directo.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────────────────
+     PRECIOS
+──────────────────────────────────────────── -->
+<section class="price-section" id="pricing">
+  <span class="eyebrow">La oferta de lanzamiento</span>
+  <h2 style="font-size:clamp(38px,5vw,68px);margin-bottom:12px;">ELIGE CÓMO QUIERES<br>DEJAR ATRÁS TU DOLOR</h2>
+  <p style="font-size:16px;color:var(--grey-light);max-width:600px;line-height:1.7;margin-bottom:44px;">
+    Las plazas se abrieron el 28 de junio durante la última clase. <strong style="color:var(--white);">El precio sube 5€ cada día a partir del martes.</strong> Cierra el 5 de julio o cuando se agoten las plazas.
+  </p>
+
+  <!-- Countdown -->
+  <div class="countdown-strip">
+    <span class="cd-label">⚠ Precio sube en:</span>
+    <div class="cd-timer">
+      <div class="cd-unit"><span class="cd-num" id="cdH">00</span><span class="cd-lbl">horas</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cdM">00</span><span class="cd-lbl">min</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cdS">00</span><span class="cd-lbl">seg</span></div>
+    </div>
+    <div class="cd-note">
+      <strong id="priceNow">Precio actual: 197€</strong><br>
+      <span id="priceNext">Mañana: 202€ · Se cierra el 5 de julio</span>
+    </div>
+  </div>
+
+  <div class="price-table">
+    <!-- TIER 1 -->
+    <div class="price-card">
+      <div class="price-name">ARMOUR CORE</div>
+      <p class="price-desc">El programa completo estructurado día a día, a tu ritmo, sin seguimiento en directo.</p>
+      <div class="price-amount">
+        <span class="price-original">247€</span>
+        <span class="price-current" id="p1">197<span class="price-currency">€</span></span>
+      </div>
+      <div class="price-note" id="p1note">↑ Sube 5€/día a partir del martes 29</div>
+      <ul class="price-features">
+        <li>Programa completo de 3 meses: pauta de mañana, pauta de noche y entrenamiento del día</li>
+        <li>Todos los ejercicios en vídeo con explicación detallada para ejecutarlos correctamente</li>
+        <li>Los 5 pilares del sistema</li>
+        <li>Versión con y sin equipamiento</li>
+        <li>Guía de hábitos y respiraciones guiadas</li>
+        <li>Acceso durante 1 año</li>
+      </ul>
+      <a href="#" class="btn-outline-gold price-btn">LO QUIERO</a>
+    </div>
+
+    <!-- TIER 2 -->
+    <div class="price-card featured">
+      <div class="price-badge">EL MÁS ELEGIDO</div>
+      <div class="price-name">ARMOUR PRO</div>
+      <p class="price-desc">Programa + directo con Alba + equipo TN como soporte. Solo 30 plazas.</p>
+      <div class="price-amount">
+        <span class="price-original">447€</span>
+        <span class="price-current" id="p2">397<span class="price-currency">€</span></span>
+      </div>
+      <div class="price-note" id="p2note">↑ Sube 5€/día · Solo 30 plazas</div>
+      <ul class="price-features">
+        <li class="hl">Todo lo del plan anterior</li>
+        <li class="hl">7 sesiones en directo con Alba</li>
+        <li class="hl">Corrección en tiempo real en los directos</li>
+        <li>Equipo TN como soporte los 3 meses</li>
+        <li>Grupo privado de seguimiento activo</li>
+        <li>Correcciones de movimiento cada 15 días (meses 2-3)</li>
+      </ul>
+      <a href="#" class="btn-gold price-btn">QUIERO SEGUIMIENTO</a>
+    </div>
+
+    <!-- TIER 3 -->
+    <div class="price-card">
+      <div class="price-badge urgent">SOLO 10 PLAZAS</div>
+      <div class="price-name">ARMOUR DIAMOND</div>
+      <p class="price-desc">Alba directamente contigo los 3 meses. WhatsApp directo + correcciones en vídeo.</p>
+      <div class="price-amount">
+        <span class="price-original">647€</span>
+        <span class="price-current" id="p3">597<span class="price-currency">€</span></span>
+      </div>
+      <div class="price-note" id="p3note">↑ Sube 5€/día · Solo 10 plazas</div>
+      <ul class="price-features">
+        <li class="hl">Todo lo del plan anterior</li>
+        <li class="hl">Grupo WhatsApp Diamond directo con Alba</li>
+        <li class="hl">Correcciones 1 a 1 de tu movimiento en vídeo</li>
+        <li>Resolución de dudas prioritaria</li>
+        <li>Acompañamiento personal los 3 meses completos</li>
+      </ul>
+      <a href="#" class="btn-outline-gold price-btn">QUIERO UNA PLAZA</a>
+    </div>
+  </div>
+
+  <!-- Por qué sube el precio -->
+  <div class="urgency-box">
+    <div class="urgency-icon">⏳</div>
+    <div class="urgency-content">
+      <h3>¿POR QUÉ SUBE 5€ CADA DÍA?</h3>
+      <p>
+        No es una táctica de marketing. Es un recordatorio de algo que sabes mejor que nadie:<br><br>
+        <strong>Quitar tu dolor requiere que tomes la decisión de hacerlo.</strong><br><br>
+        Que no lo pospongas un día más. Que no lo dejes para cuando tengas más tiempo, más dinero, mejor momento. El momento perfecto no existe — y tú llevas suficiente tiempo esperándolo.<br><br>
+        Cada día que pasa sin decidir es un día más gestionando el dolor en lugar de eliminarlo. Los 5€ son el coste de postergarlo. <strong>La decisión de recuperar tu vida no tiene coste.</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- Garantía -->
+  <div class="guarantee-block">
+    <div class="gi">🛡️</div>
+    <div>
+      <h3>GARANTÍA DOBLE</h3>
+      <p>
+        <strong>1. Acceso durante 1 año completo.</strong> Puedes repetir el programa cuantas veces necesites durante 12 meses. Sin coste adicional.<br><br>
+        <strong>2. Sesión de evaluación gratuita con Alba.</strong> Si completas el programa y no notas mejoría, Alba se sienta contigo a evaluar qué está pasando y cómo resolverlo. Sin letra pequeña, sin condiciones.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ───────────────────────────────────────────
+     FAQ
+──────────────────────────────────────────── -->
+<section class="s-dark" id="faq">
+  <span class="eyebrow">FAQ</span>
+  <h2 style="font-size:clamp(36px,5vw,60px);">PREGUNTAS FRECUENTES</h2>
+  <div class="faq-wrap">
+    <div class="faq-intro">
+      <p>Todo lo que necesitas saber antes de entrar. Si no encuentras tu duda aquí, escríbenos por WhatsApp.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Cuándo empieza el programa?<span class="faq-icon">+</span></button>
+        <div class="faq-a">El programa arranca el <strong>lunes 6 de julio</strong> para todos los inscritos. Las personas que entren antes del inicio tienen una sesión de bienvenida con Alba el propio lunes — queda grabada para quien no pueda conectarse.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Cuál es la diferencia real entre los tres planes?<span class="faq-icon">+</span></button>
+        <div class="faq-a">
+          <strong>197€ —</strong> El programa completo a tu ritmo: pauta de mañana, pauta de noche y entrenamiento del día, con todos los ejercicios en vídeo y bien explicados. Sin sesiones en directo ni grabaciones de los directos.<br><br>
+          <strong>397€ —</strong> Lo anterior + 7 sesiones en directo con Alba (repartidas a lo largo del programa), donde Alba te corrige en tiempo real. El equipo de Training Norte como soporte durante los 3 meses. 30 plazas.<br><br>
+          <strong>597€ —</strong> Lo anterior + grupo WhatsApp Diamond directo con Alba + correcciones 1 a 1 de tu movimiento en vídeo los 3 meses. Solo 10 plazas.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Es para mí si no hago CrossFit ni gimnasio?<span class="faq-icon">+</span></button>
+        <div class="faq-a">Sí. El programa tiene dos versiones: una para personas que entrenan en box o gimnasio, y otra para hacer desde casa con material mínimo. No hace falta ningún nivel previo de entrenamiento. El programa está diseñado para personas con dolor lumbar, no para atletas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Y si no puedo conectarme a los directos en su horario?<span class="faq-icon">+</span></button>
+        <div class="faq-a">Sí, para los planes Armour Pro y Armour Diamond. Todas las sesiones en directo quedan grabadas y disponibles. Si tienes el plan Core, no incluye grabaciones de los directos — pero sí tienes acceso al programa completo con todas las pautas y ejercicios.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Puedo hacerlo si tengo una lesión diagnosticada?<span class="faq-icon">+</span></button>
+        <div class="faq-a">Depende del estado de la lesión. El programa está diseñado para dolor lumbar crónico o recurrente, no para lesiones agudas recientes. Si tienes dudas sobre tu caso concreto, escríbenos antes de comprar y te ayudamos a valorarlo.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto tiempo al día necesito?<span class="faq-icon">+</span></button>
+        <div class="faq-a">El programa incluye 5 sesiones semanales disponibles. El compromiso mínimo recomendado es <strong>3 sesiones por semana</strong>. Las sesiones están diseñadas para integrarse en tu rutina, no para reemplazarla. El primer mes incluye una sesión semanal en directo para los planes 397€ y 597€.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Perderé forma física durante el programa?<span class="faq-icon">+</span></button>
+        <div class="faq-a">Al contrario. Uno de los objetivos específicos de Armour es <strong>mejorar la forma física general</strong>. El dolor y la falta de movimiento generan frustración, pérdida de autoestima y empeoramiento del autoconcepto. El programa trabaja el cuerpo completo, no solo la espalda.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto dura el acceso?<span class="faq-icon">+</span></button>
+        <div class="faq-a">Tienes acceso completo durante <strong>1 año</strong> desde el momento de la compra. Puedes repetir el programa cuantas veces quieras durante ese tiempo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────────
+     CIERRE
+──────────────────────────────────────────── -->
+<section class="s-dark" id="mas-testimonios">
+  <span class="eyebrow">Más historias reales</span>
+  <h2 style="font-size:clamp(36px,5vw,60px);margin-bottom:8px;">ELLOS YA DIERON EL PASO</h2>
+  <p style="font-size:17px;color:var(--grey-light);max-width:560px;line-height:1.7;">Las mismas dudas. Los mismos años de intentarlo todo. La misma decisión que tú puedes tomar hoy.</p>
+  <div class="testi-grid" style="margin-top:48px;">
+    <div class="testi-card">
+      <span class="testi-duration">2 años con dolor</span>
+      <p class="testi-quote">"Pasé de no poder levantarme del suelo sin ayuda a hacer sentadilla con barra. El trabajo de respiración fue lo que más me sorprendió: nunca pensé que tuviera tanto impacto."</p>
+      <div class="testi-result">✓ Volvió a entrenar sin modificar su vida alrededor del dolor</div>
+      <div><div class="testi-author">Carlos M.</div><div class="testi-meta">Armour · Entrenamiento funcional</div></div>
+    </div>
+    <div class="testi-card">
+      <span class="testi-duration">3 años con dolor crónico</span>
+      <p class="testi-quote">"Médicos, fisios, ostéopatas… nada funcionaba a largo plazo. Armour fue diferente porque atacó el problema desde todos los ángulos. A las 6 semanas ya notaba la diferencia."</p>
+      <div class="testi-result">✓ Primera solución a largo plazo después de 3 años</div>
+      <div><div class="testi-author">Laura G.</div><div class="testi-meta">Armour · Población general</div></div>
+    </div>
+    <div class="testi-card">
+      <span class="testi-duration">Dolor recurrente</span>
+      <p class="testi-quote">"Lo que más valoro es el grupo de seguimiento. Saber que el equipo está ahí para responder cualquier duda hace que el proceso sea mucho más seguro. Nunca me sentí sola."</p>
+      <div class="testi-result">✓ Por primera vez, sin ir sola en el proceso</div>
+      <div><div class="testi-author">Ana R.</div><div class="testi-meta">Armour + Seguimiento</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="s-black close-sec">
+  <span class="eyebrow" style="display:block;margin-bottom:24px;">Nadie tiene por qué vivir con dolor</span>
+  <h2>¿ALGÚN DÍA VOLVERÉ<br>A ESTAR <span class="accent">SIN DOLOR?</span></h2>
+  <p class="close-sub">Sí. Y vamos a conseguirlo juntos.<br>Tienes el sistema. Tienes a Alba. Tienes la garantía.<br>Lo único que falta eres tú.</p>
+  <a href="#pricing" class="btn-gold close-cta-btn">QUIERO ELIMINAR MI DOLOR</a>
+  <p class="close-note">Precio actual desde 197€ · Sube 5€/día a partir del martes · Cierra el 5 de julio</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-brand">LOW BACK <span>ARMOUR</span> · Training Norte</div>
+  <div class="foot-links">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+    <a href="#">Aviso legal</a>
+  </div>
+  <div class="foot-copy">© 2026 Training Norte · Todos los derechos reservados</div>
+</footer>
+
+<!-- STICKY MOBILE -->
+<div class="sticky-bar">
+  <div>
+    <div class="sb-price" id="sbPrice">197€</div>
+    <div class="sb-note">↑ Sube cada día</div>
+  </div>
+  <a href="#pricing" class="btn-gold">QUIERO EMPEZAR</a>
+</div>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Countdown hasta medianoche
+function updateCountdown() {
+  const now = new Date();
+  const tomorrow = new Date(now);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+  const diff = tomorrow - now;
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cdH').textContent = String(h).padStart(2,'0');
+  document.getElementById('cdM').textContent = String(m).padStart(2,'0');
+  document.getElementById('cdS').textContent = String(s).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// Precio dinámico: sube 5€/día desde el 29/06
+function updatePrices() {
+  const priceStart = new Date('2026-06-29T00:00:00');
+  const closeDate  = new Date('2026-07-05T23:59:59');
+  const now = new Date();
+  if (now > closeDate) return;
+  const daysPassed = Math.max(0, Math.floor((now - priceStart) / 86400000));
+  const inc = daysPassed * 5;
+  const b1=197, b2=397, b3=597;
+  const cur1=b1+inc, cur2=b2+inc, cur3=b3+inc;
+
+  const setPrice = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = `${val}<span class="price-currency">€</span>`;
+  };
+  setPrice('p1', cur1); setPrice('p2', cur2); setPrice('p3', cur3);
+
+  const sbP = document.getElementById('sbPrice');
+  if (sbP) sbP.textContent = `${cur1}€`;
+
+  const pnow = document.getElementById('priceNow');
+  const pnext = document.getElementById('priceNext');
+  if (pnow) pnow.textContent = `Precio actual: ${cur1}€`;
+  if (pnext && inc < 40) pnext.textContent = `Mañana: ${cur1+5}€ · Se cierra el 5 de julio`;
+}
+updatePrices();
+</script>
+</body>
+</html>

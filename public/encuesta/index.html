@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Low Back Armour — Cuéntanos cómo entrenas</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
@@ -165,6 +166,22 @@ footer {
 .foot { font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:0.12em; color:var(--grey); }
 .foot span { color:var(--gold); }
 
+/* Teléfono internacional (intl-tel-input) — tema oscuro */
+.iti { width:100%; display:block; }
+.iti__flag-container + input { padding-left:52px; }
+.iti--separate-dial-code .iti__selected-flag { background:rgba(255,255,255,0.05); }
+.iti__selected-flag:hover, .iti--separate-dial-code .iti__selected-flag:hover { background:rgba(255,255,255,0.1); }
+.iti__selected-dial-code { color:var(--grey-light); }
+.iti__country-list {
+  background:#1C1C1C;
+  border:1px solid rgba(255,255,255,0.15);
+  color:var(--white);
+}
+.iti__country.iti__highlight { background:rgba(245,200,66,0.15); }
+.iti__country:hover { background:rgba(245,200,66,0.12); }
+.iti__divider { border-bottom-color:rgba(255,255,255,0.1); }
+.iti__dial-code { color:var(--grey); }
+
 @media(max-width:560px){
   .row2 { grid-template-columns:1fr; }
   .grid-opts { grid-template-columns:1fr; }
@@ -210,8 +227,7 @@ footer {
 
     <div class="field">
       <label class="label" for="telefono">Teléfono <span class="req">*</span></label>
-      <input type="tel" id="telefono" name="telefono" placeholder="+34 600 00 00 00" autocomplete="tel">
-      <div class="hint">Incluye el prefijo del país (ej. +34 para España).</div>
+      <input type="tel" id="telefono" name="telefono" autocomplete="tel">
       <div class="err" data-for="telefono">Introduce un teléfono válido</div>
     </div>
 
@@ -226,33 +242,8 @@ footer {
           <input type="radio" name="lugar" value="En casa">
           <span class="opt-text"><strong>En casa</strong>Entreno en casa con el material que tenga.</span>
         </label>
-        <label class="opt">
-          <input type="radio" name="lugar" value="Ambos">
-          <span class="opt-text"><strong>Ambos / indistinto</strong>Puedo combinar gimnasio y casa.</span>
-        </label>
       </div>
       <div class="err" data-for="lugar">Elige una opción</div>
-    </div>
-
-    <div class="field">
-      <label class="label">¿Qué material tienes? <span class="req">*</span></label>
-      <div class="grid-opts" id="materialOpts">
-        <label class="opt"><input type="checkbox" name="material" value="Barra y discos"><span class="opt-text">Barra y discos</span></label>
-        <label class="opt"><input type="checkbox" name="material" value="Mancuernas"><span class="opt-text">Mancuernas</span></label>
-        <label class="opt"><input type="checkbox" name="material" value="Kettlebells"><span class="opt-text">Kettlebells</span></label>
-        <label class="opt"><input type="checkbox" name="material" value="Bandas elásticas"><span class="opt-text">Bandas elásticas</span></label>
-        <label class="opt"><input type="checkbox" name="material" value="Banco"><span class="opt-text">Banco</span></label>
-        <label class="opt"><input type="checkbox" name="material" value="Barra de dominadas"><span class="opt-text">Barra de dominadas</span></label>
-        <label class="opt"><input type="checkbox" name="material" value="Step o cajón"><span class="opt-text">Step o cajón</span></label>
-        <label class="opt"><input type="checkbox" name="material" value="Esterilla"><span class="opt-text">Esterilla</span></label>
-        <label class="opt"><input type="checkbox" name="material" value="Solo peso corporal"><span class="opt-text">Solo peso corporal (sin material)</span></label>
-      </div>
-      <div class="err" data-for="material">Marca al menos una opción</div>
-    </div>
-
-    <div class="field">
-      <label class="label" for="material_otro">Otro material o detalles (opcional)</label>
-      <textarea id="material_otro" name="material_otro" placeholder="Cuéntanos cualquier otro material o detalle relevante…"></textarea>
     </div>
 
     <button type="submit" class="submit-btn" id="submitBtn">ENVIAR RESPUESTAS</button>
@@ -271,14 +262,23 @@ footer {
   <div class="foot">LOW BACK <span>ARMOUR</span> · Training Norte</div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script>
-// TODO: sustituir por la URL real del webhook de Make donde recibir las respuestas.
-const WEBHOOK_URL = "REEMPLAZAR_WEBHOOK_ENCUESTA";
+const WEBHOOK_URL = "https://hook.eu2.make.com/6nvfpmluubro7lm0n724kox5rvf5h40s";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const form = document.getElementById('surveyForm');
 const submitBtn = document.getElementById('submitBtn');
 const formError = document.getElementById('formError');
+
+// Teléfono internacional con salida en formato E.164.
+const telInput = document.getElementById('telefono');
+const iti = window.intlTelInput(telInput, {
+  initialCountry: 'es',
+  separateDialCode: true,
+  preferredCountries: ['es', 'mx', 'ar', 'co', 'cl'],
+  utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js',
+});
 
 function showErr(name, show) {
   const el = document.querySelector(`.err[data-for="${name}"]`);
@@ -297,21 +297,20 @@ form.addEventListener('submit', async (e) => {
   const nombre = document.getElementById('nombre').value.trim();
   const apellido = document.getElementById('apellido').value.trim();
   const email = document.getElementById('email').value.trim();
-  const telefono = document.getElementById('telefono').value.trim();
   const lugar = (document.querySelector('input[name="lugar"]:checked') || {}).value || '';
-  const material = [...document.querySelectorAll('input[name="material"]:checked')].map(c => c.value);
-  const material_otro = document.getElementById('material_otro').value.trim();
+  // Teléfono: validar con utils si están cargados; si no, fallback básico.
+  let telValido = iti.isValidNumber();
+  if (telValido === null) telValido = telInput.value.replace(/[^0-9]/g, '').length >= 7;
 
   // Validación
   const errs = {
     nombre: !nombre,
     apellido: !apellido,
     email: !email || !EMAIL_RE.test(email),
-    telefono: telefono.replace(/[^0-9]/g, '').length < 7,
+    telefono: !telValido,
     lugar: !lugar,
-    material: material.length === 0,
   };
-  ['nombre','apellido','email','telefono','lugar','material'].forEach(n => showErr(n, errs[n]));
+  ['nombre','apellido','email','telefono','lugar'].forEach(n => showErr(n, errs[n]));
   document.getElementById('nombre').classList.toggle('invalid', errs.nombre);
   document.getElementById('apellido').classList.toggle('invalid', errs.apellido);
   document.getElementById('email').classList.toggle('invalid', errs.email);
@@ -322,11 +321,13 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
+  const telE164 = iti.getNumber() ||
+    ('+' + ((iti.getSelectedCountryData() || {}).dialCode || '') + telInput.value.replace(/[^0-9]/g, ''));
+
   const payload = {
-    nombre, apellido, email, telefono,
+    nombre, apellido, email,
+    telefono: telE164, // formato E.164
     lugar_entrenamiento: lugar,
-    material,
-    material_otro,
     pagina: window.location.href,
     enviado_en: new Date().toISOString(),
     ...getUtmAndQuery(),

@@ -62,8 +62,19 @@ h1,h2,h3 { font-family:'Bebas Neue',sans-serif; letter-spacing:0.03em; line-heig
 }
 .wrap h1 { font-size:clamp(40px,7vw,64px); margin-bottom:16px; }
 .wrap h1 .accent { color:var(--gold); }
-.intro { font-size:16px; color:var(--grey-light); line-height:1.7; margin-bottom:40px; }
+.intro { font-size:16px; color:var(--grey-light); line-height:1.7; margin-bottom:24px; }
 .intro strong { color:var(--white); }
+.note {
+  display:flex; gap:12px; align-items:flex-start;
+  background: rgba(245,200,66,0.07);
+  border:1px solid rgba(245,200,66,0.22);
+  border-left:3px solid var(--gold);
+  padding:14px 16px;
+  margin-bottom:40px;
+  font-size:14px; color:var(--grey-light); line-height:1.6;
+}
+.note .ni { color:var(--gold); flex-shrink:0; }
+.note strong { color:var(--white); }
 
 /* Form */
 .card {
@@ -203,6 +214,11 @@ footer {
     necesitamos saber <strong>dónde vas a entrenar</strong> y <strong>con qué material cuentas</strong>.
     Te llevará menos de un minuto.
   </p>
+
+  <div class="note">
+    <span class="ni">⚠</span>
+    <span>Usa los <strong>mismos datos (nombre, correo y teléfono) con los que hiciste el pedido</strong>, para que podamos asignarte correctamente tu plan de entrenamiento.</span>
+  </div>
 
   <form class="card" id="surveyForm" novalidate>
 

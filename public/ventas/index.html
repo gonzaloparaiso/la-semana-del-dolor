@@ -1021,6 +1021,8 @@ footer {
   <div class="countdown-strip" id="cdStrip">
     <span class="cd-label" id="cdLabel">⚠ Precio sube en:</span>
     <div class="cd-timer">
+      <div class="cd-unit" id="cdDUnit"><span class="cd-num" id="cdD">00</span><span class="cd-lbl">días</span></div>
+      <span class="cd-sep" id="cdDSep">:</span>
       <div class="cd-unit"><span class="cd-num" id="cdH">00</span><span class="cd-lbl">horas</span></div>
       <span class="cd-sep">:</span>
       <div class="cd-unit"><span class="cd-num" id="cdM">00</span><span class="cd-lbl">min</span></div>
@@ -1301,9 +1303,15 @@ function tick() {
   }
 
   const diff = Math.max(0, target - now);
-  document.getElementById('cdH').textContent = fmt(Math.floor(diff / 3600000));
+  const d = Math.floor(diff / DAY_MS);
+  document.getElementById('cdD').textContent = fmt(d);
+  document.getElementById('cdH').textContent = fmt(Math.floor((diff % DAY_MS) / 3600000));
   document.getElementById('cdM').textContent = fmt(Math.floor((diff % 3600000) / 60000));
   document.getElementById('cdS').textContent = fmt(Math.floor((diff % 60000) / 1000));
+  // La unidad de "días" solo se muestra cuando falta más de un día.
+  const dUnit = document.getElementById('cdDUnit'), dSep = document.getElementById('cdDSep');
+  if (dUnit) dUnit.style.display = d > 0 ? '' : 'none';
+  if (dSep)  dSep.style.display  = d > 0 ? '' : 'none';
 }
 tick();
 setInterval(tick, 1000);

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Low Back Armour — Cuéntanos cómo entrenas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --gold: #F5C842;
+  --black: #0D0D0D;
+  --dark: #141414;
+  --dark2: #1C1C1C;
+  --dark3: #252525;
+  --white: #FFFFFF;
+  --grey: #888888;
+  --grey-light: #C8C8C8;
+  --urgent: #E05A2B;
+  --error: #ff6b6b;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3 { font-family:'Bebas Neue',sans-serif; letter-spacing:0.03em; line-height:1.0; }
+
+/* Top bar */
+.topbar {
+  border-bottom: 1px solid rgba(245,200,66,0.12);
+  padding: 18px 24px;
+  text-align: center;
+}
+.brand {
+  font-family:'Bebas Neue',sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+.brand span { color: var(--gold); }
+
+/* Layout */
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 20px 80px;
+}
+.eyebrow {
+  display:inline-block;
+  font-size:11px; font-weight:700; letter-spacing:0.2em;
+  color:var(--gold); text-transform:uppercase;
+  border-left:3px solid var(--gold); padding-left:12px;
+  margin-bottom:18px;
+}
+.wrap h1 { font-size:clamp(40px,7vw,64px); margin-bottom:16px; }
+.wrap h1 .accent { color:var(--gold); }
+.intro { font-size:16px; color:var(--grey-light); line-height:1.7; margin-bottom:40px; }
+.intro strong { color:var(--white); }
+
+/* Form */
+.card {
+  background: var(--dark2);
+  border: 1px solid rgba(245,200,66,0.18);
+  border-top: 4px solid var(--gold);
+  padding: 32px 28px;
+}
+.field { margin-bottom: 24px; }
+.field:last-of-type { margin-bottom: 0; }
+.label {
+  display:block;
+  font-size:12px; font-weight:700; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--grey-light);
+  margin-bottom:10px;
+}
+.label .req { color:var(--gold); }
+.hint { font-size:12px; color:var(--grey); margin-top:6px; }
+
+.row2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+
+input[type="text"], input[type="email"], input[type="tel"], textarea {
+  width:100%;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white);
+  font-family:'Inter',sans-serif;
+  font-size:15px;
+  padding: 13px 14px;
+  outline:none;
+  transition: border-color .15s;
+}
+input:focus, textarea:focus { border-color: var(--gold); }
+input::placeholder, textarea::placeholder { color:#666; }
+textarea { resize:vertical; min-height:88px; }
+.invalid { border-color: var(--error) !important; }
+.err { font-size:12px; color:var(--error); margin-top:6px; display:none; }
+.err.show { display:block; }
+
+/* Option cards (radio / checkbox) */
+.options { display:flex; flex-direction:column; gap:10px; }
+.opt {
+  display:flex; align-items:flex-start; gap:12px;
+  background:#111;
+  border:1px solid rgba(255,255,255,0.12);
+  padding:14px 16px;
+  cursor:pointer;
+  transition: border-color .15s, background .15s;
+}
+.opt:hover { border-color: rgba(245,200,66,0.5); }
+.opt input { margin-top:2px; width:18px; height:18px; accent-color:var(--gold); flex-shrink:0; cursor:pointer; }
+.opt-text { font-size:15px; color:var(--grey-light); line-height:1.4; }
+.opt-text strong { color:var(--white); display:block; }
+.opt input:checked ~ .opt-text strong { color:var(--gold); }
+
+.grid-opts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+.submit-btn {
+  width:100%;
+  background: var(--gold);
+  color: var(--black);
+  border:none;
+  padding:16px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:19px;
+  letter-spacing:0.08em;
+  cursor:pointer;
+  margin-top:32px;
+  transition: background .18s, transform .12s, opacity .18s;
+}
+.submit-btn:hover { background:#ffd84d; transform:translateY(-1px); }
+.submit-btn:disabled { opacity:.6; cursor:wait; transform:none; }
+
+.form-error {
+  display:none;
+  margin-top:16px;
+  font-size:14px; color:var(--error);
+  background: rgba(255,107,107,0.08);
+  border:1px solid rgba(255,107,107,0.25);
+  padding:12px 14px;
+}
+.form-error.show { display:block; }
+
+/* Success */
+.success { display:none; text-align:center; padding:24px 0; }
+.success.show { display:block; }
+.success .check {
+  width:64px; height:64px; border-radius:50%;
+  background:var(--gold); color:var(--black);
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 20px; font-size:34px;
+}
+.success h2 { font-size:36px; color:var(--gold); margin-bottom:14px; }
+.success p { font-size:16px; color:var(--grey-light); line-height:1.7; }
+
+footer {
+  border-top:1px solid rgba(255,255,255,0.05);
+  padding:24px; text-align:center;
+}
+.foot { font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:0.12em; color:var(--grey); }
+.foot span { color:var(--gold); }
+
+@media(max-width:560px){
+  .row2 { grid-template-columns:1fr; }
+  .grid-opts { grid-template-columns:1fr; }
+  .card { padding:24px 18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">LOW BACK <span>ARMOUR</span></div>
+</div>
+
+<div class="wrap">
+  <span class="eyebrow">Antes de empezar</span>
+  <h1>CUÉNTANOS<br>CÓMO <span class="accent">ENTRENAS</span></h1>
+  <p class="intro">
+    Ya estás dentro de <strong>Low Back Armour</strong>. Para adaptar el programa a tu situación,
+    necesitamos saber <strong>dónde vas a entrenar</strong> y <strong>con qué material cuentas</strong>.
+    Te llevará menos de un minuto.
+  </p>
+
+  <form class="card" id="surveyForm" novalidate>
+
+    <div class="row2">
+      <div class="field">
+        <label class="label" for="nombre">Nombre <span class="req">*</span></label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="given-name">
+        <div class="err" data-for="nombre">Indica tu nombre</div>
+      </div>
+      <div class="field">
+        <label class="label" for="apellido">Apellido <span class="req">*</span></label>
+        <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" autocomplete="family-name">
+        <div class="err" data-for="apellido">Indica tu apellido</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="email">Correo electrónico <span class="req">*</span></label>
+      <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" autocomplete="email">
+      <div class="err" data-for="email">Introduce un correo válido</div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="telefono">Teléfono <span class="req">*</span></label>
+      <input type="tel" id="telefono" name="telefono" placeholder="+34 600 00 00 00" autocomplete="tel">
+      <div class="hint">Incluye el prefijo del país (ej. +34 para España).</div>
+      <div class="err" data-for="telefono">Introduce un teléfono válido</div>
+    </div>
+
+    <div class="field">
+      <label class="label">¿Dónde vas a entrenar? <span class="req">*</span></label>
+      <div class="options" id="lugarOpts">
+        <label class="opt">
+          <input type="radio" name="lugar" value="Gimnasio o box">
+          <span class="opt-text"><strong>En un gimnasio o box</strong>Tengo acceso a equipamiento (barra, discos, máquinas…).</span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="lugar" value="En casa">
+          <span class="opt-text"><strong>En casa</strong>Entreno en casa con el material que tenga.</span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="lugar" value="Ambos">
+          <span class="opt-text"><strong>Ambos / indistinto</strong>Puedo combinar gimnasio y casa.</span>
+        </label>
+      </div>
+      <div class="err" data-for="lugar">Elige una opción</div>
+    </div>
+
+    <div class="field">
+      <label class="label">¿Qué material tienes? <span class="req">*</span></label>
+      <div class="grid-opts" id="materialOpts">
+        <label class="opt"><input type="checkbox" name="material" value="Barra y discos"><span class="opt-text">Barra y discos</span></label>
+        <label class="opt"><input type="checkbox" name="material" value="Mancuernas"><span class="opt-text">Mancuernas</span></label>
+        <label class="opt"><input type="checkbox" name="material" value="Kettlebells"><span class="opt-text">Kettlebells</span></label>
+        <label class="opt"><input type="checkbox" name="material" value="Bandas elásticas"><span class="opt-text">Bandas elásticas</span></label>
+        <label class="opt"><input type="checkbox" name="material" value="Banco"><span class="opt-text">Banco</span></label>
+        <label class="opt"><input type="checkbox" name="material" value="Barra de dominadas"><span class="opt-text">Barra de dominadas</span></label>
+        <label class="opt"><input type="checkbox" name="material" value="Step o cajón"><span class="opt-text">Step o cajón</span></label>
+        <label class="opt"><input type="checkbox" name="material" value="Esterilla"><span class="opt-text">Esterilla</span></label>
+        <label class="opt"><input type="checkbox" name="material" value="Solo peso corporal"><span class="opt-text">Solo peso corporal (sin material)</span></label>
+      </div>
+      <div class="err" data-for="material">Marca al menos una opción</div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="material_otro">Otro material o detalles (opcional)</label>
+      <textarea id="material_otro" name="material_otro" placeholder="Cuéntanos cualquier otro material o detalle relevante…"></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">ENVIAR RESPUESTAS</button>
+    <div class="form-error" id="formError">No hemos podido enviar tus respuestas. Inténtalo de nuevo en unos segundos.</div>
+  </form>
+
+  <!-- Estado de éxito -->
+  <div class="card success" id="success">
+    <div class="check">✓</div>
+    <h2>¡GRACIAS!</h2>
+    <p>Hemos recibido tus respuestas. Con esto adaptaremos tu programa de Low Back Armour. Nos vemos dentro 💪</p>
+  </div>
+</div>
+
+<footer>
+  <div class="foot">LOW BACK <span>ARMOUR</span> · Training Norte</div>
+</footer>
+
+<script>
+// TODO: sustituir por la URL real del webhook de Make donde recibir las respuestas.
+const WEBHOOK_URL = "REEMPLAZAR_WEBHOOK_ENCUESTA";
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const form = document.getElementById('surveyForm');
+const submitBtn = document.getElementById('submitBtn');
+const formError = document.getElementById('formError');
+
+function showErr(name, show) {
+  const el = document.querySelector(`.err[data-for="${name}"]`);
+  if (el) el.classList.toggle('show', show);
+}
+function getUtmAndQuery() {
+  const params = {};
+  try { new URL(window.location.href).searchParams.forEach((v, k) => { params[k] = v; }); } catch (e) {}
+  return params;
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  formError.classList.remove('show');
+
+  const nombre = document.getElementById('nombre').value.trim();
+  const apellido = document.getElementById('apellido').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const telefono = document.getElementById('telefono').value.trim();
+  const lugar = (document.querySelector('input[name="lugar"]:checked') || {}).value || '';
+  const material = [...document.querySelectorAll('input[name="material"]:checked')].map(c => c.value);
+  const material_otro = document.getElementById('material_otro').value.trim();
+
+  // Validación
+  const errs = {
+    nombre: !nombre,
+    apellido: !apellido,
+    email: !email || !EMAIL_RE.test(email),
+    telefono: telefono.replace(/[^0-9]/g, '').length < 7,
+    lugar: !lugar,
+    material: material.length === 0,
+  };
+  ['nombre','apellido','email','telefono','lugar','material'].forEach(n => showErr(n, errs[n]));
+  document.getElementById('nombre').classList.toggle('invalid', errs.nombre);
+  document.getElementById('apellido').classList.toggle('invalid', errs.apellido);
+  document.getElementById('email').classList.toggle('invalid', errs.email);
+  document.getElementById('telefono').classList.toggle('invalid', errs.telefono);
+  if (Object.values(errs).some(Boolean)) {
+    const first = document.querySelector('.err.show');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const payload = {
+    nombre, apellido, email, telefono,
+    lugar_entrenamiento: lugar,
+    material,
+    material_otro,
+    pagina: window.location.href,
+    enviado_en: new Date().toISOString(),
+    ...getUtmAndQuery(),
+  };
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'ENVIANDO…';
+  try {
+    const res = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    form.style.display = 'none';
+    document.getElementById('success').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (err) {
+    console.error('Error enviando la encuesta:', err);
+    formError.classList.add('show');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'ENVIAR RESPUESTAS';
+  }
+});
+</script>
+</body>
+</html>

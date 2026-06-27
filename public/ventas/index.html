@@ -1314,5 +1314,21 @@ function tick() {
 tick();
 setInterval(tick, 1000);
 </script>
+
+<!-- Auto-altura para embeds en iframe: comunica la altura del contenido a la página padre -->
+<script>
+(function () {
+  if (window.parent === window) return;
+  var last = 0;
+  function postHeight() {
+    var h = document.documentElement.scrollHeight;
+    if (h !== last) { last = h; window.parent.postMessage({ type: "lsd-height", height: h }, "*"); }
+  }
+  window.addEventListener("load", postHeight);
+  window.addEventListener("resize", postHeight);
+  if (window.ResizeObserver) new ResizeObserver(postHeight).observe(document.body);
+  else setInterval(postHeight, 800);
+})();
+</script>
 </body>
 </html>

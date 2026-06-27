@@ -95,6 +95,8 @@ nav {
   overflow: hidden;
   padding: 120px 10% 100px;
 }
+/* Embebido en iframe: el hero mide por contenido (evita el bucle del vh) */
+html.embedded .hero { min-height: auto; padding: 90px 10% 80px; }
 .hero-bg {
   position: absolute; inset:0;
   background: linear-gradient(110deg, rgba(13,13,13,0.88) 40%, rgba(13,13,13,0.3) 100%);
@@ -1319,6 +1321,7 @@ setInterval(tick, 1000);
 <script>
 (function () {
   if (window.parent === window) return;
+  document.documentElement.classList.add('embedded');
   var last = 0;
   function postHeight() {
     var h = document.documentElement.scrollHeight;

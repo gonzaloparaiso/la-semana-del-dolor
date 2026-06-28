@@ -1230,12 +1230,12 @@ footer {
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="divider" id="clases-divider" style="display:none"></div>
 
 <!-- ───────────────────────────────────────────
-     LAS 3 CLASES EN VÍDEO
+     LAS 3 CLASES EN VÍDEO (oculto hasta el 29 jun 10:00 hora de España)
 ──────────────────────────────────────────── -->
-<section class="s-darker" id="clases-video">
+<section class="s-darker" id="clases-video" style="display:none">
   <span class="eyebrow">La semana del dolor de espalda</span>
   <h2 style="font-size:clamp(36px,5vw,60px);margin-bottom:8px;">VUELVE A VER LAS 3 CLASES</h2>
   <p style="font-size:17px;color:var(--grey-light);max-width:620px;line-height:1.7;">Las clases en directo de la semana, al completo. Por si te perdiste alguna o quieres repasarla.</p>
@@ -1369,6 +1369,24 @@ function tick() {
 }
 tick();
 setInterval(tick, 1000);
+</script>
+
+<!-- Compuerta: la sección de las 3 clases se revela el 29 jun a las 10:00 (hora de España) -->
+<script>
+(function () {
+  var REVEAL = new Date('2026-06-29T10:00:00+02:00').getTime();
+  var sec = document.getElementById('clases-video');
+  var div = document.getElementById('clases-divider');
+  if (!sec) return;
+  var timer = setInterval(apply, 30000);
+  apply();
+  function apply() {
+    var show = Date.now() >= REVEAL;
+    sec.style.display = show ? '' : 'none';
+    if (div) div.style.display = show ? '' : 'none';
+    if (show && timer) { clearInterval(timer); timer = null; }
+  }
+})();
 </script>
 
 <!-- Clases en vídeo: cargar y reproducir al pulsar el póster -->

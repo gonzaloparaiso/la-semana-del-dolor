@@ -384,6 +384,29 @@ section { padding: 96px 10%; }
 .video-name { font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:.04em;margin-bottom:6px; }
 .video-desc { font-size:13px;color:var(--grey);line-height:1.5; }
 
+/* ── CLASES EN VÍDEO ── */
+.clases-row { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+.clase-card { background:var(--dark); }
+.clase-media { position:relative; width:100%; aspect-ratio:16/9; background:#000; cursor:pointer; overflow:hidden; }
+.clase-media video { width:100%; height:100%; display:block; object-fit:contain; background:#000; }
+.clase-poster {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+  background:linear-gradient(160deg,#1C1C1C,#0D0D0D);
+  border-bottom:3px solid var(--gold);
+}
+.cp-brand { font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:.18em; color:var(--gold); }
+.cp-num { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:.06em; color:var(--white); }
+.cp-play {
+  width:62px; height:62px; border-radius:50%; background:var(--gold);
+  display:flex; align-items:center; justify-content:center; transition:transform .2s;
+}
+.cp-play::after { content:''; border-style:solid; border-width:11px 0 11px 18px; border-color:transparent transparent transparent var(--black); margin-left:4px; }
+.clase-media:hover .cp-play { transform:scale(1.1); }
+.clase-info { padding:16px 18px; }
+.clase-num { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); }
+.clase-title { font-family:'Bebas Neue',sans-serif; font-size:21px; color:var(--white); letter-spacing:.04em; margin-top:6px; line-height:1.1; }
+
 /* ── PROGRAM ── */
 .program-intro {
   display: grid;
@@ -707,7 +730,7 @@ footer {
   .thoughts-grid,
   .auth-grid,.program-intro,.plan-tabs,
   .price-table,.faq-wrap,.video-row,
-  .testi-grid,.urgency-box,.guarantee-block { grid-template-columns:1fr; }
+  .testi-grid,.urgency-box,.guarantee-block,.clases-row { grid-template-columns:1fr; }
   .plan-tabs,.price-table { gap:16px;background:none; }
   .price-badge { display:none; }
   .price-card.featured { outline:2px solid var(--gold); }
@@ -1209,6 +1232,37 @@ footer {
 
 <div class="divider"></div>
 
+<!-- ───────────────────────────────────────────
+     LAS 3 CLASES EN VÍDEO
+──────────────────────────────────────────── -->
+<section class="s-darker" id="clases-video">
+  <span class="eyebrow">La semana del dolor de espalda</span>
+  <h2 style="font-size:clamp(36px,5vw,60px);margin-bottom:8px;">VUELVE A VER LAS 3 CLASES</h2>
+  <p style="font-size:17px;color:var(--grey-light);max-width:620px;line-height:1.7;">Las clases en directo de la semana, al completo. Por si te perdiste alguna o quieres repasarla.</p>
+  <div class="clases-row">
+    <div class="clase-card">
+      <div class="clase-media" data-src="https://videos-academia-tn.nyc3.cdn.digitaloceanspaces.com/TN/Low%20Back%20Armour/LBA%20-%20Clase%201">
+        <div class="clase-poster"><span class="cp-brand">LOW BACK ARMOUR</span><span class="cp-play"></span><span class="cp-num">Clase 1</span></div>
+      </div>
+      <div class="clase-info"><span class="clase-num">Clase 1</span><div class="clase-title">Por qué te duele la espalda</div></div>
+    </div>
+    <div class="clase-card">
+      <div class="clase-media" data-src="https://videos-academia-tn.nyc3.cdn.digitaloceanspaces.com/TN/Low%20Back%20Armour/LBA%20-%20Clase%202">
+        <div class="clase-poster"><span class="cp-brand">LOW BACK ARMOUR</span><span class="cp-play"></span><span class="cp-num">Clase 2</span></div>
+      </div>
+      <div class="clase-info"><span class="clase-num">Clase 2</span><div class="clase-title">Cómo moverte sin miedo</div></div>
+    </div>
+    <div class="clase-card">
+      <div class="clase-media" data-src="https://videos-academia-tn.nyc3.cdn.digitaloceanspaces.com/TN/Low%20Back%20Armour/LBA%20-%20Clase%203">
+        <div class="clase-poster"><span class="cp-brand">LOW BACK ARMOUR</span><span class="cp-play"></span><span class="cp-num">Clase 3</span></div>
+      </div>
+      <div class="clase-info"><span class="clase-num">Clase 3</span><div class="clase-title">Tu plan para dejar de convivir con el dolor</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section class="s-black close-sec">
   <span class="eyebrow" style="display:block;margin-bottom:24px;">Nadie tiene por qué vivir con dolor</span>
   <h2>¿ALGÚN DÍA VOLVERÉ<br>A ESTAR <span class="accent">SIN DOLOR?</span></h2>
@@ -1315,6 +1369,24 @@ function tick() {
 }
 tick();
 setInterval(tick, 1000);
+</script>
+
+<!-- Clases en vídeo: cargar y reproducir al pulsar el póster -->
+<script>
+document.querySelectorAll('.clase-media').forEach(function (media) {
+  media.addEventListener('click', function () {
+    if (media.dataset.loaded) return;
+    media.dataset.loaded = '1';
+    var v = document.createElement('video');
+    v.src = media.dataset.src;
+    v.controls = true;
+    v.autoplay = true;
+    v.setAttribute('playsinline', '');
+    media.innerHTML = '';
+    media.appendChild(v);
+    media.style.cursor = 'default';
+  });
+});
 </script>
 
 <!-- Auto-altura para embeds en iframe: comunica la altura del contenido a la página padre -->
